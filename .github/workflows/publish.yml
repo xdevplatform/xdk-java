@@ -1,0 +1,90 @@
+name: Publish to Maven Central
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pom.xml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.check.outputs.should_publish }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check version change
+        id: check
+        run: |
+          VERSION=$(sed -n 's|^    <version>\(.*\)</version>$|\1|p' pom.xml | head -n 1)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          git show HEAD~1:pom.xml > /tmp/old.xml 2>/dev/null || {
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            exit 0
+          }
+
+          OLD_VERSION=$(sed -n 's|^    <version>\(.*\)</version>$|\1|p' /tmp/old.xml | head -n 1 || echo "")
+
+          if [ "$VERSION" != "$OLD_VERSION" ]; then
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          fi
+
+  publish:
+    needs: check-version
+    if: needs.check-version.outputs.should_publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+
+      - name: Build, Test, and Package (JAR, Sources, Javadoc)
+        run: mvn package -Prelease -Dgpg.skip=true -B
+
+      - name: Publish to Maven Central (Sonatype Central Portal)
+        if: ${{ env.MAVEN_CENTRAL_USERNAME != '' && env.MAVEN_CENTRAL_TOKEN != '' && env.MAVEN_GPG_PRIVATE_KEY != '' }}
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+          MAVEN_GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: |
+          echo "$MAVEN_GPG_PRIVATE_KEY" | gpg --batch --import
+          mvn deploy -Prelease -DskipTests -B ${MAVEN_GPG_PASSPHRASE:+-Dgpg.passphrase="$MAVEN_GPG_PASSPHRASE"}
+
+      - name: Create tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ needs.check-version.outputs.version }}" -m "v${{ needs.check-version.outputs.version }}" || true
+          git push origin "v${{ needs.check-version.outputs.version }}" || true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check-version.outputs.version }}
+          generate_release_notes: true
+          files: target/*.jar
