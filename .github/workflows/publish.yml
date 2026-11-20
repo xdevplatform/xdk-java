@@ -65,13 +65,16 @@ jobs:
         run: mvn package -Prelease -Dgpg.skip=true -B
 
       - name: Publish to Maven Central (Sonatype Central Portal)
-        if: ${{ env.MAVEN_CENTRAL_USERNAME != '' && env.MAVEN_CENTRAL_TOKEN != '' && env.MAVEN_GPG_PRIVATE_KEY != '' }}
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           MAVEN_GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
         run: |
+          if [ -z "$MAVEN_CENTRAL_USERNAME" ] || [ -z "$MAVEN_CENTRAL_TOKEN" ] || [ -z "$MAVEN_GPG_PRIVATE_KEY" ]; then
+            echo "Maven Central / GPG secrets are not configured yet; skipping Maven Central deploy."
+            exit 0
+          fi
           echo "$MAVEN_GPG_PRIVATE_KEY" | gpg --batch --import
           mvn deploy -Prelease -DskipTests -B ${MAVEN_GPG_PASSPHRASE:+-Dgpg.passphrase="$MAVEN_GPG_PASSPHRASE"}
 
