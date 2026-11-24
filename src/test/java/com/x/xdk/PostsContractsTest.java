@@ -60,8 +60,8 @@ public class PostsContractsTest {
 
     
     @Test
-    void contract_getRepostedBy() throws Exception {
-        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_getByIds() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -72,18 +72,20 @@ public class PostsContractsTest {
         
 
         
-        PostsClient.GetRepostedByOptions options =
-                PostsClient.GetRepostedByOptions.builder()
-                        .header("X-Contract-Operation", "getRepostedBy");
+        PostsClient.GetByIdsOptions options =
+                PostsClient.GetByIdsOptions.builder()
+                        .header("X-Contract-Operation", "getByIds");
         
         
         
-        options.maxResults(10);
+        options.postFields(Arrays.asList("id", "created_at"));
         
         
         
         
-        options.paginationToken("opt_paginationToken");
+        options.expansions(Arrays.asList("id", "created_at"));
+        
+        
         
         
         
@@ -111,7 +113,154 @@ public class PostsContractsTest {
 
         Object result =
                 client.posts()
-                        .getRepostedBy("test_id", options);
+                        .getByIds(Arrays.asList("item1"), options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getByIds", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_create() throws Exception {
+        String mockJson = "{\"data\":{\"edit_history_post_ids\":[\"test_value\"],\"id\":\"1234567890\",\"text\":\"Hello from XDK!\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                201, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"card_uri\":\"test_value\",\"clip\":{\"end_seconds\":1,\"post_id\":\"test_value\",\"start_seconds\":1},\"community_id\":\"test_value\",\"direct_message_deep_link\":\"test_value\",\"edit_options\":{\"previous_post_id\":\"test_value\"},\"for_super_followers_only\":true,\"geo\":{\"place_id\":\"test_value\"},\"made_with_ai\":true,\"media\":{\"call_to_actions\":{\"app_install\":{},\"visit_site\":{\"url\":\"test_value\"},\"watch_now\":{\"url\":\"test_value\"}},\"description\":\"test_value\",\"embeddable\":true,\"media_ids\":[\"test_value\"],\"preview_media_id\":\"test_value\",\"tagged_user_ids\":[\"test_value\"],\"title\":\"test_value\"},\"nullcast\":true,\"paid_partnership\":true,\"poll\":{\"duration_minutes\":5,\"options\":[\"test_value\"],\"reply_settings\":\"following\"},\"quote_tweet_id\":\"test_value\",\"reply\":{\"auto_populate_reply_metadata\":true,\"exclude_reply_user_ids\":[\"test_value\"],\"in_reply_to_tweet_id\":\"test_value\"},\"reply_settings\":\"following\",\"share_with_followers\":true,\"text\":\"Hello from XDK!\"}";
+        Schemas.CreatePostsRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreatePostsRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.posts()
+                        .create(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/tweets";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_getQuoted() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        PostsClient.GetQuotedOptions options =
+                PostsClient.GetQuotedOptions.builder()
+                        .header("X-Contract-Operation", "getQuoted");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.posts()
+                        .getQuoted("test_id", options);
         assertNotNull(result);
 
         
@@ -128,7 +277,7 @@ public class PostsContractsTest {
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getRepostedBy", captured.firstHeader("x-contract-operation"));
+        assertEquals("getQuoted", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -186,8 +335,8 @@ public class PostsContractsTest {
     }
     
     @Test
-    void contract_hideReply() throws Exception {
-        String mockJson = "{\"data\":{\"hidden\":true}}";
+    void contract_searchRecent() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"newest_id\":\"test_value\",\"oldest_id\":\"test_value\",\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -196,16 +345,47 @@ public class PostsContractsTest {
         
 
         
-        
-        String reqMockJson = "{\"hidden\":true}";
-        Schemas.HidePostsReplyRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.HidePostsReplyRequest>() {});
-        
-        
 
+        
+        PostsClient.SearchRecentOptions options =
+                PostsClient.SearchRecentOptions.builder()
+                        .header("X-Contract-Operation", "searchRecent");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.nextToken("opt_nextToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 
         
@@ -224,7 +404,7 @@ public class PostsContractsTest {
 
         Object result =
                 client.posts()
-                        .hideReply("test_tweetId", reqBody);
+                        .searchRecent("test_query", options);
         assertNotNull(result);
 
         
@@ -235,19 +415,16 @@ public class PostsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("PUT", captured.getMethod());
-        String baseSegment = "/2/tweets/";
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/search/recent";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
+        assertEquals("searchRecent", captured.firstHeader("x-contract-operation"));
+        
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }
@@ -334,8 +511,8 @@ public class PostsContractsTest {
     }
     
     @Test
-    void contract_getLikingUsers() throws Exception {
-        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_getById() throws Exception {
+        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
         server.setResponder(
                 req ->
@@ -346,18 +523,20 @@ public class PostsContractsTest {
         
 
         
-        PostsClient.GetLikingUsersOptions options =
-                PostsClient.GetLikingUsersOptions.builder()
-                        .header("X-Contract-Operation", "getLikingUsers");
+        PostsClient.GetByIdOptions options =
+                PostsClient.GetByIdOptions.builder()
+                        .header("X-Contract-Operation", "getById");
         
         
         
-        options.maxResults(10);
+        options.postFields(Arrays.asList("id", "created_at"));
         
         
         
         
-        options.paginationToken("opt_paginationToken");
+        options.expansions(Arrays.asList("id", "created_at"));
+        
+        
         
         
         
@@ -385,7 +564,7 @@ public class PostsContractsTest {
 
         Object result =
                 client.posts()
-                        .getLikingUsers("test_id", options);
+                        .getById("test_id", options);
         assertNotNull(result);
 
         
@@ -402,10 +581,209 @@ public class PostsContractsTest {
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getLikingUsers", captured.firstHeader("x-contract-operation"));
+        assertEquals("getById", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_delete() throws Exception {
+        String mockJson = "{\"data\":{\"deleted\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.posts()
+                        .delete("test_id");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/tweets/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getReposts() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        PostsClient.GetRepostsOptions options =
+                PostsClient.GetRepostsOptions.builder()
+                        .header("X-Contract-Operation", "getReposts");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.posts()
+                        .getReposts("test_id", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getReposts", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_hideReply() throws Exception {
+        String mockJson = "{\"data\":{\"hidden\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"hidden\":true}";
+        Schemas.HidePostsReplyRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.HidePostsReplyRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.posts()
+                        .hideReply("test_tweetId", reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("PUT", captured.getMethod());
+        String baseSegment = "/2/tweets/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }
@@ -622,186 +1000,6 @@ public class PostsContractsTest {
     }
     
     @Test
-    void contract_getQuoted() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        PostsClient.GetQuotedOptions options =
-                PostsClient.GetQuotedOptions.builder()
-                        .header("X-Contract-Operation", "getQuoted");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.posts()
-                        .getQuoted("test_id", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getQuoted", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_searchRecent() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"newest_id\":\"test_value\",\"oldest_id\":\"test_value\",\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        PostsClient.SearchRecentOptions options =
-                PostsClient.SearchRecentOptions.builder()
-                        .header("X-Contract-Operation", "searchRecent");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.nextToken("opt_nextToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.posts()
-                        .searchRecent("test_query", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/search/recent";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("searchRecent", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_getCountsRecent() throws Exception {
         String mockJson = "{\"data\":[{\"end\":\"test_value\",\"post_count\":1,\"start\":\"test_value\"}],\"meta\":{\"total_post_count\":1}}";
         
@@ -980,8 +1178,8 @@ public class PostsContractsTest {
     }
     
     @Test
-    void contract_getReposts() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_getLikingUsers() throws Exception {
+        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -992,9 +1190,9 @@ public class PostsContractsTest {
         
 
         
-        PostsClient.GetRepostsOptions options =
-                PostsClient.GetRepostsOptions.builder()
-                        .header("X-Contract-Operation", "getReposts");
+        PostsClient.GetLikingUsersOptions options =
+                PostsClient.GetLikingUsersOptions.builder()
+                        .header("X-Contract-Operation", "getLikingUsers");
         
         
         
@@ -1014,12 +1212,6 @@ public class PostsContractsTest {
         
         
         
-        
-        
-        
-        
-        
-        
 
         
         
@@ -1037,7 +1229,7 @@ public class PostsContractsTest {
 
         Object result =
                 client.posts()
-                        .getReposts("test_id", options);
+                        .getLikingUsers("test_id", options);
         assertNotNull(result);
 
         
@@ -1054,7 +1246,7 @@ public class PostsContractsTest {
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getReposts", captured.firstHeader("x-contract-operation"));
+        assertEquals("getLikingUsers", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -1063,8 +1255,8 @@ public class PostsContractsTest {
     }
     
     @Test
-    void contract_getById() throws Exception {
-        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+    void contract_getRepostedBy() throws Exception {
+        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -1075,20 +1267,18 @@ public class PostsContractsTest {
         
 
         
-        PostsClient.GetByIdOptions options =
-                PostsClient.GetByIdOptions.builder()
-                        .header("X-Contract-Operation", "getById");
+        PostsClient.GetRepostedByOptions options =
+                PostsClient.GetRepostedByOptions.builder()
+                        .header("X-Contract-Operation", "getRepostedBy");
         
         
         
-        options.postFields(Arrays.asList("id", "created_at"));
+        options.maxResults(10);
         
         
         
         
-        options.expansions(Arrays.asList("id", "created_at"));
-        
-        
+        options.paginationToken("opt_paginationToken");
         
         
         
@@ -1116,7 +1306,7 @@ public class PostsContractsTest {
 
         Object result =
                 client.posts()
-                        .getById("test_id", options);
+                        .getRepostedBy("test_id", options);
         assertNotNull(result);
 
         
@@ -1133,200 +1323,10 @@ public class PostsContractsTest {
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getById", captured.firstHeader("x-contract-operation"));
+        assertEquals("getRepostedBy", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_delete() throws Exception {
-        String mockJson = "{\"data\":{\"deleted\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.posts()
-                        .delete("test_id");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/tweets/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getByIds() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        PostsClient.GetByIdsOptions options =
-                PostsClient.GetByIdsOptions.builder()
-                        .header("X-Contract-Operation", "getByIds");
-        
-        
-        
-        options.postFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        options.expansions(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.posts()
-                        .getByIds(Arrays.asList("item1"), options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getByIds", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_create() throws Exception {
-        String mockJson = "{\"data\":{\"edit_history_post_ids\":[\"test_value\"],\"id\":\"1234567890\",\"text\":\"Hello from XDK!\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                201, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"card_uri\":\"test_value\",\"clip\":{\"end_seconds\":1,\"post_id\":\"test_value\",\"start_seconds\":1},\"community_id\":\"test_value\",\"direct_message_deep_link\":\"test_value\",\"edit_options\":{\"previous_post_id\":\"test_value\"},\"for_super_followers_only\":true,\"geo\":{\"place_id\":\"test_value\"},\"made_with_ai\":true,\"media\":{\"call_to_actions\":{\"app_install\":{},\"visit_site\":{\"url\":\"test_value\"},\"watch_now\":{\"url\":\"test_value\"}},\"description\":\"test_value\",\"embeddable\":true,\"media_ids\":[\"test_value\"],\"preview_media_id\":\"test_value\",\"tagged_user_ids\":[\"test_value\"],\"title\":\"test_value\"},\"nullcast\":true,\"paid_partnership\":true,\"poll\":{\"duration_minutes\":5,\"options\":[\"test_value\"],\"reply_settings\":\"following\"},\"quote_tweet_id\":\"test_value\",\"reply\":{\"auto_populate_reply_metadata\":true,\"exclude_reply_user_ids\":[\"test_value\"],\"in_reply_to_tweet_id\":\"test_value\"},\"reply_settings\":\"following\",\"share_with_followers\":true,\"text\":\"Hello from XDK!\"}";
-        Schemas.CreatePostsRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreatePostsRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.posts()
-                        .create(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/tweets";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }

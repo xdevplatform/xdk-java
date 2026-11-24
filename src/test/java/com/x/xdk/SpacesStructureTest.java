@@ -34,8 +34,8 @@ public class SpacesStructureTest {
         
         
         assertTrue(
-                declared.contains("getById"),
-                "Expected method getById on SpacesClient");
+                declared.contains("getByCreatorIds"),
+                "Expected method getByCreatorIds on SpacesClient");
         
         
         assertTrue(
@@ -44,12 +44,8 @@ public class SpacesStructureTest {
         
         
         assertTrue(
-                declared.contains("getBuyers"),
-                "Expected method getBuyers on SpacesClient");
-        
-        assertTrue(
-                declared.contains("getBuyersPages"),
-                "Expected pagination helper getBuyersPages on SpacesClient");
+                declared.contains("getById"),
+                "Expected method getById on SpacesClient");
         
         
         assertTrue(
@@ -62,8 +58,12 @@ public class SpacesStructureTest {
         
         
         assertTrue(
-                declared.contains("getByCreatorIds"),
-                "Expected method getByCreatorIds on SpacesClient");
+                declared.contains("getBuyers"),
+                "Expected method getBuyers on SpacesClient");
+        
+        assertTrue(
+                declared.contains("getBuyersPages"),
+                "Expected pagination helper getBuyersPages on SpacesClient");
         
         
     }

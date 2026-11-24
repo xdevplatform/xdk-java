@@ -29,6 +29,11 @@ public class ListsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
+                declared.contains("create"),
+                "Expected method create on ListsClient");
+        
+        
+        assertTrue(
                 declared.contains("getById"),
                 "Expected method getById on ListsClient");
         
@@ -41,6 +46,25 @@ public class ListsStructureTest {
         assertTrue(
                 declared.contains("delete"),
                 "Expected method delete on ListsClient");
+        
+        
+        assertTrue(
+                declared.contains("removeMemberByUserId"),
+                "Expected method removeMemberByUserId on ListsClient");
+        
+        
+        assertTrue(
+                declared.contains("getMembers"),
+                "Expected method getMembers on ListsClient");
+        
+        assertTrue(
+                declared.contains("getMembersPages"),
+                "Expected pagination helper getMembersPages on ListsClient");
+        
+        
+        assertTrue(
+                declared.contains("addMember"),
+                "Expected method addMember on ListsClient");
         
         
         assertTrue(
@@ -59,30 +83,6 @@ public class ListsStructureTest {
         assertTrue(
                 declared.contains("getPostsPages"),
                 "Expected pagination helper getPostsPages on ListsClient");
-        
-        
-        assertTrue(
-                declared.contains("getMembers"),
-                "Expected method getMembers on ListsClient");
-        
-        assertTrue(
-                declared.contains("getMembersPages"),
-                "Expected pagination helper getMembersPages on ListsClient");
-        
-        
-        assertTrue(
-                declared.contains("addMember"),
-                "Expected method addMember on ListsClient");
-        
-        
-        assertTrue(
-                declared.contains("create"),
-                "Expected method create on ListsClient");
-        
-        
-        assertTrue(
-                declared.contains("removeMemberByUserId"),
-                "Expected method removeMemberByUserId on ListsClient");
         
         
     }

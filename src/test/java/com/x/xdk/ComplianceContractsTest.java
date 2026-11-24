@@ -210,6 +210,78 @@ public class ComplianceContractsTest {
     }
     
     @Test
+    void contract_downloadJobResults() throws Exception {
+        String mockJson = "{}";
+        
+        byte[] expectedBinary = new byte[] {0x00, 0x01, 0x58, 0x44, 0x4B, (byte) 0xFF};
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.bytes(
+                                200,
+                                "application/octet-stream",
+                                expectedBinary));
+        
+
+        
+
+        
+        ComplianceClient.DownloadJobResultsOptions options =
+                ComplianceClient.DownloadJobResultsOptions.builder()
+                        .header("X-Contract-Operation", "downloadJobResults");
+        
+        
+        
+        options.complianceJobFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.compliance()
+                        .downloadJobResults("test_id", "test_token", options);
+        assertNotNull(result);
+
+        
+        assertArrayEquals(expectedBinary, (byte[]) result);
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/compliance/jobs/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("downloadJobResults", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
     void contract_uploadJobSubmission() throws Exception {
         String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"download_expires_at\":\"test_value\",\"download_url\":\"test_value\",\"id\":\"1234567890\",\"name\":\"test_value\",\"resumable\":true,\"status\":\"test_value\",\"type\":\"test_value\",\"upload_expires_at\":\"test_value\",\"upload_url\":\"test_value\"}}";
         
@@ -416,78 +488,6 @@ public class ComplianceContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("deleteJobsById", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_downloadJobResults() throws Exception {
-        String mockJson = "{}";
-        
-        byte[] expectedBinary = new byte[] {0x00, 0x01, 0x58, 0x44, 0x4B, (byte) 0xFF};
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.bytes(
-                                200,
-                                "application/octet-stream",
-                                expectedBinary));
-        
-
-        
-
-        
-        ComplianceClient.DownloadJobResultsOptions options =
-                ComplianceClient.DownloadJobResultsOptions.builder()
-                        .header("X-Contract-Operation", "downloadJobResults");
-        
-        
-        
-        options.complianceJobFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.compliance()
-                        .downloadJobResults("test_id", "test_token", options);
-        assertNotNull(result);
-
-        
-        assertArrayEquals(expectedBinary, (byte[]) result);
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/compliance/jobs/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("downloadJobResults", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

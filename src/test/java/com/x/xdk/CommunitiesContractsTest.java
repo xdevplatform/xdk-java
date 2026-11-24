@@ -60,6 +60,72 @@ public class CommunitiesContractsTest {
 
     
     @Test
+    void contract_getById() throws Exception {
+        String mockJson = "{\"data\":{\"access\":\"test_value\",\"created_at\":\"test_value\",\"description\":\"test_value\",\"id\":\"1234567890\",\"join_policy\":\"test_value\",\"member_count\":1,\"name\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        CommunitiesClient.GetByIdOptions options =
+                CommunitiesClient.GetByIdOptions.builder()
+                        .header("X-Contract-Operation", "getById");
+        
+        
+        
+        options.communityFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.communities()
+                        .getById("test_id", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/communities/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getById", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
     void contract_search() throws Exception {
         String mockJson = "{\"data\":[{\"access\":\"test_value\",\"created_at\":\"test_value\",\"description\":\"test_value\",\"id\":\"1234567890\",\"join_policy\":\"test_value\",\"member_count\":1,\"name\":\"test_value\"}],\"meta\":{}}";
         
@@ -127,72 +193,6 @@ public class CommunitiesContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("search", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getById() throws Exception {
-        String mockJson = "{\"data\":{\"access\":\"test_value\",\"created_at\":\"test_value\",\"description\":\"test_value\",\"id\":\"1234567890\",\"join_policy\":\"test_value\",\"member_count\":1,\"name\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        CommunitiesClient.GetByIdOptions options =
-                CommunitiesClient.GetByIdOptions.builder()
-                        .header("X-Contract-Operation", "getById");
-        
-        
-        
-        options.communityFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.communities()
-                        .getById("test_id", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/communities/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getById", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

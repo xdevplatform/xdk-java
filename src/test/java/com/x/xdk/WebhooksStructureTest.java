@@ -29,16 +29,6 @@ public class WebhooksStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getStreamLinks"),
-                "Expected method getStreamLinks on WebhooksClient");
-        
-        
-        assertTrue(
-                declared.contains("createWebhookReplayJob"),
-                "Expected method createWebhookReplayJob on WebhooksClient");
-        
-        
-        assertTrue(
                 declared.contains("createStreamLink"),
                 "Expected method createStreamLink on WebhooksClient");
         
@@ -46,6 +36,16 @@ public class WebhooksStructureTest {
         assertTrue(
                 declared.contains("deleteStreamLink"),
                 "Expected method deleteStreamLink on WebhooksClient");
+        
+        
+        assertTrue(
+                declared.contains("validate"),
+                "Expected method validate on WebhooksClient");
+        
+        
+        assertTrue(
+                declared.contains("delete"),
+                "Expected method delete on WebhooksClient");
         
         
         assertTrue(
@@ -59,13 +59,13 @@ public class WebhooksStructureTest {
         
         
         assertTrue(
-                declared.contains("validate"),
-                "Expected method validate on WebhooksClient");
+                declared.contains("getStreamLinks"),
+                "Expected method getStreamLinks on WebhooksClient");
         
         
         assertTrue(
-                declared.contains("delete"),
-                "Expected method delete on WebhooksClient");
+                declared.contains("createWebhookReplayJob"),
+                "Expected method createWebhookReplayJob on WebhooksClient");
         
         
     }

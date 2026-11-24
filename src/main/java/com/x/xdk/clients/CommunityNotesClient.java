@@ -42,10 +42,6 @@ public final class CommunityNotesClient {
 
 
 
-
-
-
-
     /**
      * Optional parameters for {@link #searchWritten}.
      */
@@ -412,44 +408,6 @@ public final class CommunityNotesClient {
 
 
 
-    
-
-    public Schemas.EvaluateCommunityNotesResponse evaluate(Schemas.EvaluateCommunityNotesRequest body) {
-        
-        String path = "/2/notes/evaluate";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.EvaluateCommunityNotesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
 
 
 
@@ -590,13 +548,9 @@ public final class CommunityNotesClient {
 
     
 
-    public Schemas.DeleteCommunityNotesResponse delete(String id) {
+    public Schemas.EvaluateCommunityNotesResponse evaluate(Schemas.EvaluateCommunityNotesRequest body) {
         
-        String path = "/2/notes/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
+        String path = "/2/notes/evaluate";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -607,19 +561,19 @@ public final class CommunityNotesClient {
 
         List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
 
-        Object requestBody = null;
+        Object requestBody = body;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "DELETE",
+                "POST",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.DeleteCommunityNotesResponse.class);
+                Schemas.EvaluateCommunityNotesResponse.class);
         
     }
 
@@ -752,6 +706,52 @@ public final class CommunityNotesClient {
                 },
                 initialToken);
     }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteCommunityNotesResponse delete(String id) {
+        
+        String path = "/2/notes/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteCommunityNotesResponse.class);
+        
+    }
+
+    
     
 
 }

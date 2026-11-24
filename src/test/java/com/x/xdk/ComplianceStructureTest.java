@@ -39,6 +39,11 @@ public class ComplianceStructureTest {
         
         
         assertTrue(
+                declared.contains("downloadJobResults"),
+                "Expected method downloadJobResults on ComplianceClient");
+        
+        
+        assertTrue(
                 declared.contains("uploadJobSubmission"),
                 "Expected method uploadJobSubmission on ComplianceClient");
         
@@ -51,11 +56,6 @@ public class ComplianceStructureTest {
         assertTrue(
                 declared.contains("deleteJobsById"),
                 "Expected method deleteJobsById on ComplianceClient");
-        
-        
-        assertTrue(
-                declared.contains("downloadJobResults"),
-                "Expected method downloadJobResults on ComplianceClient");
         
         
     }

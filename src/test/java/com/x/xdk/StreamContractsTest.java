@@ -60,7 +60,7 @@ public class StreamContractsTest {
 
     
     @Test
-    void contract_postsFirehosePt() throws Exception {
+    void contract_postsSample10() throws Exception {
         String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
         server.setResponder(
@@ -75,9 +75,9 @@ public class StreamContractsTest {
         
 
         
-        StreamClient.PostsFirehosePtOptions options =
-                StreamClient.PostsFirehosePtOptions.builder()
-                        .header("X-Contract-Operation", "postsFirehosePt");
+        StreamClient.PostsSample10Options options =
+                StreamClient.PostsSample10Options.builder()
+                        .header("X-Contract-Operation", "postsSample10");
         
         
         
@@ -124,7 +124,7 @@ public class StreamContractsTest {
 
         Object result =
                 client.stream()
-                        .postsFirehosePt(1, options);
+                        .postsSample10(1, options);
         assertNotNull(result);
 
         
@@ -141,12 +141,12 @@ public class StreamContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/firehose/stream/lang/pt";
+        String baseSegment = "/2/tweets/sample10/stream";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("postsFirehosePt", captured.firstHeader("x-contract-operation"));
+        assertEquals("postsSample10", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -155,68 +155,7 @@ public class StreamContractsTest {
     }
     
     @Test
-    void contract_getRuleCounts() throws Exception {
-        String mockJson = "{\"data\":{\"all_project_client_apps\":[{\"rule_count\":1}],\"cap_per_client_app\":\"test_value\",\"cap_per_project\":\"test_value\",\"client_app_rules_count\":{\"client_app_id\":\"test_value\",\"rule_count\":1},\"project_rules_count\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        StreamClient.GetRuleCountsOptions options =
-                StreamClient.GetRuleCountsOptions.builder()
-                        .header("X-Contract-Operation", "getRuleCounts");
-        
-        
-        
-        options.rulesCountFields("opt_rulesCountFields");
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .getRuleCounts(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/search/stream/rules/counts";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getRuleCounts", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_postsFirehoseEn() throws Exception {
+    void contract_postsSample() throws Exception {
         String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
         server.setResponder(
@@ -231,9 +170,9 @@ public class StreamContractsTest {
         
 
         
-        StreamClient.PostsFirehoseEnOptions options =
-                StreamClient.PostsFirehoseEnOptions.builder()
-                        .header("X-Contract-Operation", "postsFirehoseEn");
+        StreamClient.PostsSampleOptions options =
+                StreamClient.PostsSampleOptions.builder()
+                        .header("X-Contract-Operation", "postsSample");
         
         
         
@@ -243,10 +182,6 @@ public class StreamContractsTest {
         
         
         options.tweetFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
         
         
         
@@ -272,15 +207,10 @@ public class StreamContractsTest {
         
         
         
-        
-        
-        
-        
-        
 
         Object result =
                 client.stream()
-                        .postsFirehoseEn(1, options);
+                        .postsSample(options);
         assertNotNull(result);
 
         
@@ -297,12 +227,12 @@ public class StreamContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/firehose/stream/lang/en";
+        String baseSegment = "/2/tweets/sample/stream";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("postsFirehoseEn", captured.firstHeader("x-contract-operation"));
+        assertEquals("postsSample", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -311,7 +241,7 @@ public class StreamContractsTest {
     }
     
     @Test
-    void contract_likesFirehose() throws Exception {
+    void contract_likesSample10() throws Exception {
         String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"id\":\"1234567890\",\"liked_tweet_id\":\"test_value\",\"timestamp_ms\":1,\"tweet_author_id\":\"test_value\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
         server.setResponder(
@@ -326,9 +256,9 @@ public class StreamContractsTest {
         
 
         
-        StreamClient.LikesFirehoseOptions options =
-                StreamClient.LikesFirehoseOptions.builder()
-                        .header("X-Contract-Operation", "likesFirehose");
+        StreamClient.LikesSample10Options options =
+                StreamClient.LikesSample10Options.builder()
+                        .header("X-Contract-Operation", "likesSample10");
         
         
         
@@ -373,7 +303,7 @@ public class StreamContractsTest {
 
         Object result =
                 client.stream()
-                        .likesFirehose(1, options);
+                        .likesSample10(1, options);
         assertNotNull(result);
 
         
@@ -390,12 +320,102 @@ public class StreamContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/likes/firehose/stream";
+        String baseSegment = "/2/likes/sample10/stream";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("likesFirehose", captured.firstHeader("x-contract-operation"));
+        assertEquals("likesSample10", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_posts() throws Exception {
+        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"matching_rules\":[{\"id\":\"1234567890\",\"tag\":\"test_value\"}]}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.PostsOptions options =
+                StreamClient.PostsOptions.builder()
+                        .header("X-Contract-Operation", "posts");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.startTime("opt_startTime");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .posts(options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/search/stream";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("posts", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -499,509 +519,6 @@ public class StreamContractsTest {
     }
     
     @Test
-    void contract_usersCompliance() throws Exception {
-        String mockJson = "{\"data\":{\"user_protect\":{\"event_at\":\"2025-01-15T12:00:00.000Z\",\"user\":{\"id\":\"1234567890\"}}}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.UsersComplianceOptions options =
-                StreamClient.UsersComplianceOptions.builder()
-                        .header("X-Contract-Operation", "usersCompliance");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.startTime("opt_startTime");
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .usersCompliance(1, options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/users/compliance/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("usersCompliance", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_activity() throws Exception {
-        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"event_type\":\"test_value\",\"event_uuid\":\"test_value\",\"filter\":{\"direction\":\"inbound\",\"keyword\":\"test_value\",\"qualifiers\":{},\"user_id\":\"1234567890\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"payload\":{},\"tag\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.ActivityOptions options =
-                StreamClient.ActivityOptions.builder()
-                        .header("X-Contract-Operation", "activity");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.startTime("opt_startTime");
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .activity(options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/activity/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("activity", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_postsSample10() throws Exception {
-        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.PostsSample10Options options =
-                StreamClient.PostsSample10Options.builder()
-                        .header("X-Contract-Operation", "postsSample10");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.tweetFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .postsSample10(1, options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/sample10/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("postsSample10", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_postsCompliance() throws Exception {
-        String mockJson = "{\"data\":{\"delete\":{\"event_at\":\"2025-01-15T12:00:00.000Z\",\"tweet\":{\"author_id\":\"test_value\",\"id\":\"1234567890\"}}}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.PostsComplianceOptions options =
-                StreamClient.PostsComplianceOptions.builder()
-                        .header("X-Contract-Operation", "postsCompliance");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.startTime("opt_startTime");
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .postsCompliance(1, options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/compliance/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("postsCompliance", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_labelsCompliance() throws Exception {
-        String mockJson = "{\"data\":{\"public_tweet_notice\":{\"application\":\"test_value\",\"event_at\":\"2025-01-15T12:00:00.000Z\",\"event_type\":\"test_value\",\"tweet\":{\"author_id\":\"test_value\",\"id\":\"1234567890\"}}}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.LabelsComplianceOptions options =
-                StreamClient.LabelsComplianceOptions.builder()
-                        .header("X-Contract-Operation", "labelsCompliance");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.startTime("opt_startTime");
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .labelsCompliance(options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/label/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("labelsCompliance", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_postsSample() throws Exception {
-        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.PostsSampleOptions options =
-                StreamClient.PostsSampleOptions.builder()
-                        .header("X-Contract-Operation", "postsSample");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.tweetFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .postsSample(options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/sample/stream";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("postsSample", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_postsFirehoseJa() throws Exception {
         String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
@@ -1097,51 +614,27 @@ public class StreamContractsTest {
     }
     
     @Test
-    void contract_posts() throws Exception {
-        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"matching_rules\":[{\"id\":\"1234567890\",\"tag\":\"test_value\"}]}";
+    void contract_getRuleCounts() throws Exception {
+        String mockJson = "{\"data\":{\"all_project_client_apps\":[{\"rule_count\":1}],\"cap_per_client_app\":\"test_value\",\"cap_per_project\":\"test_value\",\"client_app_rules_count\":{\"client_app_id\":\"test_value\",\"rule_count\":1},\"project_rules_count\":\"test_value\"}}";
         
         server.setResponder(
                 req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
         
 
         
 
         
-        StreamClient.PostsOptions options =
-                StreamClient.PostsOptions.builder()
-                        .header("X-Contract-Operation", "posts");
+        StreamClient.GetRuleCountsOptions options =
+                StreamClient.GetRuleCountsOptions.builder()
+                        .header("X-Contract-Operation", "getRuleCounts");
         
         
         
-        options.backfillMinutes(10);
+        options.rulesCountFields("opt_rulesCountFields");
         
         
-        
-        
-        options.startTime("opt_startTime");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
         
         
 
@@ -1156,29 +649,24 @@ public class StreamContractsTest {
 
         Object result =
                 client.stream()
-                        .posts(options);
+                        .getRuleCounts(options);
         assertNotNull(result);
 
         
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
         
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/search/stream";
+        String baseSegment = "/2/tweets/search/stream/rules/counts";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("posts", captured.firstHeader("x-contract-operation"));
+        assertEquals("getRuleCounts", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -1265,8 +753,8 @@ public class StreamContractsTest {
     }
     
     @Test
-    void contract_postsFirehoseKo() throws Exception {
-        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+    void contract_labelsCompliance() throws Exception {
+        String mockJson = "{\"data\":{\"public_tweet_notice\":{\"application\":\"test_value\",\"event_at\":\"2025-01-15T12:00:00.000Z\",\"event_type\":\"test_value\",\"tweet\":{\"author_id\":\"test_value\",\"id\":\"1234567890\"}}}}";
         
         server.setResponder(
                 req ->
@@ -1280,104 +768,9 @@ public class StreamContractsTest {
         
 
         
-        StreamClient.PostsFirehoseKoOptions options =
-                StreamClient.PostsFirehoseKoOptions.builder()
-                        .header("X-Contract-Operation", "postsFirehoseKo");
-        
-        
-        
-        options.backfillMinutes(10);
-        
-        
-        
-        
-        options.tweetFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.stream()
-                        .postsFirehoseKo(1, options);
-        assertNotNull(result);
-
-        
-        try (AutoCloseable closeable = (AutoCloseable) result) {
-            var it = ((Iterable<?>) result).iterator();
-            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
-            Object streamedItem = it.next();
-            assertNotNull(streamedItem);
-            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
-            assertNotNull(roundTrip);
-        }
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/tweets/firehose/stream/lang/ko";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("postsFirehoseKo", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_likesSample10() throws Exception {
-        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"id\":\"1234567890\",\"liked_tweet_id\":\"test_value\",\"timestamp_ms\":1,\"tweet_author_id\":\"test_value\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.chunkedStream(
-                                Arrays.asList(
-                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
-                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
-                                false));
-        
-
-        
-
-        
-        StreamClient.LikesSample10Options options =
-                StreamClient.LikesSample10Options.builder()
-                        .header("X-Contract-Operation", "likesSample10");
+        StreamClient.LabelsComplianceOptions options =
+                StreamClient.LabelsComplianceOptions.builder()
+                        .header("X-Contract-Operation", "labelsCompliance");
         
         
         
@@ -1392,16 +785,6 @@ public class StreamContractsTest {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         options.streamConfig(StreamConfig.builder().maxRetries(0).build());
         
         
@@ -1414,15 +797,10 @@ public class StreamContractsTest {
         
         
         
-        
-        
-        
-        
-        
 
         Object result =
                 client.stream()
-                        .likesSample10(1, options);
+                        .labelsCompliance(options);
         assertNotNull(result);
 
         
@@ -1439,12 +817,12 @@ public class StreamContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/likes/sample10/stream";
+        String baseSegment = "/2/tweets/label/stream";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("likesSample10", captured.firstHeader("x-contract-operation"));
+        assertEquals("labelsCompliance", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -1600,6 +978,628 @@ public class StreamContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_activity() throws Exception {
+        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"event_type\":\"test_value\",\"event_uuid\":\"test_value\",\"filter\":{\"direction\":\"inbound\",\"keyword\":\"test_value\",\"qualifiers\":{},\"user_id\":\"1234567890\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"payload\":{},\"tag\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.ActivityOptions options =
+                StreamClient.ActivityOptions.builder()
+                        .header("X-Contract-Operation", "activity");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.startTime("opt_startTime");
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .activity(options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/activity/stream";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("activity", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_postsFirehoseKo() throws Exception {
+        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.PostsFirehoseKoOptions options =
+                StreamClient.PostsFirehoseKoOptions.builder()
+                        .header("X-Contract-Operation", "postsFirehoseKo");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.tweetFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .postsFirehoseKo(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/firehose/stream/lang/ko";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("postsFirehoseKo", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_likesFirehose() throws Exception {
+        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"id\":\"1234567890\",\"liked_tweet_id\":\"test_value\",\"timestamp_ms\":1,\"tweet_author_id\":\"test_value\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.LikesFirehoseOptions options =
+                StreamClient.LikesFirehoseOptions.builder()
+                        .header("X-Contract-Operation", "likesFirehose");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.startTime("opt_startTime");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .likesFirehose(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/likes/firehose/stream";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("likesFirehose", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_postsCompliance() throws Exception {
+        String mockJson = "{\"data\":{\"delete\":{\"event_at\":\"2025-01-15T12:00:00.000Z\",\"tweet\":{\"author_id\":\"test_value\",\"id\":\"1234567890\"}}}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.PostsComplianceOptions options =
+                StreamClient.PostsComplianceOptions.builder()
+                        .header("X-Contract-Operation", "postsCompliance");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.startTime("opt_startTime");
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .postsCompliance(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/compliance/stream";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("postsCompliance", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_usersCompliance() throws Exception {
+        String mockJson = "{\"data\":{\"user_protect\":{\"event_at\":\"2025-01-15T12:00:00.000Z\",\"user\":{\"id\":\"1234567890\"}}}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.UsersComplianceOptions options =
+                StreamClient.UsersComplianceOptions.builder()
+                        .header("X-Contract-Operation", "usersCompliance");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.startTime("opt_startTime");
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .usersCompliance(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/users/compliance/stream";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("usersCompliance", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_postsFirehoseEn() throws Exception {
+        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.PostsFirehoseEnOptions options =
+                StreamClient.PostsFirehoseEnOptions.builder()
+                        .header("X-Contract-Operation", "postsFirehoseEn");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.tweetFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .postsFirehoseEn(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/firehose/stream/lang/en";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("postsFirehoseEn", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_postsFirehosePt() throws Exception {
+        String mockJson = "{\"data\":{\"article\":{},\"article_title\":{},\"attachments\":{\"media_keys\":[\"test_value\"],\"media_source_tweet_id\":[\"test_value\"],\"poll_ids\":[\"test_value\"]},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"1234567890\",\"name\":\"test_value\"},\"entity\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{\"editable_until\":\"test_value\",\"edits_remaining\":1,\"is_edit_eligible\":true},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{\"cashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"hashtags\":[{\"end\":1,\"start\":1,\"tag\":\"test_value\"}],\"mentions\":[{\"end\":1,\"id\":\"1234567890\",\"start\":1,\"username\":\"XDevelopers\"}],\"urls\":[{\"end\":1,\"start\":1}]},\"geo\":{\"coordinates\":{\"coordinates\":[1.5],\"type\":\"Point\"},\"place_id\":\"test_value\"},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"entities\":{},\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"],\"scope\":\"post\"}},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.chunkedStream(
+                                Arrays.asList(
+                                        "{}\r\n".getBytes(StandardCharsets.UTF_8),
+                                        (mockJson + "\n").getBytes(StandardCharsets.UTF_8)),
+                                false));
+        
+
+        
+
+        
+        StreamClient.PostsFirehosePtOptions options =
+                StreamClient.PostsFirehosePtOptions.builder()
+                        .header("X-Contract-Operation", "postsFirehosePt");
+        
+        
+        
+        options.backfillMinutes(10);
+        
+        
+        
+        
+        options.tweetFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        options.streamConfig(StreamConfig.builder().maxRetries(0).build());
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.stream()
+                        .postsFirehosePt(1, options);
+        assertNotNull(result);
+
+        
+        try (AutoCloseable closeable = (AutoCloseable) result) {
+            var it = ((Iterable<?>) result).iterator();
+            assertTrue(it.hasNext(), "Expected streaming iterator to yield item");
+            Object streamedItem = it.next();
+            assertNotNull(streamedItem);
+            String roundTrip = client.getObjectMapper().writeValueAsString(streamedItem);
+            assertNotNull(roundTrip);
+        }
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/tweets/firehose/stream/lang/pt";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("postsFirehosePt", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }

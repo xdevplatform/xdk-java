@@ -60,55 +60,6 @@ public class ArticlesContractsTest {
 
     
     @Test
-    void contract_articlePublish() throws Exception {
-        String mockJson = "{\"data\":{\"post_id\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.articles()
-                        .articlePublish("test_articleId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/articles/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_articleCreateDraft() throws Exception {
         String mockJson = "{\"data\":{\"id\":\"1234567890\",\"title\":\"test_value\"}}";
         
@@ -166,6 +117,55 @@ public class ArticlesContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_articlePublish() throws Exception {
+        String mockJson = "{\"data\":{\"post_id\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.articles()
+                        .articlePublish("test_articleId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/articles/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }

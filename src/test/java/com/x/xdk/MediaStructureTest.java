@@ -29,28 +29,8 @@ public class MediaStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("addPostToAmplifyPrograms"),
-                "Expected method addPostToAmplifyPrograms on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("getAmplifyProgramPosts"),
-                "Expected method getAmplifyProgramPosts on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("getByKey"),
-                "Expected method getByKey on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("initializeUpload"),
-                "Expected method initializeUpload on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("finalizeUpload"),
-                "Expected method finalizeUpload on MediaClient");
+                declared.contains("getLibraryCategories"),
+                "Expected method getLibraryCategories on MediaClient");
         
         
         assertTrue(
@@ -59,8 +39,18 @@ public class MediaStructureTest {
         
         
         assertTrue(
-                declared.contains("getByKeys"),
-                "Expected method getByKeys on MediaClient");
+                declared.contains("finalizeUpload"),
+                "Expected method finalizeUpload on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("getAmplifyProgramPosts"),
+                "Expected method getAmplifyProgramPosts on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("initializeUpload"),
+                "Expected method initializeUpload on MediaClient");
         
         
         assertTrue(
@@ -69,18 +59,8 @@ public class MediaStructureTest {
         
         
         assertTrue(
-                declared.contains("appendUpload"),
-                "Expected method appendUpload on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("createMetadata"),
-                "Expected method createMetadata on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("getLibraryCategories"),
-                "Expected method getLibraryCategories on MediaClient");
+                declared.contains("getByKeys"),
+                "Expected method getByKeys on MediaClient");
         
         
         assertTrue(
@@ -94,16 +74,6 @@ public class MediaStructureTest {
         
         
         assertTrue(
-                declared.contains("addToLibrary"),
-                "Expected method addToLibrary on MediaClient");
-        
-        
-        assertTrue(
-                declared.contains("getAmplifyProgram"),
-                "Expected method getAmplifyProgram on MediaClient");
-        
-        
-        assertTrue(
                 declared.contains("updateInLibrary"),
                 "Expected method updateInLibrary on MediaClient");
         
@@ -114,6 +84,31 @@ public class MediaStructureTest {
         
         
         assertTrue(
+                declared.contains("createMetadata"),
+                "Expected method createMetadata on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("addPostToAmplifyPrograms"),
+                "Expected method addPostToAmplifyPrograms on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("getAmplifyProgram"),
+                "Expected method getAmplifyProgram on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("appendUpload"),
+                "Expected method appendUpload on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("addToLibrary"),
+                "Expected method addToLibrary on MediaClient");
+        
+        
+        assertTrue(
                 declared.contains("getUploadStatus"),
                 "Expected method getUploadStatus on MediaClient");
         
@@ -121,6 +116,11 @@ public class MediaStructureTest {
         assertTrue(
                 declared.contains("upload"),
                 "Expected method upload on MediaClient");
+        
+        
+        assertTrue(
+                declared.contains("getByKey"),
+                "Expected method getByKey on MediaClient");
         
         
     }

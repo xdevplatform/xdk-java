@@ -29,65 +29,12 @@ public class UsersStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getPublicKey"),
-                "Expected method getPublicKey on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getByUsernames"),
-                "Expected method getByUsernames on UsersClient");
-        
+                declared.contains("getOwnedLists"),
+                "Expected method getOwnedLists on UsersClient");
         
         assertTrue(
-                declared.contains("unrepostPost"),
-                "Expected method unrepostPost on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getByIds"),
-                "Expected method getByIds on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getMeFollowers"),
-                "Expected method getMeFollowers on UsersClient");
-        
-        assertTrue(
-                declared.contains("getMeFollowersPages"),
-                "Expected pagination helper getMeFollowersPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getLikedPosts"),
-                "Expected method getLikedPosts on UsersClient");
-        
-        assertTrue(
-                declared.contains("getLikedPostsPages"),
-                "Expected pagination helper getLikedPostsPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unfollowList"),
-                "Expected method unfollowList on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getMuting"),
-                "Expected method getMuting on UsersClient");
-        
-        assertTrue(
-                declared.contains("getMutingPages"),
-                "Expected pagination helper getMutingPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("muteUser"),
-                "Expected method muteUser on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getPublicKeys"),
-                "Expected method getPublicKeys on UsersClient");
+                declared.contains("getOwnedListsPages"),
+                "Expected pagination helper getOwnedListsPages on UsersClient");
         
         
         assertTrue(
@@ -97,39 +44,6 @@ public class UsersStructureTest {
         assertTrue(
                 declared.contains("searchPages"),
                 "Expected pagination helper searchPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getBookmarkFolders"),
-                "Expected method getBookmarkFolders on UsersClient");
-        
-        assertTrue(
-                declared.contains("getBookmarkFoldersPages"),
-                "Expected pagination helper getBookmarkFoldersPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("createBookmarkFolder"),
-                "Expected method createBookmarkFolder on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getListMemberships"),
-                "Expected method getListMemberships on UsersClient");
-        
-        assertTrue(
-                declared.contains("getListMembershipsPages"),
-                "Expected pagination helper getListMembershipsPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("blockDms"),
-                "Expected method blockDms on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getByUsername"),
-                "Expected method getByUsername on UsersClient");
         
         
         assertTrue(
@@ -147,17 +61,17 @@ public class UsersStructureTest {
         
         
         assertTrue(
-                declared.contains("getMentions"),
-                "Expected method getMentions on UsersClient");
+                declared.contains("getLikedPosts"),
+                "Expected method getLikedPosts on UsersClient");
         
         assertTrue(
-                declared.contains("getMentionsPages"),
-                "Expected pagination helper getMentionsPages on UsersClient");
+                declared.contains("getLikedPostsPages"),
+                "Expected pagination helper getLikedPostsPages on UsersClient");
         
         
         assertTrue(
-                declared.contains("getById"),
-                "Expected method getById on UsersClient");
+                declared.contains("unrepostPost"),
+                "Expected method unrepostPost on UsersClient");
         
         
         assertTrue(
@@ -171,111 +85,8 @@ public class UsersStructureTest {
         
         
         assertTrue(
-                declared.contains("repostPost"),
-                "Expected method repostPost on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getOwnedLists"),
-                "Expected method getOwnedLists on UsersClient");
-        
-        assertTrue(
-                declared.contains("getOwnedListsPages"),
-                "Expected pagination helper getOwnedListsPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getPosts"),
-                "Expected method getPosts on UsersClient");
-        
-        assertTrue(
-                declared.contains("getPostsPages"),
-                "Expected pagination helper getPostsPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteBookmark"),
-                "Expected method deleteBookmark on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getTimeline"),
-                "Expected method getTimeline on UsersClient");
-        
-        assertTrue(
-                declared.contains("getTimelinePages"),
-                "Expected pagination helper getTimelinePages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unmuteUser"),
-                "Expected method unmuteUser on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("idUnblock"),
-                "Expected method idUnblock on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unfollowUser"),
-                "Expected method unfollowUser on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unblockDms"),
-                "Expected method unblockDms on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unlikePost"),
-                "Expected method unlikePost on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getBookmarksByFolderId"),
-                "Expected method getBookmarksByFolderId on UsersClient");
-        
-        assertTrue(
-                declared.contains("getBookmarksByFolderIdPages"),
-                "Expected pagination helper getBookmarksByFolderIdPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getAffiliates"),
-                "Expected method getAffiliates on UsersClient");
-        
-        assertTrue(
-                declared.contains("getAffiliatesPages"),
-                "Expected pagination helper getAffiliatesPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("unpinList"),
-                "Expected method unpinList on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getFollowedLists"),
-                "Expected method getFollowedLists on UsersClient");
-        
-        assertTrue(
-                declared.contains("getFollowedListsPages"),
-                "Expected pagination helper getFollowedListsPages on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("followList"),
-                "Expected method followList on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getRepostsOfMe"),
-                "Expected method getRepostsOfMe on UsersClient");
-        
-        assertTrue(
-                declared.contains("getRepostsOfMePages"),
-                "Expected pagination helper getRepostsOfMePages on UsersClient");
+                declared.contains("getMe"),
+                "Expected method getMe on UsersClient");
         
         
         assertTrue(
@@ -293,22 +104,17 @@ public class UsersStructureTest {
         
         
         assertTrue(
-                declared.contains("getMe"),
-                "Expected method getMe on UsersClient");
+                declared.contains("getMeFollowers"),
+                "Expected method getMeFollowers on UsersClient");
+        
+        assertTrue(
+                declared.contains("getMeFollowersPages"),
+                "Expected pagination helper getMeFollowersPages on UsersClient");
         
         
         assertTrue(
-                declared.contains("likePost"),
-                "Expected method likePost on UsersClient");
-        
-        
-        assertTrue(
-                declared.contains("getMeFollowing"),
-                "Expected method getMeFollowing on UsersClient");
-        
-        assertTrue(
-                declared.contains("getMeFollowingPages"),
-                "Expected pagination helper getMeFollowingPages on UsersClient");
+                declared.contains("deleteBookmark"),
+                "Expected method deleteBookmark on UsersClient");
         
         
         assertTrue(
@@ -318,6 +124,152 @@ public class UsersStructureTest {
         assertTrue(
                 declared.contains("getFollowersPages"),
                 "Expected pagination helper getFollowersPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getByUsername"),
+                "Expected method getByUsername on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("blockDms"),
+                "Expected method blockDms on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unpinList"),
+                "Expected method unpinList on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getTimeline"),
+                "Expected method getTimeline on UsersClient");
+        
+        assertTrue(
+                declared.contains("getTimelinePages"),
+                "Expected pagination helper getTimelinePages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getFollowedLists"),
+                "Expected method getFollowedLists on UsersClient");
+        
+        assertTrue(
+                declared.contains("getFollowedListsPages"),
+                "Expected pagination helper getFollowedListsPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("followList"),
+                "Expected method followList on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getByUsernames"),
+                "Expected method getByUsernames on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getById"),
+                "Expected method getById on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unlikePost"),
+                "Expected method unlikePost on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getPosts"),
+                "Expected method getPosts on UsersClient");
+        
+        assertTrue(
+                declared.contains("getPostsPages"),
+                "Expected pagination helper getPostsPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getMuting"),
+                "Expected method getMuting on UsersClient");
+        
+        assertTrue(
+                declared.contains("getMutingPages"),
+                "Expected pagination helper getMutingPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("muteUser"),
+                "Expected method muteUser on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getBookmarksByFolderId"),
+                "Expected method getBookmarksByFolderId on UsersClient");
+        
+        assertTrue(
+                declared.contains("getBookmarksByFolderIdPages"),
+                "Expected pagination helper getBookmarksByFolderIdPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getPublicKeys"),
+                "Expected method getPublicKeys on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getMentions"),
+                "Expected method getMentions on UsersClient");
+        
+        assertTrue(
+                declared.contains("getMentionsPages"),
+                "Expected pagination helper getMentionsPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unfollowUser"),
+                "Expected method unfollowUser on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unmuteUser"),
+                "Expected method unmuteUser on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getListMemberships"),
+                "Expected method getListMemberships on UsersClient");
+        
+        assertTrue(
+                declared.contains("getListMembershipsPages"),
+                "Expected pagination helper getListMembershipsPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getRepostsOfMe"),
+                "Expected method getRepostsOfMe on UsersClient");
+        
+        assertTrue(
+                declared.contains("getRepostsOfMePages"),
+                "Expected pagination helper getRepostsOfMePages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getBookmarkFolders"),
+                "Expected method getBookmarkFolders on UsersClient");
+        
+        assertTrue(
+                declared.contains("getBookmarkFoldersPages"),
+                "Expected pagination helper getBookmarkFoldersPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("createBookmarkFolder"),
+                "Expected method createBookmarkFolder on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unblockDms"),
+                "Expected method unblockDms on UsersClient");
         
         
         assertTrue(
@@ -332,6 +284,54 @@ public class UsersStructureTest {
         assertTrue(
                 declared.contains("followUser"),
                 "Expected method followUser on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getMeFollowing"),
+                "Expected method getMeFollowing on UsersClient");
+        
+        assertTrue(
+                declared.contains("getMeFollowingPages"),
+                "Expected pagination helper getMeFollowingPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("unfollowList"),
+                "Expected method unfollowList on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getAffiliates"),
+                "Expected method getAffiliates on UsersClient");
+        
+        assertTrue(
+                declared.contains("getAffiliatesPages"),
+                "Expected pagination helper getAffiliatesPages on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("likePost"),
+                "Expected method likePost on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getPublicKey"),
+                "Expected method getPublicKey on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("getByIds"),
+                "Expected method getByIds on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("repostPost"),
+                "Expected method repostPost on UsersClient");
+        
+        
+        assertTrue(
+                declared.contains("idUnblock"),
+                "Expected method idUnblock on UsersClient");
         
         
     }

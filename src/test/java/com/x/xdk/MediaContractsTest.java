@@ -60,8 +60,8 @@ public class MediaContractsTest {
 
     
     @Test
-    void contract_addPostToAmplifyPrograms() throws Exception {
-        String mockJson = "{\"data\":{\"added\":true}}";
+    void contract_getLibraryCategories() throws Exception {
+        String mockJson = "{\"data\":{\"advertiser_categories\":[{\"description\":\"test_value\",\"id\":1}],\"video_categories\":[{\"description\":\"test_value\",\"id\":1}]}}";
         
         server.setResponder(
                 req ->
@@ -70,16 +70,18 @@ public class MediaContractsTest {
         
 
         
-        
-        String reqMockJson = "{\"blocked_advertiser_ids\":[\"test_value\"],\"post_id\":\"test_value\",\"program_ids\":[\"test_value\"],\"promotion_ends_at\":\"test_value\"}";
-        Schemas.AddPostToAmplifyProgramsRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.AddPostToAmplifyProgramsRequest>() {});
-        
-        
 
+        
+        MediaClient.GetLibraryCategoriesOptions options =
+                MediaClient.GetLibraryCategoriesOptions.builder()
+                        .header("X-Contract-Operation", "getLibraryCategories");
+        
+        
+        
+        options.lang("opt_lang");
+        
+        
+        
         
 
         
@@ -93,7 +95,102 @@ public class MediaContractsTest {
 
         Object result =
                 client.media()
-                        .addPostToAmplifyPrograms(reqBody);
+                        .getLibraryCategories(options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/media/library/categories";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getLibraryCategories", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getAmplifyPrograms() throws Exception {
+        String mockJson = "{\"data\":[{\"advertiser_ids\":[\"test_value\"],\"id\":\"1234567890\",\"name\":\"test_value\",\"publisher_ids\":[\"test_value\"],\"state\":\"active\"}]}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .getAmplifyPrograms();
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/media/amplify/programs";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_finalizeUpload() throws Exception {
+        String mockJson = "{\"data\":{\"expires_after_secs\":1,\"id\":\"1234567890\",\"image\":{\"h\":1,\"image_type\":\"test_value\",\"w\":1},\"media_key\":\"test_value\",\"processing_info\":{\"check_after_secs\":1,\"progress_percent\":1,\"state\":\"test_value\"},\"size\":1,\"video\":{\"video_type\":\"test_value\"}}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .finalizeUpload("test_id");
         assertNotNull(result);
 
         
@@ -105,18 +202,13 @@ public class MediaContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/media/amplify/posts";
+        String baseSegment = "/2/media/upload/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }
@@ -163,72 +255,6 @@ public class MediaContractsTest {
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getByKey() throws Exception {
-        String mockJson = "{\"data\":{\"alt_text\":\"test_value\",\"duration_ms\":5000000000,\"height\":1,\"media_key\":\"test_value\",\"non_public_metrics\":{\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1},\"organic_metrics\":{\"cta_url_click_count\":1,\"cta_watch_click_count\":1,\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1,\"view_count\":1,\"watch_time_ms\":5000000000},\"preview_image_url\":\"test_value\",\"promoted_metrics\":{\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1,\"view_count\":1},\"public_metrics\":{\"view_count\":1},\"revenue\":{\"amount_micros\":1,\"currency_code\":\"test_value\"},\"type\":\"test_value\",\"url\":\"test_value\",\"variants\":[{}],\"width\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        MediaClient.GetByKeyOptions options =
-                MediaClient.GetByKeyOptions.builder()
-                        .header("X-Contract-Operation", "getByKey");
-        
-        
-        
-        options.mediaFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .getByKey("test_mediaKey", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/media/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getByKey", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -294,165 +320,6 @@ public class MediaContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_finalizeUpload() throws Exception {
-        String mockJson = "{\"data\":{\"expires_after_secs\":1,\"id\":\"1234567890\",\"image\":{\"h\":1,\"image_type\":\"test_value\",\"w\":1},\"media_key\":\"test_value\",\"processing_info\":{\"check_after_secs\":1,\"progress_percent\":1,\"state\":\"test_value\"},\"size\":1,\"video\":{\"video_type\":\"test_value\"}}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .finalizeUpload("test_id");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/media/upload/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getAmplifyPrograms() throws Exception {
-        String mockJson = "{\"data\":[{\"advertiser_ids\":[\"test_value\"],\"id\":\"1234567890\",\"name\":\"test_value\",\"publisher_ids\":[\"test_value\"],\"state\":\"active\"}]}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .getAmplifyPrograms();
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/media/amplify/programs";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getByKeys() throws Exception {
-        String mockJson = "{\"data\":[{\"alt_text\":\"test_value\",\"duration_ms\":5000000000,\"height\":1,\"media_key\":\"test_value\",\"non_public_metrics\":{},\"organic_metrics\":{},\"preview_image_url\":\"test_value\",\"promoted_metrics\":{},\"public_metrics\":{\"view_count\":1},\"revenue\":{\"amount_micros\":1,\"currency_code\":\"test_value\"},\"type\":\"test_value\",\"url\":\"test_value\",\"variants\":[{}],\"width\":1}]}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        MediaClient.GetByKeysOptions options =
-                MediaClient.GetByKeysOptions.builder()
-                        .header("X-Contract-Operation", "getByKeys");
-        
-        
-        
-        options.mediaFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .getByKeys(Arrays.asList("item1"), options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/media";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getByKeys", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }
@@ -539,8 +406,8 @@ public class MediaContractsTest {
     }
     
     @Test
-    void contract_appendUpload() throws Exception {
-        String mockJson = "{\"data\":{\"expires_at\":1}}";
+    void contract_getByKeys() throws Exception {
+        String mockJson = "{\"data\":[{\"alt_text\":\"test_value\",\"duration_ms\":5000000000,\"height\":1,\"media_key\":\"test_value\",\"non_public_metrics\":{},\"organic_metrics\":{},\"preview_image_url\":\"test_value\",\"promoted_metrics\":{},\"public_metrics\":{\"view_count\":1},\"revenue\":{\"amount_micros\":1,\"currency_code\":\"test_value\"},\"type\":\"test_value\",\"url\":\"test_value\",\"variants\":[{}],\"width\":1}]}";
         
         server.setResponder(
                 req ->
@@ -549,16 +416,18 @@ public class MediaContractsTest {
         
 
         
-        
-        String reqMockJson = "{\"media\":\"test_value\",\"segment_index\":1}";
-        Schemas.AppendMediaUploadRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.AppendMediaUploadRequest>() {});
-        
-        
 
+        
+        MediaClient.GetByKeysOptions options =
+                MediaClient.GetByKeysOptions.builder()
+                        .header("X-Contract-Operation", "getByKeys");
+        
+        
+        
+        options.mediaFields(Arrays.asList("id", "created_at"));
+        
+        
+        
         
 
         
@@ -577,133 +446,7 @@ public class MediaContractsTest {
 
         Object result =
                 client.media()
-                        .appendUpload("test_id", reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/media/upload/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_createMetadata() throws Exception {
-        String mockJson = "{\"data\":{\"associated_metadata\":{},\"id\":\"1234567890\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"id\":\"1234567890\",\"metadata\":{\"allow_download_status\":{\"allow_download\":true},\"alt_text\":{\"text\":\"Hello from XDK!\"},\"audience_policy\":{},\"content_expiration\":{\"timestamp_sec\":1.5},\"domain_restrictions\":{\"whitelist\":[\"test_value\"]},\"found_media_origin\":{\"id\":\"1234567890\",\"provider\":\"test_value\"},\"geo_restrictions\":{},\"management_info\":{\"managed\":true},\"preview_image\":{\"media_key\":{}},\"sensitive_media_warning\":{},\"shared_info\":{\"shared\":true},\"sticker_info\":{\"stickers\":[{}]},\"upload_source\":{\"upload_source\":\"test_value\"}}}";
-        Schemas.CreateMediaMetadataRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateMediaMetadataRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .createMetadata(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/media/metadata";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_getLibraryCategories() throws Exception {
-        String mockJson = "{\"data\":{\"advertiser_categories\":[{\"description\":\"test_value\",\"id\":1}],\"video_categories\":[{\"description\":\"test_value\",\"id\":1}]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        MediaClient.GetLibraryCategoriesOptions options =
-                MediaClient.GetLibraryCategoriesOptions.builder()
-                        .header("X-Contract-Operation", "getLibraryCategories");
-        
-        
-        
-        options.lang("opt_lang");
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .getLibraryCategories(options);
+                        .getByKeys(Arrays.asList("item1"), options);
         assertNotNull(result);
 
         
@@ -715,12 +458,12 @@ public class MediaContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/media/library/categories";
+        String baseSegment = "/2/media";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getLibraryCategories", captured.firstHeader("x-contract-operation"));
+        assertEquals("getByKeys", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -848,117 +591,6 @@ public class MediaContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_addToLibrary() throws Exception {
-        String mockJson = "{\"data\":{\"media_key\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                201, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"description\":\"test_value\",\"label\":\"test_value\",\"media_key\":\"test_value\",\"monetization\":{\"allowed_countries\":[\"test_value\"],\"blocked_advertiser_category_ids\":[1],\"blocked_advertiser_ids\":[\"test_value\"],\"enabled\":true,\"program_id\":\"test_value\",\"video_category_ids\":[1]},\"name\":\"test_value\",\"title\":\"test_value\"}";
-        Schemas.AddMediaToLibraryRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.AddMediaToLibraryRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .addToLibrary(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/media/library";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_getAmplifyProgram() throws Exception {
-        String mockJson = "{\"data\":{\"advertiser_ids\":[\"test_value\"],\"id\":\"1234567890\",\"name\":\"test_value\",\"publisher_ids\":[\"test_value\"],\"state\":\"active\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.media()
-                        .getAmplifyProgram("test_programId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/media/amplify/programs/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }
@@ -1098,6 +730,308 @@ public class MediaContractsTest {
     }
     
     @Test
+    void contract_createMetadata() throws Exception {
+        String mockJson = "{\"data\":{\"associated_metadata\":{},\"id\":\"1234567890\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"id\":\"1234567890\",\"metadata\":{\"allow_download_status\":{\"allow_download\":true},\"alt_text\":{\"text\":\"Hello from XDK!\"},\"audience_policy\":{},\"content_expiration\":{\"timestamp_sec\":1.5},\"domain_restrictions\":{\"whitelist\":[\"test_value\"]},\"found_media_origin\":{\"id\":\"1234567890\",\"provider\":\"test_value\"},\"geo_restrictions\":{},\"management_info\":{\"managed\":true},\"preview_image\":{\"media_key\":{}},\"sensitive_media_warning\":{},\"shared_info\":{\"shared\":true},\"sticker_info\":{\"stickers\":[{}]},\"upload_source\":{\"upload_source\":\"test_value\"}}}";
+        Schemas.CreateMediaMetadataRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateMediaMetadataRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .createMetadata(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/media/metadata";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_addPostToAmplifyPrograms() throws Exception {
+        String mockJson = "{\"data\":{\"added\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"blocked_advertiser_ids\":[\"test_value\"],\"post_id\":\"test_value\",\"program_ids\":[\"test_value\"],\"promotion_ends_at\":\"test_value\"}";
+        Schemas.AddPostToAmplifyProgramsRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.AddPostToAmplifyProgramsRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .addPostToAmplifyPrograms(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/media/amplify/posts";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_getAmplifyProgram() throws Exception {
+        String mockJson = "{\"data\":{\"advertiser_ids\":[\"test_value\"],\"id\":\"1234567890\",\"name\":\"test_value\",\"publisher_ids\":[\"test_value\"],\"state\":\"active\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .getAmplifyProgram("test_programId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/media/amplify/programs/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_appendUpload() throws Exception {
+        String mockJson = "{\"data\":{\"expires_at\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"media\":\"test_value\",\"segment_index\":1}";
+        Schemas.AppendMediaUploadRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.AppendMediaUploadRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .appendUpload("test_id", reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/media/upload/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_addToLibrary() throws Exception {
+        String mockJson = "{\"data\":{\"media_key\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                201, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"description\":\"test_value\",\"label\":\"test_value\",\"media_key\":\"test_value\",\"monetization\":{\"allowed_countries\":[\"test_value\"],\"blocked_advertiser_category_ids\":[1],\"blocked_advertiser_ids\":[\"test_value\"],\"enabled\":true,\"program_id\":\"test_value\",\"video_category_ids\":[1]},\"name\":\"test_value\",\"title\":\"test_value\"}";
+        Schemas.AddMediaToLibraryRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.AddMediaToLibraryRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .addToLibrary(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/media/library";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
     void contract_getUploadStatus() throws Exception {
         String mockJson = "{\"data\":{\"expires_after_secs\":1,\"id\":\"1234567890\",\"image\":{\"h\":1,\"image_type\":\"test_value\",\"w\":1},\"media_key\":\"test_value\",\"processing_info\":{\"check_after_secs\":1,\"progress_percent\":1,\"state\":\"test_value\"},\"size\":1,\"video\":{\"video_type\":\"test_value\"}}}";
         
@@ -1221,6 +1155,72 @@ public class MediaContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_getByKey() throws Exception {
+        String mockJson = "{\"data\":{\"alt_text\":\"test_value\",\"duration_ms\":5000000000,\"height\":1,\"media_key\":\"test_value\",\"non_public_metrics\":{\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1},\"organic_metrics\":{\"cta_url_click_count\":1,\"cta_watch_click_count\":1,\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1,\"view_count\":1,\"watch_time_ms\":5000000000},\"preview_image_url\":\"test_value\",\"promoted_metrics\":{\"playback_0_count\":1,\"playback_100_count\":1,\"playback_25_count\":1,\"playback_50_count\":1,\"playback_75_count\":1,\"view_count\":1},\"public_metrics\":{\"view_count\":1},\"revenue\":{\"amount_micros\":1,\"currency_code\":\"test_value\"},\"type\":\"test_value\",\"url\":\"test_value\",\"variants\":[{}],\"width\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        MediaClient.GetByKeyOptions options =
+                MediaClient.GetByKeyOptions.builder()
+                        .header("X-Contract-Operation", "getByKey");
+        
+        
+        
+        options.mediaFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.media()
+                        .getByKey("test_mediaKey", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/media/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getByKey", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }

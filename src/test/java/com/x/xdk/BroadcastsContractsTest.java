@@ -60,238 +60,6 @@ public class BroadcastsContractsTest {
 
     
     @Test
-    void contract_goLiveScheduledBroadcast() throws Exception {
-        String mockJson = "{\"data\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .goLiveScheduledBroadcast("test_id");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/broadcasts/scheduled/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getChatMutedUsers() throws Exception {
-        String mockJson = "{\"data\":[{\"end_at_ms\":\"test_value\",\"user_id\":\"1234567890\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        BroadcastsClient.GetChatMutedUsersOptions options =
-                BroadcastsClient.GetChatMutedUsersOptions.builder()
-                        .header("X-Contract-Operation", "getChatMutedUsers");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .getChatMutedUsers(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/mutes";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getChatMutedUsers", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_muteChatUser() throws Exception {
-        String mockJson = "{\"data\":{\"muted\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"broadcast_id\":\"test_value\",\"end_at_ms\":\"test_value\",\"message_id\":\"test_value\",\"user_id\":\"1234567890\"}";
-        Schemas.MuteChatUserRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.MuteChatUserRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .muteChatUser(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/mutes";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_getSourceStreamKey() throws Exception {
-        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"stream_key\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .getSourceStreamKey("test_id");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/sources/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_getScheduledBroadcast() throws Exception {
         String mockJson = "{\"data\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}}";
         
@@ -474,6 +242,229 @@ public class BroadcastsContractsTest {
     }
     
     @Test
+    void contract_listLiveCategories() throws Exception {
+        String mockJson = "{\"data\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .listLiveCategories();
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/broadcasts/categories";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getChatModerators() throws Exception {
+        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        BroadcastsClient.GetChatModeratorsOptions options =
+                BroadcastsClient.GetChatModeratorsOptions.builder()
+                        .header("X-Contract-Operation", "getChatModerators");
+        
+        
+        
+        options.userFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+        options.expansions(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .getChatModerators(options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/broadcasts/chat/moderators";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getChatModerators", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_addChatModerator() throws Exception {
+        String mockJson = "{\"data\":{\"moderator_user_ids\":[\"test_value\"]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"user_id\":\"1234567890\"}";
+        Schemas.AddChatModeratorRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.AddChatModeratorRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .addChatModerator(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/broadcasts/chat/moderators";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_getSourceStreamKey() throws Exception {
+        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"stream_key\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .getSourceStreamKey("test_id");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/sources/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
     void contract_deleteBroadcastChatMessage() throws Exception {
         String mockJson = "{\"data\":{\"deleted\":true}}";
         
@@ -528,56 +519,7 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_removeChatModerator() throws Exception {
-        String mockJson = "{\"data\":{\"moderator_user_ids\":[\"test_value\"]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .removeChatModerator("test_userId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/moderators/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_unmuteBroadcastChatUser() throws Exception {
+    void contract_unmuteChatUser() throws Exception {
         String mockJson = "{\"data\":{\"muted\":true}}";
         
         server.setResponder(
@@ -589,8 +531,18 @@ public class BroadcastsContractsTest {
         
 
         
-
+        BroadcastsClient.UnmuteChatUserOptions options =
+                BroadcastsClient.UnmuteChatUserOptions.builder()
+                        .header("X-Contract-Operation", "unmuteChatUser");
         
+        
+        
+        options.broadcastId("opt_broadcastId");
+        
+        
+        
+        
+
         
         
         
@@ -607,7 +559,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .unmuteBroadcastChatUser("test_id", "test_userId");
+                        .unmuteChatUser("test_userId", options);
         assertNotNull(result);
 
         
@@ -619,10 +571,12 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/broadcasts/";
+        String baseSegment = "/2/broadcasts/chat/mutes/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("unmuteChatUser", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -631,8 +585,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_getSource() throws Exception {
-        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}}";
+    void contract_listUserSources() throws Exception {
+        String mockJson = "{\"data\":{\"sources\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}]}}";
         
         server.setResponder(
                 req ->
@@ -656,7 +610,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .getSource("test_id");
+                        .listUserSources("test_id");
         assertNotNull(result);
 
         
@@ -668,7 +622,7 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/sources/";
+        String baseSegment = "/2/users/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -680,8 +634,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_updateSource() throws Exception {
-        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}}";
+    void contract_createUserSource() throws Exception {
+        String mockJson = "{\"data\":{\"source\":{\"creation_origin\":{\"name\":\"test_value\"},\"creation_time\":1,\"id\":\"1234567890\",\"is360\":true,\"is_stream_active\":true,\"name\":\"test_value\",\"owner_id\":1,\"rtmp_region\":\"test_value\",\"rtmp_stream_key\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\",\"video_service\":{\"name\":\"test_value\"}}}}";
         
         server.setResponder(
                 req ->
@@ -691,12 +645,12 @@ public class BroadcastsContractsTest {
 
         
         
-        String reqMockJson = "{\"name\":\"test_value\"}";
-        Schemas.UpdateSourceRequest reqBody =
+        String reqMockJson = "{\"name\":\"test_value\",\"region\":\"test_value\"}";
+        Schemas.CreateUserSourceRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.UpdateSourceRequest>() {});
+                                new TypeReference<Schemas.CreateUserSourceRequest>() {});
         
         
 
@@ -718,7 +672,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .updateSource("test_id", reqBody);
+                        .createUserSource("test_id", reqBody);
         assertNotNull(result);
 
         
@@ -729,8 +683,8 @@ public class BroadcastsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("PUT", captured.getMethod());
-        String baseSegment = "/2/sources/";
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/users/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -747,8 +701,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_deleteSource() throws Exception {
-        String mockJson = "{\"data\":{\"deleted\":true}}";
+    void contract_getChatMutedUsers() throws Exception {
+        String mockJson = "{\"data\":[{\"end_at_ms\":\"test_value\",\"user_id\":\"1234567890\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -759,8 +713,29 @@ public class BroadcastsContractsTest {
         
 
         
-
+        BroadcastsClient.GetChatMutedUsersOptions options =
+                BroadcastsClient.GetChatMutedUsersOptions.builder()
+                        .header("X-Contract-Operation", "getChatMutedUsers");
         
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
         
         
         
@@ -772,7 +747,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .deleteSource("test_id");
+                        .getChatMutedUsers(options);
         assertNotNull(result);
 
         
@@ -783,11 +758,13 @@ public class BroadcastsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/sources/";
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/broadcasts/chat/mutes";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getChatMutedUsers", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -796,8 +773,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_updateBroadcastState() throws Exception {
-        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"state\":\"test_value\"}}";
+    void contract_muteChatUser() throws Exception {
+        String mockJson = "{\"data\":{\"muted\":true}}";
         
         server.setResponder(
                 req ->
@@ -807,12 +784,140 @@ public class BroadcastsContractsTest {
 
         
         
-        String reqMockJson = "{\"chat_option\":1,\"locale\":\"test_value\",\"should_not_tweet\":true,\"state\":\"test_value\",\"title\":\"test_value\"}";
-        Schemas.UpdateBroadcastStateRequest reqBody =
+        String reqMockJson = "{\"broadcast_id\":\"test_value\",\"end_at_ms\":\"test_value\",\"message_id\":\"test_value\",\"user_id\":\"1234567890\"}";
+        Schemas.MuteChatUserRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.UpdateBroadcastStateRequest>() {});
+                                new TypeReference<Schemas.MuteChatUserRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .muteChatUser(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/broadcasts/chat/mutes";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_listUser() throws Exception {
+        String mockJson = "{\"data\":{\"broadcasts\":[{\"id\":\"1234567890\"}]}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        BroadcastsClient.ListUserOptions options =
+                BroadcastsClient.ListUserOptions.builder()
+                        .header("X-Contract-Operation", "listUser");
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .listUser("test_id", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/users/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("listUser", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_createUserBroadcast() throws Exception {
+        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1},\"share_url\":\"test_value\",\"video_access\":{}}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"is_low_latency\":true,\"region\":\"test_value\",\"source_id\":\"test_value\"}";
+        Schemas.CreateUserBroadcastRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateUserBroadcastRequest>() {});
         
         
 
@@ -834,7 +939,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .updateBroadcastState("test_id", reqBody);
+                        .createUserBroadcast("test_id", reqBody);
         assertNotNull(result);
 
         
@@ -845,8 +950,8 @@ public class BroadcastsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("PUT", captured.getMethod());
-        String baseSegment = "/2/broadcasts/";
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/users/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -995,8 +1100,75 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_getBroadcastChat() throws Exception {
-        String mockJson = "{\"data\":[{\"author_id\":\"test_value\",\"author_name\":\"test_value\",\"author_username\":\"test_value\",\"broadcast_id\":\"test_value\",\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"relay_source\":\"test_value\",\"relay_user\":\"test_value\",\"reply_to\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_updateBroadcastState() throws Exception {
+        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"state\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"chat_option\":1,\"locale\":\"test_value\",\"should_not_tweet\":true,\"state\":\"test_value\",\"title\":\"test_value\"}";
+        Schemas.UpdateBroadcastStateRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.UpdateBroadcastStateRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .updateBroadcastState("test_id", reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("PUT", captured.getMethod());
+        String baseSegment = "/2/broadcasts/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_listScheduled() throws Exception {
+        String mockJson = "{\"data\":[{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}]}";
         
         server.setResponder(
                 req ->
@@ -1007,9 +1179,9 @@ public class BroadcastsContractsTest {
         
 
         
-        BroadcastsClient.GetBroadcastChatOptions options =
-                BroadcastsClient.GetBroadcastChatOptions.builder()
-                        .header("X-Contract-Operation", "getBroadcastChat");
+        BroadcastsClient.ListScheduledOptions options =
+                BroadcastsClient.ListScheduledOptions.builder()
+                        .header("X-Contract-Operation", "listScheduled");
         
         
         
@@ -1018,9 +1190,7 @@ public class BroadcastsContractsTest {
         
         
         
-        options.paginationToken("opt_paginationToken");
-        
-        
+        options.oldestStartTime("opt_oldestStartTime");
         
         
         
@@ -1030,11 +1200,6 @@ public class BroadcastsContractsTest {
         
         
 
-        
-        
-        
-        
-        
         
         
         
@@ -1046,7 +1211,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .getBroadcastChat("test_id", options);
+                        .listScheduled(options);
         assertNotNull(result);
 
         
@@ -1058,12 +1223,12 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/broadcasts/";
+        String baseSegment = "/2/broadcasts/scheduled";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getBroadcastChat", captured.firstHeader("x-contract-operation"));
+        assertEquals("listScheduled", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -1072,33 +1237,28 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_sendBroadcastChat() throws Exception {
-        String mockJson = "{\"data\":{\"success\":true,\"timestamp\":\"test_value\"}}";
+    void contract_createScheduledBroadcast() throws Exception {
+        String mockJson = "{\"data\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}}";
         
         server.setResponder(
                 req ->
                         MockXApiServer.MockResponse.json(
-                                200, mockJson));
+                                201, mockJson));
         
 
         
         
-        String reqMockJson = "{\"relay_source\":\"test_value\",\"relay_user\":\"test_value\",\"reply_to\":\"test_value\",\"text\":\"Hello from XDK!\"}";
-        Schemas.SendBroadcastChatRequest reqBody =
+        String reqMockJson = "{\"available_for_replay\":true,\"chat_option\":\"test_value\",\"description\":\"test_value\",\"is_locked\":true,\"locale\":\"test_value\",\"manual_publish\":true,\"recurrence\":{\"frequency\":\"Daily\",\"repeats\":\"test_value\"},\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}";
+        Schemas.CreateScheduledBroadcastRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.SendBroadcastChatRequest>() {});
+                                new TypeReference<Schemas.CreateScheduledBroadcastRequest>() {});
         
         
 
         
 
-        
-        
-        
-        
-        
         
         
         
@@ -1110,7 +1270,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .sendBroadcastChat("test_id", reqBody);
+                        .createScheduledBroadcast(reqBody);
         assertNotNull(result);
 
         
@@ -1122,7 +1282,7 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/broadcasts/";
+        String baseSegment = "/2/broadcasts/scheduled";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -1139,57 +1299,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_listUserSources() throws Exception {
-        String mockJson = "{\"data\":{\"sources\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .listUserSources("test_id");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/users/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_createUserSource() throws Exception {
-        String mockJson = "{\"data\":{\"source\":{\"creation_origin\":{\"name\":\"test_value\"},\"creation_time\":1,\"id\":\"1234567890\",\"is360\":true,\"is_stream_active\":true,\"name\":\"test_value\",\"owner_id\":1,\"rtmp_region\":\"test_value\",\"rtmp_stream_key\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\",\"video_service\":{\"name\":\"test_value\"}}}}";
+    void contract_updateUserBroadcastState() throws Exception {
+        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1},\"success\":true,\"tweet_error\":\"test_value\"}}";
         
         server.setResponder(
                 req ->
@@ -1199,17 +1310,22 @@ public class BroadcastsContractsTest {
 
         
         
-        String reqMockJson = "{\"name\":\"test_value\",\"region\":\"test_value\"}";
-        Schemas.CreateUserSourceRequest reqBody =
+        String reqMockJson = "{\"chat_option\":1,\"locale\":\"test_value\",\"should_not_tweet\":true,\"state\":\"test_value\",\"title\":\"test_value\"}";
+        Schemas.UpdateUserBroadcastStateRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.CreateUserSourceRequest>() {});
+                                new TypeReference<Schemas.UpdateUserBroadcastStateRequest>() {});
         
         
 
         
 
+        
+        
+        
+        
+        
         
         
         
@@ -1226,7 +1342,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .createUserSource("test_id", reqBody);
+                        .updateUserBroadcastState("test_id", "test_broadcastId", reqBody);
         assertNotNull(result);
 
         
@@ -1237,7 +1353,7 @@ public class BroadcastsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
+        assertEquals("PUT", captured.getMethod());
         String baseSegment = "/2/users/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
@@ -1250,6 +1366,60 @@ public class BroadcastsContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_unmuteBroadcastChatUser() throws Exception {
+        String mockJson = "{\"data\":{\"muted\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .unmuteBroadcastChatUser("test_id", "test_userId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/broadcasts/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }
@@ -1437,8 +1607,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_listSources() throws Exception {
-        String mockJson = "{\"data\":[{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}],\"meta\":{\"result_count\":1}}";
+    void contract_getRegion() throws Exception {
+        String mockJson = "{\"region\":\"us-east-1\"}";
         
         server.setResponder(
                 req ->
@@ -1457,7 +1627,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .listSources();
+                        .getRegion();
         assertNotNull(result);
 
         
@@ -1469,7 +1639,7 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/sources";
+        String baseSegment = "/2/region";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -1481,28 +1651,33 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_createSource() throws Exception {
-        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\",\"stream_key\":\"test_value\"}}";
+    void contract_muteBroadcastChatUser() throws Exception {
+        String mockJson = "{\"data\":{\"muted\":true}}";
         
         server.setResponder(
                 req ->
                         MockXApiServer.MockResponse.json(
-                                201, mockJson));
+                                200, mockJson));
         
 
         
         
-        String reqMockJson = "{\"name\":\"test_value\",\"region\":\"test_value\"}";
-        Schemas.CreateSourceRequest reqBody =
+        String reqMockJson = "{\"end_at_ms\":\"test_value\",\"message_id\":\"test_value\",\"user_id\":\"1234567890\"}";
+        Schemas.MuteBroadcastChatUserRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.CreateSourceRequest>() {});
+                                new TypeReference<Schemas.MuteBroadcastChatUserRequest>() {});
         
         
 
         
 
+        
+        
+        
+        
+        
         
         
         
@@ -1514,7 +1689,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .createSource(reqBody);
+                        .muteBroadcastChatUser("test_id", reqBody);
         assertNotNull(result);
 
         
@@ -1526,7 +1701,7 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/sources";
+        String baseSegment = "/2/broadcasts/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -1538,6 +1713,163 @@ public class BroadcastsContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_goLiveScheduledBroadcast() throws Exception {
+        String mockJson = "{\"data\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .goLiveScheduledBroadcast("test_id");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/broadcasts/scheduled/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getUserBroadcast() throws Exception {
+        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1}}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .getUserBroadcast("test_id", "test_broadcastId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/users/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_deleteUserBroadcast() throws Exception {
+        String mockJson = "{\"data\":{\"success\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .deleteUserBroadcast("test_id", "test_broadcastId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/users/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }
@@ -1723,8 +2055,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_listLiveCategories() throws Exception {
-        String mockJson = "{\"data\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"meta\":{\"result_count\":1}}";
+    void contract_getBroadcastChat() throws Exception {
+        String mockJson = "{\"data\":[{\"author_id\":\"test_value\",\"author_name\":\"test_value\",\"author_username\":\"test_value\",\"broadcast_id\":\"test_value\",\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"relay_source\":\"test_value\",\"relay_user\":\"test_value\",\"reply_to\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -1735,429 +2067,9 @@ public class BroadcastsContractsTest {
         
 
         
-
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .listLiveCategories();
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/broadcasts/categories";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getChatModerators() throws Exception {
-        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        BroadcastsClient.GetChatModeratorsOptions options =
-                BroadcastsClient.GetChatModeratorsOptions.builder()
-                        .header("X-Contract-Operation", "getChatModerators");
-        
-        
-        
-        options.userFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        options.expansions(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .getChatModerators(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/moderators";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getChatModerators", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_addChatModerator() throws Exception {
-        String mockJson = "{\"data\":{\"moderator_user_ids\":[\"test_value\"]}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"user_id\":\"1234567890\"}";
-        Schemas.AddChatModeratorRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.AddChatModeratorRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .addChatModerator(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/moderators";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_updateUserBroadcastState() throws Exception {
-        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1},\"success\":true,\"tweet_error\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"chat_option\":1,\"locale\":\"test_value\",\"should_not_tweet\":true,\"state\":\"test_value\",\"title\":\"test_value\"}";
-        Schemas.UpdateUserBroadcastStateRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.UpdateUserBroadcastStateRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .updateUserBroadcastState("test_id", "test_broadcastId", reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("PUT", captured.getMethod());
-        String baseSegment = "/2/users/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_unmuteChatUser() throws Exception {
-        String mockJson = "{\"data\":{\"muted\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        BroadcastsClient.UnmuteChatUserOptions options =
-                BroadcastsClient.UnmuteChatUserOptions.builder()
-                        .header("X-Contract-Operation", "unmuteChatUser");
-        
-        
-        
-        options.broadcastId("opt_broadcastId");
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .unmuteChatUser("test_userId", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/broadcasts/chat/mutes/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("unmuteChatUser", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getUserBroadcast() throws Exception {
-        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1}}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .getUserBroadcast("test_id", "test_broadcastId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/users/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_deleteUserBroadcast() throws Exception {
-        String mockJson = "{\"data\":{\"success\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .deleteUserBroadcast("test_id", "test_broadcastId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/users/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_listScheduled() throws Exception {
-        String mockJson = "{\"data\":[{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}]}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        BroadcastsClient.ListScheduledOptions options =
-                BroadcastsClient.ListScheduledOptions.builder()
-                        .header("X-Contract-Operation", "listScheduled");
+        BroadcastsClient.GetBroadcastChatOptions options =
+                BroadcastsClient.GetBroadcastChatOptions.builder()
+                        .header("X-Contract-Operation", "getBroadcastChat");
         
         
         
@@ -2166,7 +2078,9 @@ public class BroadcastsContractsTest {
         
         
         
-        options.oldestStartTime("opt_oldestStartTime");
+        options.paginationToken("opt_paginationToken");
+        
+        
         
         
         
@@ -2176,6 +2090,11 @@ public class BroadcastsContractsTest {
         
         
 
+        
+        
+        
+        
+        
         
         
         
@@ -2187,7 +2106,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .listScheduled(options);
+                        .getBroadcastChat("test_id", options);
         assertNotNull(result);
 
         
@@ -2199,12 +2118,12 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/broadcasts/scheduled";
+        String baseSegment = "/2/broadcasts/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("listScheduled", captured.firstHeader("x-contract-operation"));
+        assertEquals("getBroadcastChat", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -2213,114 +2132,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_createScheduledBroadcast() throws Exception {
-        String mockJson = "{\"data\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":\"test_value\",\"description\":\"test_value\",\"locale\":\"test_value\",\"manual_publish\":true,\"recurring_schedule_id\":\"test_value\",\"scheduled_broadcast_id\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"state\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                201, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"available_for_replay\":true,\"chat_option\":\"test_value\",\"description\":\"test_value\",\"is_locked\":true,\"locale\":\"test_value\",\"manual_publish\":true,\"recurrence\":{\"frequency\":\"Daily\",\"repeats\":\"test_value\"},\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"source_id\":\"test_value\",\"telecast_id\":\"test_value\",\"thumbnail_media_id\":\"test_value\",\"title\":\"test_value\"}";
-        Schemas.CreateScheduledBroadcastRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateScheduledBroadcastRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .createScheduledBroadcast(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/broadcasts/scheduled";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_getRegion() throws Exception {
-        String mockJson = "{\"region\":\"us-east-1\"}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-
-        Object result =
-                client.broadcasts()
-                        .getRegion();
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/region";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_muteBroadcastChatUser() throws Exception {
-        String mockJson = "{\"data\":{\"muted\":true}}";
+    void contract_sendBroadcastChat() throws Exception {
+        String mockJson = "{\"data\":{\"success\":true,\"timestamp\":\"test_value\"}}";
         
         server.setResponder(
                 req ->
@@ -2330,12 +2143,12 @@ public class BroadcastsContractsTest {
 
         
         
-        String reqMockJson = "{\"end_at_ms\":\"test_value\",\"message_id\":\"test_value\",\"user_id\":\"1234567890\"}";
-        Schemas.MuteBroadcastChatUserRequest reqBody =
+        String reqMockJson = "{\"relay_source\":\"test_value\",\"relay_user\":\"test_value\",\"reply_to\":\"test_value\",\"text\":\"Hello from XDK!\"}";
+        Schemas.SendBroadcastChatRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.MuteBroadcastChatUserRequest>() {});
+                                new TypeReference<Schemas.SendBroadcastChatRequest>() {});
         
         
 
@@ -2357,7 +2170,7 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .muteBroadcastChatUser("test_id", reqBody);
+                        .sendBroadcastChat("test_id", reqBody);
         assertNotNull(result);
 
         
@@ -2386,8 +2199,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_listUser() throws Exception {
-        String mockJson = "{\"data\":{\"broadcasts\":[{\"id\":\"1234567890\"}]}}";
+    void contract_removeChatModerator() throws Exception {
+        String mockJson = "{\"data\":{\"moderator_user_ids\":[\"test_value\"]}}";
         
         server.setResponder(
                 req ->
@@ -2398,22 +2211,7 @@ public class BroadcastsContractsTest {
         
 
         
-        BroadcastsClient.ListUserOptions options =
-                BroadcastsClient.ListUserOptions.builder()
-                        .header("X-Contract-Operation", "listUser");
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
 
-        
-        
-        
-        
         
         
         
@@ -2426,7 +2224,56 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .listUser("test_id", options);
+                        .removeChatModerator("test_userId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/broadcasts/chat/moderators/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getSource() throws Exception {
+        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .getSource("test_id");
         assertNotNull(result);
 
         
@@ -2438,12 +2285,10 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/users/";
+        String baseSegment = "/2/sources/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("listUser", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -2452,8 +2297,8 @@ public class BroadcastsContractsTest {
     }
     
     @Test
-    void contract_createUserBroadcast() throws Exception {
-        String mockJson = "{\"data\":{\"broadcast\":{\"available_for_replay\":true,\"broadcast_id\":\"test_value\",\"chat_option\":1,\"created_at_ms\":\"test_value\",\"end_ms\":\"test_value\",\"height\":1,\"id\":\"1234567890\",\"image_url\":\"test_value\",\"image_url_medium\":\"test_value\",\"image_url_small\":\"test_value\",\"is_high_latency\":true,\"language\":\"test_value\",\"media_id\":\"1234567890\",\"media_key\":\"test_value\",\"scheduled_end_ms\":\"test_value\",\"scheduled_start_ms\":\"test_value\",\"start_ms\":\"test_value\",\"state\":\"test_value\",\"status\":\"test_value\",\"total_watched\":\"test_value\",\"total_watching\":\"test_value\",\"tweet_id\":\"1234567890\",\"twitter_user_id\":\"test_value\",\"updated_at_ms\":\"test_value\",\"width\":1},\"share_url\":\"test_value\",\"video_access\":{}}}";
+    void contract_updateSource() throws Exception {
+        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}}";
         
         server.setResponder(
                 req ->
@@ -2463,12 +2308,12 @@ public class BroadcastsContractsTest {
 
         
         
-        String reqMockJson = "{\"is_low_latency\":true,\"region\":\"test_value\",\"source_id\":\"test_value\"}";
-        Schemas.CreateUserBroadcastRequest reqBody =
+        String reqMockJson = "{\"name\":\"test_value\"}";
+        Schemas.UpdateSourceRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.CreateUserBroadcastRequest>() {});
+                                new TypeReference<Schemas.UpdateSourceRequest>() {});
         
         
 
@@ -2490,7 +2335,162 @@ public class BroadcastsContractsTest {
 
         Object result =
                 client.broadcasts()
-                        .createUserBroadcast("test_id", reqBody);
+                        .updateSource("test_id", reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("PUT", captured.getMethod());
+        String baseSegment = "/2/sources/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_deleteSource() throws Exception {
+        String mockJson = "{\"data\":{\"deleted\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .deleteSource("test_id");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/sources/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_listSources() throws Exception {
+        String mockJson = "{\"data\":[{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\"}],\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .listSources();
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/sources";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_createSource() throws Exception {
+        String mockJson = "{\"data\":{\"created_at_ms\":\"test_value\",\"id\":\"1234567890\",\"is_stream_active\":true,\"name\":\"test_value\",\"region\":\"test_value\",\"rtmp_url\":\"test_value\",\"rtmps_url\":\"test_value\",\"stream_key\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                201, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"name\":\"test_value\",\"region\":\"test_value\"}";
+        Schemas.CreateSourceRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateSourceRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.broadcasts()
+                        .createSource(reqBody);
         assertNotNull(result);
 
         
@@ -2502,7 +2502,7 @@ public class BroadcastsContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/users/";
+        String baseSegment = "/2/sources";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());

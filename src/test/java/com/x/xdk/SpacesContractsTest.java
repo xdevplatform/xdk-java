@@ -139,8 +139,8 @@ public class SpacesContractsTest {
     }
     
     @Test
-    void contract_getById() throws Exception {
-        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"creator_id\":\"test_value\",\"ended_at\":\"2025-01-15T12:00:00.000Z\",\"host_ids\":[\"test_value\"],\"id\":\"1234567890\",\"invited_user_ids\":[\"test_value\"],\"is_ticketed\":true,\"lang\":\"test_value\",\"participant_count\":1,\"scheduled_start\":\"2025-01-15T12:00:00.000Z\",\"speaker_ids\":[\"test_value\"],\"started_at\":\"2025-01-15T12:00:00.000Z\",\"state\":\"test_value\",\"subscriber_count\":1,\"title\":\"test_value\",\"topic_ids\":[\"test_value\"],\"updated_at\":\"2025-01-15T12:00:00.000Z\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
+    void contract_getByCreatorIds() throws Exception {
+        String mockJson = "{\"data\":[{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"creator_id\":\"test_value\",\"ended_at\":\"2025-01-15T12:00:00.000Z\",\"host_ids\":[\"test_value\"],\"id\":\"1234567890\",\"invited_user_ids\":[\"test_value\"],\"is_ticketed\":true,\"lang\":\"test_value\",\"participant_count\":1,\"scheduled_start\":\"2025-01-15T12:00:00.000Z\",\"speaker_ids\":[\"test_value\"],\"started_at\":\"2025-01-15T12:00:00.000Z\",\"state\":\"test_value\",\"subscriber_count\":1,\"title\":\"test_value\",\"topic_ids\":[\"test_value\"],\"updated_at\":\"2025-01-15T12:00:00.000Z\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -151,9 +151,9 @@ public class SpacesContractsTest {
         
 
         
-        SpacesClient.GetByIdOptions options =
-                SpacesClient.GetByIdOptions.builder()
-                        .header("X-Contract-Operation", "getById");
+        SpacesClient.GetByCreatorIdsOptions options =
+                SpacesClient.GetByCreatorIdsOptions.builder()
+                        .header("X-Contract-Operation", "getByCreatorIds");
         
         
         
@@ -188,7 +188,7 @@ public class SpacesContractsTest {
 
         Object result =
                 client.spaces()
-                        .getById("test_id", options);
+                        .getByCreatorIds(Arrays.asList("item1"), options);
         assertNotNull(result);
 
         
@@ -200,12 +200,12 @@ public class SpacesContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/spaces/";
+        String baseSegment = "/2/spaces/by/creator_ids";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getById", captured.firstHeader("x-contract-operation"));
+        assertEquals("getByCreatorIds", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -289,8 +289,8 @@ public class SpacesContractsTest {
     }
     
     @Test
-    void contract_getBuyers() throws Exception {
-        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_getById() throws Exception {
+        String mockJson = "{\"data\":{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"creator_id\":\"test_value\",\"ended_at\":\"2025-01-15T12:00:00.000Z\",\"host_ids\":[\"test_value\"],\"id\":\"1234567890\",\"invited_user_ids\":[\"test_value\"],\"is_ticketed\":true,\"lang\":\"test_value\",\"participant_count\":1,\"scheduled_start\":\"2025-01-15T12:00:00.000Z\",\"speaker_ids\":[\"test_value\"],\"started_at\":\"2025-01-15T12:00:00.000Z\",\"state\":\"test_value\",\"subscriber_count\":1,\"title\":\"test_value\",\"topic_ids\":[\"test_value\"],\"updated_at\":\"2025-01-15T12:00:00.000Z\"},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
         server.setResponder(
                 req ->
@@ -301,20 +301,18 @@ public class SpacesContractsTest {
         
 
         
-        SpacesClient.GetBuyersOptions options =
-                SpacesClient.GetBuyersOptions.builder()
-                        .header("X-Contract-Operation", "getBuyers");
+        SpacesClient.GetByIdOptions options =
+                SpacesClient.GetByIdOptions.builder()
+                        .header("X-Contract-Operation", "getById");
         
         
         
-        options.maxResults(10);
+        options.spaceFields(Arrays.asList("id", "created_at"));
         
         
         
         
-        options.paginationToken("opt_paginationToken");
-        
-        
+        options.expansions(Arrays.asList("id", "created_at"));
         
         
         
@@ -340,7 +338,7 @@ public class SpacesContractsTest {
 
         Object result =
                 client.spaces()
-                        .getBuyers("test_id", options);
+                        .getById("test_id", options);
         assertNotNull(result);
 
         
@@ -357,7 +355,7 @@ public class SpacesContractsTest {
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getBuyers", captured.firstHeader("x-contract-operation"));
+        assertEquals("getById", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -449,8 +447,8 @@ public class SpacesContractsTest {
     }
     
     @Test
-    void contract_getByCreatorIds() throws Exception {
-        String mockJson = "{\"data\":[{\"created_at\":\"2025-01-15T12:00:00.000Z\",\"creator_id\":\"test_value\",\"ended_at\":\"2025-01-15T12:00:00.000Z\",\"host_ids\":[\"test_value\"],\"id\":\"1234567890\",\"invited_user_ids\":[\"test_value\"],\"is_ticketed\":true,\"lang\":\"test_value\",\"participant_count\":1,\"scheduled_start\":\"2025-01-15T12:00:00.000Z\",\"speaker_ids\":[\"test_value\"],\"started_at\":\"2025-01-15T12:00:00.000Z\",\"state\":\"test_value\",\"subscriber_count\":1,\"title\":\"test_value\",\"topic_ids\":[\"test_value\"],\"updated_at\":\"2025-01-15T12:00:00.000Z\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_getBuyers() throws Exception {
+        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -461,18 +459,20 @@ public class SpacesContractsTest {
         
 
         
-        SpacesClient.GetByCreatorIdsOptions options =
-                SpacesClient.GetByCreatorIdsOptions.builder()
-                        .header("X-Contract-Operation", "getByCreatorIds");
+        SpacesClient.GetBuyersOptions options =
+                SpacesClient.GetBuyersOptions.builder()
+                        .header("X-Contract-Operation", "getBuyers");
         
         
         
-        options.spaceFields(Arrays.asList("id", "created_at"));
+        options.maxResults(10);
         
         
         
         
-        options.expansions(Arrays.asList("id", "created_at"));
+        options.paginationToken("opt_paginationToken");
+        
+        
         
         
         
@@ -498,7 +498,7 @@ public class SpacesContractsTest {
 
         Object result =
                 client.spaces()
-                        .getByCreatorIds(Arrays.asList("item1"), options);
+                        .getBuyers("test_id", options);
         assertNotNull(result);
 
         
@@ -510,12 +510,12 @@ public class SpacesContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/spaces/by/creator_ids";
+        String baseSegment = "/2/spaces/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("getByCreatorIds", captured.firstHeader("x-contract-operation"));
+        assertEquals("getBuyers", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

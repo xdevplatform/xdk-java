@@ -50,6 +50,127 @@ public final class ChatClient {
 
 
 
+    /**
+     * Optional parameters for {@link #getConversation}.
+     */
+    public static final class GetConversationOptions {
+        
+        
+        private List<String> chatConversationFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetConversationOptions() {}
+
+        public static GetConversationOptions builder() {
+            return new GetConversationOptions();
+        }
+
+        
+        
+        
+        
+        public GetConversationOptions chatConversationFields(List<String> chatConversationFields) {
+            this.chatConversationFields = chatConversationFields;
+            return this;
+        }
+
+        public List<String> getChatConversationFields() {
+            return this.chatConversationFields;
+        }
+        
+        
+        
+        
+        
+        public GetConversationOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetConversationOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+
+        public GetConversationOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetConversationOptions copy() {
+            GetConversationOptions c = new GetConversationOptions();
+            
+            
+            
+            c.chatConversationFields = this.chatConversationFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,50 +192,33 @@ public final class ChatClient {
 
 
     /**
-     * Optional parameters for {@link #getConversationEvents}.
+     * Optional parameters for {@link #getConversationPinnedMessages}.
      */
-    public static final class GetConversationEventsOptions {
-        
-        
-        private Integer maxResults;
-        
+    public static final class GetConversationPinnedMessagesOptions {
         
         
         private String paginationToken;
         
         
         
-        private List<String> chatMessageEventFields;
+        private List<String> chatPinnedMessageFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetConversationEventsOptions() {}
+        public GetConversationPinnedMessagesOptions() {}
 
-        public static GetConversationEventsOptions builder() {
-            return new GetConversationEventsOptions();
+        public static GetConversationPinnedMessagesOptions builder() {
+            return new GetConversationPinnedMessagesOptions();
         }
 
         
         
         
         
-        public GetConversationEventsOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetConversationEventsOptions paginationToken(String paginationToken) {
+        public GetConversationPinnedMessagesOptions paginationToken(String paginationToken) {
             this.paginationToken = paginationToken;
             return this;
         }
@@ -127,20 +231,20 @@ public final class ChatClient {
         
         
         
-        public GetConversationEventsOptions chatMessageEventFields(List<String> chatMessageEventFields) {
-            this.chatMessageEventFields = chatMessageEventFields;
+        public GetConversationPinnedMessagesOptions chatPinnedMessageFields(List<String> chatPinnedMessageFields) {
+            this.chatPinnedMessageFields = chatPinnedMessageFields;
             return this;
         }
 
-        public List<String> getChatMessageEventFields() {
-            return this.chatMessageEventFields;
+        public List<String> getChatPinnedMessageFields() {
+            return this.chatPinnedMessageFields;
         }
         
         
         
         
 
-        public GetConversationEventsOptions header(String name, String value) {
+        public GetConversationPinnedMessagesOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -149,13 +253,8 @@ public final class ChatClient {
             return this.headers;
         }
 
-        public GetConversationEventsOptions copy() {
-            GetConversationEventsOptions c = new GetConversationEventsOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
+        public GetConversationPinnedMessagesOptions copy() {
+            GetConversationPinnedMessagesOptions c = new GetConversationPinnedMessagesOptions();
             
             
             
@@ -164,7 +263,7 @@ public final class ChatClient {
             
             
             
-            c.chatMessageEventFields = this.chatMessageEventFields;
+            c.chatPinnedMessageFields = this.chatPinnedMessageFields;
             
             
             
@@ -173,91 +272,6 @@ public final class ChatClient {
             return c;
         }
     }
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getMessageRequest}.
-     */
-    public static final class GetMessageRequestOptions {
-        
-        
-        private List<String> chatMessageRequestDetailFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetMessageRequestOptions() {}
-
-        public static GetMessageRequestOptions builder() {
-            return new GetMessageRequestOptions();
-        }
-
-        
-        
-        
-        
-        public GetMessageRequestOptions chatMessageRequestDetailFields(List<String> chatMessageRequestDetailFields) {
-            this.chatMessageRequestDetailFields = chatMessageRequestDetailFields;
-            return this;
-        }
-
-        public List<String> getChatMessageRequestDetailFields() {
-            return this.chatMessageRequestDetailFields;
-        }
-        
-        
-        
-        
-
-        public GetMessageRequestOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetMessageRequestOptions copy() {
-            GetMessageRequestOptions c = new GetMessageRequestOptions();
-            
-            
-            
-            c.chatMessageRequestDetailFields = this.chatMessageRequestDetailFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -405,75 +419,6 @@ public final class ChatClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getGroupInvite}.
-     */
-    public static final class GetGroupInviteOptions {
-        
-        
-        private List<String> chatGroupInviteFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetGroupInviteOptions() {}
-
-        public static GetGroupInviteOptions builder() {
-            return new GetGroupInviteOptions();
-        }
-
-        
-        
-        
-        
-        public GetGroupInviteOptions chatGroupInviteFields(List<String> chatGroupInviteFields) {
-            this.chatGroupInviteFields = chatGroupInviteFields;
-            return this;
-        }
-
-        public List<String> getChatGroupInviteFields() {
-            return this.chatGroupInviteFields;
-        }
-        
-        
-        
-        
-
-        public GetGroupInviteOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetGroupInviteOptions copy() {
-            GetGroupInviteOptions c = new GetGroupInviteOptions();
-            
-            
-            
-            c.chatGroupInviteFields = this.chatGroupInviteFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
 
 
 
@@ -813,6 +758,147 @@ public final class ChatClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getConversationEvents}.
+     */
+    public static final class GetConversationEventsOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> chatMessageEventFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetConversationEventsOptions() {}
+
+        public static GetConversationEventsOptions builder() {
+            return new GetConversationEventsOptions();
+        }
+
+        
+        
+        
+        
+        public GetConversationEventsOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public GetConversationEventsOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public GetConversationEventsOptions chatMessageEventFields(List<String> chatMessageEventFields) {
+            this.chatMessageEventFields = chatMessageEventFields;
+            return this;
+        }
+
+        public List<String> getChatMessageEventFields() {
+            return this.chatMessageEventFields;
+        }
+        
+        
+        
+        
+
+        public GetConversationEventsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetConversationEventsOptions copy() {
+            GetConversationEventsOptions c = new GetConversationEventsOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.chatMessageEventFields = this.chatMessageEventFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Optional parameters for {@link #getMessageRequests}.
      */
@@ -952,38 +1038,6 @@ public final class ChatClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Optional parameters for {@link #getSettings}.
      */
@@ -1053,72 +1107,43 @@ public final class ChatClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * Optional parameters for {@link #getConversationPinnedMessages}.
+     * Optional parameters for {@link #getMessageRequest}.
      */
-    public static final class GetConversationPinnedMessagesOptions {
+    public static final class GetMessageRequestOptions {
         
         
-        private String paginationToken;
-        
-        
-        
-        private List<String> chatPinnedMessageFields;
+        private List<String> chatMessageRequestDetailFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetConversationPinnedMessagesOptions() {}
+        public GetMessageRequestOptions() {}
 
-        public static GetConversationPinnedMessagesOptions builder() {
-            return new GetConversationPinnedMessagesOptions();
+        public static GetMessageRequestOptions builder() {
+            return new GetMessageRequestOptions();
         }
 
         
         
         
         
-        public GetConversationPinnedMessagesOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
+        public GetMessageRequestOptions chatMessageRequestDetailFields(List<String> chatMessageRequestDetailFields) {
+            this.chatMessageRequestDetailFields = chatMessageRequestDetailFields;
             return this;
         }
 
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetConversationPinnedMessagesOptions chatPinnedMessageFields(List<String> chatPinnedMessageFields) {
-            this.chatPinnedMessageFields = chatPinnedMessageFields;
-            return this;
-        }
-
-        public List<String> getChatPinnedMessageFields() {
-            return this.chatPinnedMessageFields;
+        public List<String> getChatMessageRequestDetailFields() {
+            return this.chatMessageRequestDetailFields;
         }
         
         
         
         
 
-        public GetConversationPinnedMessagesOptions header(String name, String value) {
+        public GetMessageRequestOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -1127,17 +1152,12 @@ public final class ChatClient {
             return this.headers;
         }
 
-        public GetConversationPinnedMessagesOptions copy() {
-            GetConversationPinnedMessagesOptions c = new GetConversationPinnedMessagesOptions();
+        public GetMessageRequestOptions copy() {
+            GetMessageRequestOptions c = new GetMessageRequestOptions();
             
             
             
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.chatPinnedMessageFields = this.chatPinnedMessageFields;
+            c.chatMessageRequestDetailFields = this.chatMessageRequestDetailFields;
             
             
             
@@ -1152,81 +1172,43 @@ public final class ChatClient {
 
 
 
-
-
-
-
     /**
-     * Optional parameters for {@link #getConversation}.
+     * Optional parameters for {@link #getGroupInvite}.
      */
-    public static final class GetConversationOptions {
+    public static final class GetGroupInviteOptions {
         
         
-        private List<String> chatConversationFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> userFields;
+        private List<String> chatGroupInviteFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetConversationOptions() {}
+        public GetGroupInviteOptions() {}
 
-        public static GetConversationOptions builder() {
-            return new GetConversationOptions();
+        public static GetGroupInviteOptions builder() {
+            return new GetGroupInviteOptions();
         }
 
         
         
         
         
-        public GetConversationOptions chatConversationFields(List<String> chatConversationFields) {
-            this.chatConversationFields = chatConversationFields;
+        public GetGroupInviteOptions chatGroupInviteFields(List<String> chatGroupInviteFields) {
+            this.chatGroupInviteFields = chatGroupInviteFields;
             return this;
         }
 
-        public List<String> getChatConversationFields() {
-            return this.chatConversationFields;
-        }
-        
-        
-        
-        
-        
-        public GetConversationOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetConversationOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
+        public List<String> getChatGroupInviteFields() {
+            return this.chatGroupInviteFields;
         }
         
         
         
         
 
-        public GetConversationOptions header(String name, String value) {
+        public GetGroupInviteOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -1235,22 +1217,12 @@ public final class ChatClient {
             return this.headers;
         }
 
-        public GetConversationOptions copy() {
-            GetConversationOptions c = new GetConversationOptions();
+        public GetGroupInviteOptions copy() {
+            GetGroupInviteOptions c = new GetGroupInviteOptions();
             
             
             
-            c.chatConversationFields = this.chatConversationFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.userFields = this.userFields;
+            c.chatGroupInviteFields = this.chatGroupInviteFields;
             
             
             
@@ -1285,43 +1257,13 @@ public final class ChatClient {
 
 
 
-    
 
-    public Schemas.AddChatGroupMembersResponse addGroupMembers(String id, Schemas.AddChatGroupMembersRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/members";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
 
-        Object requestBody = body;
-        String contentType = "application/json";
 
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddChatGroupMembersResponse.class);
-        
-    }
 
-    
-    
 
 
 
@@ -1331,1460 +1273,9 @@ public final class ChatClient {
 
 
 
-    
 
-    public Schemas.EnableChatGroupInviteResponse enableGroupInvite(String id, Schemas.EnableChatGroupInviteRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/invite";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.EnableChatGroupInviteResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DisableChatGroupInviteResponse disableGroupInvite(String id, Schemas.DisableChatGroupInviteRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/invite";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DisableChatGroupInviteResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateChatGroupAdminSettingsResponse updateGroupAdminSettings(String id, Schemas.UpdateChatGroupAdminSettingsRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admin_settings";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateChatGroupAdminSettingsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateChatConversationResponse createConversation(Schemas.CreateChatConversationRequest body) {
-        
-        String path = "/2/chat/conversations/group";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateChatConversationResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateChatGroupJoinRequestResponse createGroupJoinRequest(String id, Schemas.CreateChatGroupJoinRequestRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/join_requests";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateChatGroupJoinRequestResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AddUserPublicKeyResponse addUserPublicKey(String id, Schemas.AddUserPublicKeyRequest body) {
-        
-        String path = "/2/users/{id}/public_keys";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddUserPublicKeyResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatConversationEventsResponse getConversationEvents(String id) {
-        return getConversationEvents(id, new GetConversationEventsOptions());
-    }
-    
-
-    public Schemas.GetChatConversationEventsResponse getConversationEvents(String id, GetConversationEventsOptions options) {
-        
-        GetConversationEventsOptions opts = options != null ? options : new GetConversationEventsOptions();
-        
-        String path = "/2/chat/conversations/{id}/events";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_message_event.fields", opts.getChatMessageEventFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatConversationEventsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatConversationEventsResponse> getConversationEventsPages(String id) {
-        return getConversationEventsPages(id, new GetConversationEventsOptions());
-    }
-
-    public Paginator<Schemas.GetChatConversationEventsResponse> getConversationEventsPages(String id, GetConversationEventsOptions options) {
-        GetConversationEventsOptions baseOpts = options != null ? options.copy() : new GetConversationEventsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetConversationEventsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getConversationEvents(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ChatMediaUploadFinalizeResponse mediaUploadFinalize(String id, Schemas.ChatMediaUploadFinalizeRequest body) {
-        
-        String path = "/2/chat/media/upload/{id}/finalize";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ChatMediaUploadFinalizeResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatMessageRequestResponse getMessageRequest(String id) {
-        return getMessageRequest(id, new GetMessageRequestOptions());
-    }
-    
-
-    public Schemas.GetChatMessageRequestResponse getMessageRequest(String id, GetMessageRequestOptions options) {
-        
-        GetMessageRequestOptions opts = options != null ? options : new GetMessageRequestOptions();
-        
-        String path = "/2/chat/message_requests/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_message_request_detail.fields", opts.getChatMessageRequestDetailFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatMessageRequestResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AddChatGroupAdminsResponse addGroupAdmins(String id, Schemas.AddChatGroupAdminsRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admins";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddChatGroupAdminsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.SendChatMessageResponse sendMessage(String id, Schemas.SendChatMessageRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/messages";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.SendChatMessageResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RejectChatGroupAdminRequestResponse rejectGroupAdminRequest(String id, String userId, Schemas.RejectChatGroupAdminRequestRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admin_requests/{user_id}/reject";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RejectChatGroupAdminRequestResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.SendChatTypingIndicatorResponse sendTypingIndicator(String id) {
-        
-        String path = "/2/chat/conversations/{id}/typing";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.SendChatTypingIndicatorResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatGroupAdminRequestsResponse getGroupAdminRequests(String id) {
-        return getGroupAdminRequests(id, new GetGroupAdminRequestsOptions());
-    }
-    
-
-    public Schemas.GetChatGroupAdminRequestsResponse getGroupAdminRequests(String id, GetGroupAdminRequestsOptions options) {
-        
-        GetGroupAdminRequestsOptions opts = options != null ? options : new GetGroupAdminRequestsOptions();
-        
-        String path = "/2/chat/conversations/{id}/admin_requests";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatGroupAdminRequestsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatGroupAdminRequestsResponse> getGroupAdminRequestsPages(String id) {
-        return getGroupAdminRequestsPages(id, new GetGroupAdminRequestsOptions());
-    }
-
-    public Paginator<Schemas.GetChatGroupAdminRequestsResponse> getGroupAdminRequestsPages(String id, GetGroupAdminRequestsOptions options) {
-        GetGroupAdminRequestsOptions baseOpts = options != null ? options.copy() : new GetGroupAdminRequestsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetGroupAdminRequestsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getGroupAdminRequests(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateChatGroupAdminRequestResponse createGroupAdminRequest(String id, Schemas.CreateChatGroupAdminRequestRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admin_requests";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateChatGroupAdminRequestResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RemoveChatGroupAdminsResponse removeGroupAdmins(String id, Schemas.RemoveChatGroupAdminsRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admins/remove";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RemoveChatGroupAdminsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ChatMediaUploadInitializeResponse mediaUploadInitialize(Schemas.ChatMediaUploadInitializeRequest body) {
-        
-        String path = "/2/chat/media/upload/initialize";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ChatMediaUploadInitializeResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateChatConversationMessageTtlResponse updateConversationMessageTtl(String id, Schemas.UpdateChatConversationMessageTtlRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/message_ttl";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateChatConversationMessageTtlResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteChatConversationMessageTtlResponse deleteConversationMessageTtl(String id, Schemas.DeleteChatConversationMessageTtlRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/message_ttl";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteChatConversationMessageTtlResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatGroupInviteResponse getGroupInvite(String id, String token) {
-        return getGroupInvite(id, token, new GetGroupInviteOptions());
-    }
-    
-
-    public Schemas.GetChatGroupInviteResponse getGroupInvite(String id, String token, GetGroupInviteOptions options) {
-        
-        GetGroupInviteOptions opts = options != null ? options : new GetGroupInviteOptions();
-        
-        String path = "/2/chat/conversations/{id}/invites/{token}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{token}", XClient.encodePathSegment(token));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_group_invite.fields", opts.getChatGroupInviteFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatGroupInviteResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RemoveChatGroupMembersResponse removeGroupMembers(String id, Schemas.RemoveChatGroupMembersRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/members/remove";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RemoveChatGroupMembersResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatConversationsResponse getConversations() {
-        return getConversations(new GetConversationsOptions());
-    }
-    
-
-    public Schemas.GetChatConversationsResponse getConversations(GetConversationsOptions options) {
-        
-        GetConversationsOptions opts = options != null ? options : new GetConversationsOptions();
-        
-        String path = "/2/chat/conversations";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "unread_only", opts.getUnreadOnly());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "type", opts.getType());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "is_archived", opts.getIsArchived());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "is_muted", opts.getIsMuted());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "participant_ids", opts.getParticipantIds());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "participant_query", opts.getParticipantQuery());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_conversation.fields", opts.getChatConversationFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatConversationsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatConversationsResponse> getConversationsPages() {
-        return getConversationsPages(new GetConversationsOptions());
-    }
-
-    public Paginator<Schemas.GetChatConversationsResponse> getConversationsPages(GetConversationsOptions options) {
-        GetConversationsOptions baseOpts = options != null ? options.copy() : new GetConversationsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetConversationsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getConversations(pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatMessageRequestsResponse getMessageRequests() {
-        return getMessageRequests(new GetMessageRequestsOptions());
-    }
-    
-
-    public Schemas.GetChatMessageRequestsResponse getMessageRequests(GetMessageRequestsOptions options) {
-        
-        GetMessageRequestsOptions opts = options != null ? options : new GetMessageRequestsOptions();
-        
-        String path = "/2/chat/message_requests";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "inbox_type", opts.getInboxType());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_message_request.fields", opts.getChatMessageRequestFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatMessageRequestsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatMessageRequestsResponse> getMessageRequestsPages() {
-        return getMessageRequestsPages(new GetMessageRequestsOptions());
-    }
-
-    public Paginator<Schemas.GetChatMessageRequestsResponse> getMessageRequestsPages(GetMessageRequestsOptions options) {
-        GetMessageRequestsOptions baseOpts = options != null ? options.copy() : new GetMessageRequestsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetMessageRequestsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getMessageRequests(pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AddConversationKeysResponse addConversationKeys(String id, Schemas.AddConversationKeysRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/keys";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddConversationKeysResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public byte[] mediaDownload(String id, String mediaHashKey) {
-        
-        String path = "/2/chat/media/{id}/{media_hash_key}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{media_hash_key}", XClient.encodePathSegment(mediaHashKey));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendBytes(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AcceptChatMessageRequestResponse acceptMessageRequest(String id) {
-        
-        String path = "/2/chat/message_requests/{id}/accept";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AcceptChatMessageRequestResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -2842,105 +1333,9 @@ public final class ChatClient {
 
     
 
-    public Schemas.MarkChatConversationReadResponse markConversationRead(String id, Schemas.MarkChatConversationReadRequest body) {
+    public Schemas.RemoveChatGroupMembersResponse removeGroupMembers(String id, Schemas.RemoveChatGroupMembersRequest body) {
         
-        String path = "/2/chat/conversations/{id}/read";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.MarkChatConversationReadResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ApproveChatGroupAdminRequestResponse approveGroupAdminRequest(String id, String userId, Schemas.ApproveChatGroupAdminRequestRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/admin_requests/{user_id}/approve";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ApproveChatGroupAdminRequestResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.MuteChatConversationResponse muteConversation(String id, Schemas.MuteChatConversationRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/mute";
+        String path = "/2/chat/conversations/{id}/members/remove";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
@@ -2967,505 +1362,7 @@ public final class ChatClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.MuteChatConversationResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UnmuteChatConversationResponse unmuteConversation(String id, Schemas.UnmuteChatConversationRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/mute";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UnmuteChatConversationResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateChatConversationScreenCaptureResponse updateConversationScreenCapture(String id, Schemas.UpdateChatConversationScreenCaptureRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/screen_capture";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateChatConversationScreenCaptureResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteChatMessagesResponse deleteMessages(String id, Schemas.DeleteChatMessagesRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/messages/delete";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteChatMessagesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatSettingsResponse getSettings() {
-        return getSettings(new GetSettingsOptions());
-    }
-    
-
-    public Schemas.GetChatSettingsResponse getSettings(GetSettingsOptions options) {
-        
-        GetSettingsOptions opts = options != null ? options : new GetSettingsOptions();
-        
-        String path = "/2/chat/settings";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_settings.fields", opts.getChatSettingsFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatSettingsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateChatSettingsResponse updateSettings(Schemas.UpdateChatSettingsRequest body) {
-        
-        String path = "/2/chat/settings";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateChatSettingsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ArchiveChatConversationResponse archiveConversation(String id, Schemas.ArchiveChatConversationRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/archive";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ArchiveChatConversationResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UnarchiveChatConversationResponse unarchiveConversation(String id, Schemas.UnarchiveChatConversationRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/archive";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UnarchiveChatConversationResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.InitializeChatGroupResponse initializeGroup() {
-        
-        String path = "/2/chat/conversations/group/initialize";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.InitializeChatGroupResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatConversationPinnedMessagesResponse getConversationPinnedMessages(String id) {
-        return getConversationPinnedMessages(id, new GetConversationPinnedMessagesOptions());
-    }
-    
-
-    public Schemas.GetChatConversationPinnedMessagesResponse getConversationPinnedMessages(String id, GetConversationPinnedMessagesOptions options) {
-        
-        GetConversationPinnedMessagesOptions opts = options != null ? options : new GetConversationPinnedMessagesOptions();
-        
-        String path = "/2/chat/conversations/{id}/pinned_messages";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "chat_pinned_message.fields", opts.getChatPinnedMessageFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatConversationPinnedMessagesResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatConversationPinnedMessagesResponse> getConversationPinnedMessagesPages(String id) {
-        return getConversationPinnedMessagesPages(id, new GetConversationPinnedMessagesOptions());
-    }
-
-    public Paginator<Schemas.GetChatConversationPinnedMessagesResponse> getConversationPinnedMessagesPages(String id, GetConversationPinnedMessagesOptions options) {
-        GetConversationPinnedMessagesOptions baseOpts = options != null ? options.copy() : new GetConversationPinnedMessagesOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetConversationPinnedMessagesOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getConversationPinnedMessages(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RejectChatGroupJoinRequestsResponse rejectGroupJoinRequests(String id, Schemas.RejectChatGroupJoinRequestsRequest body) {
-        
-        String path = "/2/chat/conversations/{id}/join_requests/reject";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RejectChatGroupJoinRequestsResponse.class);
+                Schemas.RemoveChatGroupMembersResponse.class);
         
     }
 
@@ -3644,6 +1541,1841 @@ public final class ChatClient {
 
     
 
+    public Schemas.MuteChatConversationResponse muteConversation(String id, Schemas.MuteChatConversationRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/mute";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.MuteChatConversationResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UnmuteChatConversationResponse unmuteConversation(String id, Schemas.UnmuteChatConversationRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/mute";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UnmuteChatConversationResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateChatGroupJoinRequestResponse createGroupJoinRequest(String id, Schemas.CreateChatGroupJoinRequestRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/join_requests";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateChatGroupJoinRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AcceptChatMessageRequestResponse acceptMessageRequest(String id) {
+        
+        String path = "/2/chat/message_requests/{id}/accept";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AcceptChatMessageRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.EnableChatGroupInviteResponse enableGroupInvite(String id, Schemas.EnableChatGroupInviteRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/invite";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.EnableChatGroupInviteResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DisableChatGroupInviteResponse disableGroupInvite(String id, Schemas.DisableChatGroupInviteRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/invite";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DisableChatGroupInviteResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatConversationPinnedMessagesResponse getConversationPinnedMessages(String id) {
+        return getConversationPinnedMessages(id, new GetConversationPinnedMessagesOptions());
+    }
+    
+
+    public Schemas.GetChatConversationPinnedMessagesResponse getConversationPinnedMessages(String id, GetConversationPinnedMessagesOptions options) {
+        
+        GetConversationPinnedMessagesOptions opts = options != null ? options : new GetConversationPinnedMessagesOptions();
+        
+        String path = "/2/chat/conversations/{id}/pinned_messages";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_pinned_message.fields", opts.getChatPinnedMessageFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatConversationPinnedMessagesResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatConversationPinnedMessagesResponse> getConversationPinnedMessagesPages(String id) {
+        return getConversationPinnedMessagesPages(id, new GetConversationPinnedMessagesOptions());
+    }
+
+    public Paginator<Schemas.GetChatConversationPinnedMessagesResponse> getConversationPinnedMessagesPages(String id, GetConversationPinnedMessagesOptions options) {
+        GetConversationPinnedMessagesOptions baseOpts = options != null ? options.copy() : new GetConversationPinnedMessagesOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetConversationPinnedMessagesOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getConversationPinnedMessages(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatGroupAdminRequestsResponse getGroupAdminRequests(String id) {
+        return getGroupAdminRequests(id, new GetGroupAdminRequestsOptions());
+    }
+    
+
+    public Schemas.GetChatGroupAdminRequestsResponse getGroupAdminRequests(String id, GetGroupAdminRequestsOptions options) {
+        
+        GetGroupAdminRequestsOptions opts = options != null ? options : new GetGroupAdminRequestsOptions();
+        
+        String path = "/2/chat/conversations/{id}/admin_requests";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatGroupAdminRequestsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatGroupAdminRequestsResponse> getGroupAdminRequestsPages(String id) {
+        return getGroupAdminRequestsPages(id, new GetGroupAdminRequestsOptions());
+    }
+
+    public Paginator<Schemas.GetChatGroupAdminRequestsResponse> getGroupAdminRequestsPages(String id, GetGroupAdminRequestsOptions options) {
+        GetGroupAdminRequestsOptions baseOpts = options != null ? options.copy() : new GetGroupAdminRequestsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetGroupAdminRequestsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getGroupAdminRequests(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateChatGroupAdminRequestResponse createGroupAdminRequest(String id, Schemas.CreateChatGroupAdminRequestRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admin_requests";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateChatGroupAdminRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AddChatGroupMembersResponse addGroupMembers(String id, Schemas.AddChatGroupMembersRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/members";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AddChatGroupMembersResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.MarkChatConversationReadResponse markConversationRead(String id, Schemas.MarkChatConversationReadRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/read";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.MarkChatConversationReadResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteChatMessagesResponse deleteMessages(String id, Schemas.DeleteChatMessagesRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/messages/delete";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteChatMessagesResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AddChatGroupAdminsResponse addGroupAdmins(String id, Schemas.AddChatGroupAdminsRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admins";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AddChatGroupAdminsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatConversationsResponse getConversations() {
+        return getConversations(new GetConversationsOptions());
+    }
+    
+
+    public Schemas.GetChatConversationsResponse getConversations(GetConversationsOptions options) {
+        
+        GetConversationsOptions opts = options != null ? options : new GetConversationsOptions();
+        
+        String path = "/2/chat/conversations";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "unread_only", opts.getUnreadOnly());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "type", opts.getType());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "is_archived", opts.getIsArchived());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "is_muted", opts.getIsMuted());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "participant_ids", opts.getParticipantIds());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "participant_query", opts.getParticipantQuery());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_conversation.fields", opts.getChatConversationFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatConversationsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatConversationsResponse> getConversationsPages() {
+        return getConversationsPages(new GetConversationsOptions());
+    }
+
+    public Paginator<Schemas.GetChatConversationsResponse> getConversationsPages(GetConversationsOptions options) {
+        GetConversationsOptions baseOpts = options != null ? options.copy() : new GetConversationsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetConversationsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getConversations(pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ChatMediaUploadInitializeResponse mediaUploadInitialize(Schemas.ChatMediaUploadInitializeRequest body) {
+        
+        String path = "/2/chat/media/upload/initialize";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ChatMediaUploadInitializeResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ApproveChatGroupAdminRequestResponse approveGroupAdminRequest(String id, String userId, Schemas.ApproveChatGroupAdminRequestRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admin_requests/{user_id}/approve";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ApproveChatGroupAdminRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public byte[] mediaDownload(String id, String mediaHashKey) {
+        
+        String path = "/2/chat/media/{id}/{media_hash_key}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{media_hash_key}", XClient.encodePathSegment(mediaHashKey));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendBytes(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RejectChatGroupJoinRequestsResponse rejectGroupJoinRequests(String id, Schemas.RejectChatGroupJoinRequestsRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/join_requests/reject";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RejectChatGroupJoinRequestsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ArchiveChatConversationResponse archiveConversation(String id, Schemas.ArchiveChatConversationRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/archive";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ArchiveChatConversationResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UnarchiveChatConversationResponse unarchiveConversation(String id, Schemas.UnarchiveChatConversationRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/archive";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UnarchiveChatConversationResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatConversationEventsResponse getConversationEvents(String id) {
+        return getConversationEvents(id, new GetConversationEventsOptions());
+    }
+    
+
+    public Schemas.GetChatConversationEventsResponse getConversationEvents(String id, GetConversationEventsOptions options) {
+        
+        GetConversationEventsOptions opts = options != null ? options : new GetConversationEventsOptions();
+        
+        String path = "/2/chat/conversations/{id}/events";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_message_event.fields", opts.getChatMessageEventFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatConversationEventsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatConversationEventsResponse> getConversationEventsPages(String id) {
+        return getConversationEventsPages(id, new GetConversationEventsOptions());
+    }
+
+    public Paginator<Schemas.GetChatConversationEventsResponse> getConversationEventsPages(String id, GetConversationEventsOptions options) {
+        GetConversationEventsOptions baseOpts = options != null ? options.copy() : new GetConversationEventsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetConversationEventsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getConversationEvents(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RemoveChatGroupAdminsResponse removeGroupAdmins(String id, Schemas.RemoveChatGroupAdminsRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admins/remove";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RemoveChatGroupAdminsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RejectChatGroupAdminRequestResponse rejectGroupAdminRequest(String id, String userId, Schemas.RejectChatGroupAdminRequestRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admin_requests/{user_id}/reject";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RejectChatGroupAdminRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatMessageRequestsResponse getMessageRequests() {
+        return getMessageRequests(new GetMessageRequestsOptions());
+    }
+    
+
+    public Schemas.GetChatMessageRequestsResponse getMessageRequests(GetMessageRequestsOptions options) {
+        
+        GetMessageRequestsOptions opts = options != null ? options : new GetMessageRequestsOptions();
+        
+        String path = "/2/chat/message_requests";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "inbox_type", opts.getInboxType());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_message_request.fields", opts.getChatMessageRequestFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatMessageRequestsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatMessageRequestsResponse> getMessageRequestsPages() {
+        return getMessageRequestsPages(new GetMessageRequestsOptions());
+    }
+
+    public Paginator<Schemas.GetChatMessageRequestsResponse> getMessageRequestsPages(GetMessageRequestsOptions options) {
+        GetMessageRequestsOptions baseOpts = options != null ? options.copy() : new GetMessageRequestsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetMessageRequestsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getMessageRequests(pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.SendChatTypingIndicatorResponse sendTypingIndicator(String id) {
+        
+        String path = "/2/chat/conversations/{id}/typing";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.SendChatTypingIndicatorResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AddConversationKeysResponse addConversationKeys(String id, Schemas.AddConversationKeysRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/keys";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AddConversationKeysResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatSettingsResponse getSettings() {
+        return getSettings(new GetSettingsOptions());
+    }
+    
+
+    public Schemas.GetChatSettingsResponse getSettings(GetSettingsOptions options) {
+        
+        GetSettingsOptions opts = options != null ? options : new GetSettingsOptions();
+        
+        String path = "/2/chat/settings";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_settings.fields", opts.getChatSettingsFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatSettingsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateChatSettingsResponse updateSettings(Schemas.UpdateChatSettingsRequest body) {
+        
+        String path = "/2/chat/settings";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateChatSettingsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatMessageRequestResponse getMessageRequest(String id) {
+        return getMessageRequest(id, new GetMessageRequestOptions());
+    }
+    
+
+    public Schemas.GetChatMessageRequestResponse getMessageRequest(String id, GetMessageRequestOptions options) {
+        
+        GetMessageRequestOptions opts = options != null ? options : new GetMessageRequestOptions();
+        
+        String path = "/2/chat/message_requests/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_message_request_detail.fields", opts.getChatMessageRequestDetailFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatMessageRequestResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatGroupInviteResponse getGroupInvite(String id, String token) {
+        return getGroupInvite(id, token, new GetGroupInviteOptions());
+    }
+    
+
+    public Schemas.GetChatGroupInviteResponse getGroupInvite(String id, String token, GetGroupInviteOptions options) {
+        
+        GetGroupInviteOptions opts = options != null ? options : new GetGroupInviteOptions();
+        
+        String path = "/2/chat/conversations/{id}/invites/{token}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{token}", XClient.encodePathSegment(token));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "chat_group_invite.fields", opts.getChatGroupInviteFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatGroupInviteResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ChatMediaUploadFinalizeResponse mediaUploadFinalize(String id, Schemas.ChatMediaUploadFinalizeRequest body) {
+        
+        String path = "/2/chat/media/upload/{id}/finalize";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ChatMediaUploadFinalizeResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateChatGroupAdminSettingsResponse updateGroupAdminSettings(String id, Schemas.UpdateChatGroupAdminSettingsRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/admin_settings";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateChatGroupAdminSettingsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateChatConversationScreenCaptureResponse updateConversationScreenCapture(String id, Schemas.UpdateChatConversationScreenCaptureRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/screen_capture";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateChatConversationScreenCaptureResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
     public Schemas.ChatMediaUploadAppendResponse mediaUploadAppend(String id, Schemas.ChatMediaUploadAppendRequest body) {
         
         String path = "/2/chat/media/upload/{id}/append";
@@ -3674,6 +3406,274 @@ public final class ChatClient {
                 contentType,
                 securitySchemes,
                 Schemas.ChatMediaUploadAppendResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateChatConversationResponse createConversation(Schemas.CreateChatConversationRequest body) {
+        
+        String path = "/2/chat/conversations/group";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateChatConversationResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateChatConversationMessageTtlResponse updateConversationMessageTtl(String id, Schemas.UpdateChatConversationMessageTtlRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/message_ttl";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateChatConversationMessageTtlResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteChatConversationMessageTtlResponse deleteConversationMessageTtl(String id, Schemas.DeleteChatConversationMessageTtlRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/message_ttl";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteChatConversationMessageTtlResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.SendChatMessageResponse sendMessage(String id, Schemas.SendChatMessageRequest body) {
+        
+        String path = "/2/chat/conversations/{id}/messages";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.SendChatMessageResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AddUserPublicKeyResponse addUserPublicKey(String id, Schemas.AddUserPublicKeyRequest body) {
+        
+        String path = "/2/users/{id}/public_keys";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AddUserPublicKeyResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.InitializeChatGroupResponse initializeGroup() {
+        
+        String path = "/2/chat/conversations/group/initialize";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.InitializeChatGroupResponse.class);
         
     }
 

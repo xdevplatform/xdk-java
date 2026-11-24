@@ -195,6 +195,71 @@ public final class ComplianceClient {
 
 
     /**
+     * Optional parameters for {@link #downloadJobResults}.
+     */
+    public static final class DownloadJobResultsOptions {
+        
+        
+        private List<String> complianceJobFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public DownloadJobResultsOptions() {}
+
+        public static DownloadJobResultsOptions builder() {
+            return new DownloadJobResultsOptions();
+        }
+
+        
+        
+        
+        
+        public DownloadJobResultsOptions complianceJobFields(List<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        public List<String> getComplianceJobFields() {
+            return this.complianceJobFields;
+        }
+        
+        
+        
+        
+
+        public DownloadJobResultsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public DownloadJobResultsOptions copy() {
+            DownloadJobResultsOptions c = new DownloadJobResultsOptions();
+            
+            
+            
+            c.complianceJobFields = this.complianceJobFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #uploadJobSubmission}.
      */
     public static final class UploadJobSubmissionOptions {
@@ -389,71 +454,6 @@ public final class ComplianceClient {
 
 
 
-    /**
-     * Optional parameters for {@link #downloadJobResults}.
-     */
-    public static final class DownloadJobResultsOptions {
-        
-        
-        private List<String> complianceJobFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public DownloadJobResultsOptions() {}
-
-        public static DownloadJobResultsOptions builder() {
-            return new DownloadJobResultsOptions();
-        }
-
-        
-        
-        
-        
-        public DownloadJobResultsOptions complianceJobFields(List<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
-            return this;
-        }
-
-        public List<String> getComplianceJobFields() {
-            return this.complianceJobFields;
-        }
-        
-        
-        
-        
-
-        public DownloadJobResultsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public DownloadJobResultsOptions copy() {
-            DownloadJobResultsOptions c = new DownloadJobResultsOptions();
-            
-            
-            
-            c.complianceJobFields = this.complianceJobFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
 
 
 
@@ -568,6 +568,69 @@ public final class ComplianceClient {
                 contentType,
                 securitySchemes,
                 Schemas.CreateComplianceJobsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public byte[] downloadJobResults(String id, String token) {
+        return downloadJobResults(id, token, new DownloadJobResultsOptions());
+    }
+    
+
+    public byte[] downloadJobResults(String id, String token, DownloadJobResultsOptions options) {
+        
+        DownloadJobResultsOptions opts = options != null ? options : new DownloadJobResultsOptions();
+        
+        String path = "/2/compliance/jobs/{id}/download";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "token", token);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendBytes(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes);
         
     }
 
@@ -748,69 +811,6 @@ public final class ComplianceClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteComplianceJobsByIdResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public byte[] downloadJobResults(String id, String token) {
-        return downloadJobResults(id, token, new DownloadJobResultsOptions());
-    }
-    
-
-    public byte[] downloadJobResults(String id, String token, DownloadJobResultsOptions options) {
-        
-        DownloadJobResultsOptions opts = options != null ? options : new DownloadJobResultsOptions();
-        
-        String path = "/2/compliance/jobs/{id}/download";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "token", token);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendBytes(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes);
         
     }
 

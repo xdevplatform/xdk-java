@@ -29,17 +29,17 @@ public class CommunitiesStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
+                declared.contains("getById"),
+                "Expected method getById on CommunitiesClient");
+        
+        
+        assertTrue(
                 declared.contains("search"),
                 "Expected method search on CommunitiesClient");
         
         assertTrue(
                 declared.contains("searchPages"),
                 "Expected pagination helper searchPages on CommunitiesClient");
-        
-        
-        assertTrue(
-                declared.contains("getById"),
-                "Expected method getById on CommunitiesClient");
         
         
     }

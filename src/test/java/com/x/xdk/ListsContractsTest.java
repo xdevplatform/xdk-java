@@ -60,6 +60,68 @@ public class ListsContractsTest {
 
     
     @Test
+    void contract_create() throws Exception {
+        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                201, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"description\":\"test_value\",\"name\":\"test_value\",\"private\":true}";
+        Schemas.CreateListsRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateListsRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.lists()
+                        .create(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/lists";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
     void contract_getById() throws Exception {
         String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"description\":\"test_value\",\"follower_count\":1,\"id\":\"1234567890\",\"member_count\":1,\"name\":\"test_value\",\"owner_id\":\"test_value\",\"private\":true},\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]}}";
         
@@ -249,8 +311,8 @@ public class ListsContractsTest {
     }
     
     @Test
-    void contract_getFollowers() throws Exception {
-        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_removeMemberByUserId() throws Exception {
+        String mockJson = "{\"data\":{\"is_member\":true}}";
         
         server.setResponder(
                 req ->
@@ -261,29 +323,8 @@ public class ListsContractsTest {
         
 
         
-        ListsClient.GetFollowersOptions options =
-                ListsClient.GetFollowersOptions.builder()
-                        .header("X-Contract-Operation", "getFollowers");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
+        
         
         
         
@@ -300,7 +341,7 @@ public class ListsContractsTest {
 
         Object result =
                 client.lists()
-                        .getFollowers("test_id", options);
+                        .removeMemberByUserId("test_id", "test_userId");
         assertNotNull(result);
 
         
@@ -311,96 +352,11 @@ public class ListsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
+        assertEquals("DELETE", captured.getMethod());
         String baseSegment = "/2/lists/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getFollowers", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getPosts() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        ListsClient.GetPostsOptions options =
-                ListsClient.GetPostsOptions.builder()
-                        .header("X-Contract-Operation", "getPosts");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.lists()
-                        .getPosts("test_id", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/lists/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getPosts", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -553,70 +509,8 @@ public class ListsContractsTest {
     }
     
     @Test
-    void contract_create() throws Exception {
-        String mockJson = "{\"data\":{\"id\":\"1234567890\",\"name\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                201, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"description\":\"test_value\",\"name\":\"test_value\",\"private\":true}";
-        Schemas.CreateListsRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateListsRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.lists()
-                        .create(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/lists";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_removeMemberByUserId() throws Exception {
-        String mockJson = "{\"data\":{\"is_member\":true}}";
+    void contract_getFollowers() throws Exception {
+        String mockJson = "{\"data\":[{\"active_follower_count\":1,\"affiliation\":{},\"confirmed_email\":\"test_value\",\"connection_status\":[\"blocking\"],\"created_at\":\"2025-01-15T12:00:00.000Z\",\"description\":\"test_value\",\"entities\":{},\"id\":\"1234567890\",\"is_identity_verified\":true,\"location\":\"test_value\",\"most_recent_post_id\":\"test_value\",\"name\":\"test_value\",\"org_only\":true,\"parody\":true,\"pinned_post_id\":\"test_value\",\"profile_banner_url\":\"test_value\",\"profile_image_url\":\"test_value\",\"protected\":true,\"public_metrics\":{\"followers_count\":1,\"following_count\":1,\"listed_count\":1,\"post_count\":1},\"receives_your_chat\":\"test_value\",\"receives_your_dm\":true,\"subscriber_count\":1,\"subscribes_to_you\":true,\"subscription\":{\"subscribes_to_you\":true},\"subscription_type\":\"test_value\",\"url\":\"test_value\",\"username\":\"XDevelopers\",\"verified\":true,\"verified_followers_count\":1,\"verified_type\":\"test_value\",\"withheld\":{}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -627,8 +521,29 @@ public class ListsContractsTest {
         
 
         
-
+        ListsClient.GetFollowersOptions options =
+                ListsClient.GetFollowersOptions.builder()
+                        .header("X-Contract-Operation", "getFollowers");
         
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
         
         
         
@@ -645,7 +560,7 @@ public class ListsContractsTest {
 
         Object result =
                 client.lists()
-                        .removeMemberByUserId("test_id", "test_userId");
+                        .getFollowers("test_id", options);
         assertNotNull(result);
 
         
@@ -656,11 +571,96 @@ public class ListsContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
+        assertEquals("GET", captured.getMethod());
         String baseSegment = "/2/lists/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getFollowers", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getPosts() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        ListsClient.GetPostsOptions options =
+                ListsClient.GetPostsOptions.builder()
+                        .header("X-Contract-Operation", "getPosts");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.lists()
+                        .getPosts("test_id", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/lists/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getPosts", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

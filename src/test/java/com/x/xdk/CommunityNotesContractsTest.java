@@ -60,68 +60,6 @@ public class CommunityNotesContractsTest {
 
     
     @Test
-    void contract_evaluate() throws Exception {
-        String mockJson = "{\"data\":{\"claim_opinion_score\":1.5}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"note_text\":\"test_value\",\"post_id\":\"test_value\"}";
-        Schemas.EvaluateCommunityNotesRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.EvaluateCommunityNotesRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.communityNotes()
-                        .evaluate(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/notes/evaluate";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
     void contract_searchWritten() throws Exception {
         String mockJson = "{\"data\":[{\"id\":\"1234567890\",\"info\":{\"text\":\"Hello from XDK!\"},\"scoring_status\":{},\"status\":\"test_value\",\"test_result\":{}}],\"meta\":{\"result_count\":1}}";
         
@@ -257,8 +195,8 @@ public class CommunityNotesContractsTest {
     }
     
     @Test
-    void contract_delete() throws Exception {
-        String mockJson = "{\"data\":{\"deleted\":true}}";
+    void contract_evaluate() throws Exception {
+        String mockJson = "{\"data\":{\"claim_opinion_score\":1.5}}";
         
         server.setResponder(
                 req ->
@@ -267,10 +205,18 @@ public class CommunityNotesContractsTest {
         
 
         
-
+        
+        String reqMockJson = "{\"note_text\":\"test_value\",\"post_id\":\"test_value\"}";
+        Schemas.EvaluateCommunityNotesRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.EvaluateCommunityNotesRequest>() {});
+        
         
 
         
+
         
         
         
@@ -282,7 +228,7 @@ public class CommunityNotesContractsTest {
 
         Object result =
                 client.communityNotes()
-                        .delete("test_id");
+                        .evaluate(reqBody);
         assertNotNull(result);
 
         
@@ -293,14 +239,19 @@ public class CommunityNotesContractsTest {
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/notes/";
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/notes/evaluate";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }
@@ -383,6 +334,55 @@ public class CommunityNotesContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("searchEligiblePosts", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_delete() throws Exception {
+        String mockJson = "{\"data\":{\"deleted\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.communityNotes()
+                        .delete("test_id");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/notes/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

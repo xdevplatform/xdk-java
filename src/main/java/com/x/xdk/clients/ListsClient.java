@@ -42,6 +42,10 @@ public final class ListsClient {
 
 
 
+
+
+
+
     /**
      * Optional parameters for {@link #getById}.
      */
@@ -149,6 +153,167 @@ public final class ListsClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getMembers}.
+     */
+    public static final class GetMembersOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetMembersOptions() {}
+
+        public static GetMembersOptions builder() {
+            return new GetMembersOptions();
+        }
+
+        
+        
+        
+        
+        public GetMembersOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+
+        public GetMembersOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetMembersOptions copy() {
+            GetMembersOptions c = new GetMembersOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
 
 
 
@@ -531,170 +696,47 @@ public final class ListsClient {
 
 
 
-    /**
-     * Optional parameters for {@link #getMembers}.
-     */
-    public static final class GetMembersOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetMembersOptions() {}
 
-        public static GetMembersOptions builder() {
-            return new GetMembersOptions();
-        }
 
-        
-        
-        
-        
-        public GetMembersOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
 
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
 
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
 
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
 
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
 
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
+    
+
+    public Schemas.CreateListsResponse create(Schemas.CreateListsRequest body) {
         
-        
-        
+        String path = "/2/lists";
         
 
-        public GetMembersOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
 
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
 
-        public GetMembersOptions copy() {
-            GetMembersOptions c = new GetMembersOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateListsResponse.class);
+        
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
 
 
 
@@ -852,6 +894,204 @@ public final class ListsClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteListsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RemoveListsMemberByUserIdResponse removeMemberByUserId(String id, String userId) {
+        
+        String path = "/2/lists/{id}/members/{user_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RemoveListsMemberByUserIdResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetListsMembersResponse getMembers(String id) {
+        return getMembers(id, new GetMembersOptions());
+    }
+    
+
+    public Schemas.GetListsMembersResponse getMembers(String id, GetMembersOptions options) {
+        
+        GetMembersOptions opts = options != null ? options : new GetMembersOptions();
+        
+        String path = "/2/lists/{id}/members";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetListsMembersResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id) {
+        return getMembersPages(id, new GetMembersOptions());
+    }
+
+    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id, GetMembersOptions options) {
+        GetMembersOptions baseOpts = options != null ? options.copy() : new GetMembersOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetMembersOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getMembers(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.AddListsMemberResponse addMember(String id, Schemas.AddListsMemberRequest body) {
+        
+        String path = "/2/lists/{id}/members";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AddListsMemberResponse.class);
         
     }
 
@@ -1078,246 +1318,6 @@ public final class ListsClient {
                 },
                 initialToken);
     }
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetListsMembersResponse getMembers(String id) {
-        return getMembers(id, new GetMembersOptions());
-    }
-    
-
-    public Schemas.GetListsMembersResponse getMembers(String id, GetMembersOptions options) {
-        
-        GetMembersOptions opts = options != null ? options : new GetMembersOptions();
-        
-        String path = "/2/lists/{id}/members";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetListsMembersResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id) {
-        return getMembersPages(id, new GetMembersOptions());
-    }
-
-    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id, GetMembersOptions options) {
-        GetMembersOptions baseOpts = options != null ? options.copy() : new GetMembersOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetMembersOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getMembers(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AddListsMemberResponse addMember(String id, Schemas.AddListsMemberRequest body) {
-        
-        String path = "/2/lists/{id}/members";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddListsMemberResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateListsResponse create(Schemas.CreateListsRequest body) {
-        
-        String path = "/2/lists";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateListsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RemoveListsMemberByUserIdResponse removeMemberByUserId(String id, String userId) {
-        
-        String path = "/2/lists/{id}/members/{user_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RemoveListsMemberByUserIdResponse.class);
-        
-    }
-
-    
     
 
 }

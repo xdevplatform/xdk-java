@@ -60,122 +60,6 @@ public class ActivityContractsTest {
 
     
     @Test
-    void contract_updateSubscription() throws Exception {
-        String mockJson = "{\"data\":{\"subscription\":{\"created_at\":\"test_value\",\"event_type\":\"test_value\",\"expires_at\":\"test_value\",\"filter\":{},\"subscription_id\":\"test_value\",\"tag\":\"test_value\",\"updated_at\":\"test_value\",\"webhook_id\":\"test_value\"},\"total_subscriptions\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"tag\":\"test_value\",\"webhook_id\":\"test_value\"}";
-        Schemas.UpdateActivitySubscriptionRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.UpdateActivitySubscriptionRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.activity()
-                        .updateSubscription("test_subscriptionId", reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("PUT", captured.getMethod());
-        String baseSegment = "/2/activity/subscriptions/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
-    void contract_deleteSubscription() throws Exception {
-        String mockJson = "{\"data\":{\"deleted\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.activity()
-                        .deleteSubscription("test_subscriptionId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/activity/subscriptions/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_getSubscriptions() throws Exception {
         String mockJson = "{\"data\":[{\"created_at\":\"test_value\",\"event_type\":\"test_value\",\"expires_at\":\"test_value\",\"filter\":{},\"subscription_id\":\"test_value\",\"tag\":\"test_value\",\"updated_at\":\"test_value\",\"webhook_id\":\"test_value\"}]}";
         
@@ -344,6 +228,122 @@ public class ActivityContractsTest {
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("DELETE", captured.getMethod());
         String baseSegment = "/2/activity/subscriptions";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_updateSubscription() throws Exception {
+        String mockJson = "{\"data\":{\"subscription\":{\"created_at\":\"test_value\",\"event_type\":\"test_value\",\"expires_at\":\"test_value\",\"filter\":{},\"subscription_id\":\"test_value\",\"tag\":\"test_value\",\"updated_at\":\"test_value\",\"webhook_id\":\"test_value\"},\"total_subscriptions\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"tag\":\"test_value\",\"webhook_id\":\"test_value\"}";
+        Schemas.UpdateActivitySubscriptionRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.UpdateActivitySubscriptionRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.activity()
+                        .updateSubscription("test_subscriptionId", reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("PUT", captured.getMethod());
+        String baseSegment = "/2/activity/subscriptions/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_deleteSubscription() throws Exception {
+        String mockJson = "{\"data\":{\"deleted\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.activity()
+                        .deleteSubscription("test_subscriptionId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/activity/subscriptions/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());

@@ -29,16 +29,6 @@ public class ActivityStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("updateSubscription"),
-                "Expected method updateSubscription on ActivityClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteSubscription"),
-                "Expected method deleteSubscription on ActivityClient");
-        
-        
-        assertTrue(
                 declared.contains("getSubscriptions"),
                 "Expected method getSubscriptions on ActivityClient");
         
@@ -55,6 +45,16 @@ public class ActivityStructureTest {
         assertTrue(
                 declared.contains("deleteSubscriptionsByIds"),
                 "Expected method deleteSubscriptionsByIds on ActivityClient");
+        
+        
+        assertTrue(
+                declared.contains("updateSubscription"),
+                "Expected method updateSubscription on ActivityClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteSubscription"),
+                "Expected method deleteSubscription on ActivityClient");
         
         
     }

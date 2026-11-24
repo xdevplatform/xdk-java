@@ -218,9 +218,9 @@ public final class SpacesClient {
 
 
     /**
-     * Optional parameters for {@link #getById}.
+     * Optional parameters for {@link #getByCreatorIds}.
      */
-    public static final class GetByIdOptions {
+    public static final class GetByCreatorIdsOptions {
         
         
         private List<String> spaceFields;
@@ -242,17 +242,17 @@ public final class SpacesClient {
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetByIdOptions() {}
+        public GetByCreatorIdsOptions() {}
 
-        public static GetByIdOptions builder() {
-            return new GetByIdOptions();
+        public static GetByCreatorIdsOptions builder() {
+            return new GetByCreatorIdsOptions();
         }
 
         
         
         
         
-        public GetByIdOptions spaceFields(List<String> spaceFields) {
+        public GetByCreatorIdsOptions spaceFields(List<String> spaceFields) {
             this.spaceFields = spaceFields;
             return this;
         }
@@ -265,7 +265,7 @@ public final class SpacesClient {
         
         
         
-        public GetByIdOptions expansions(List<String> expansions) {
+        public GetByCreatorIdsOptions expansions(List<String> expansions) {
             this.expansions = expansions;
             return this;
         }
@@ -278,7 +278,7 @@ public final class SpacesClient {
         
         
         
-        public GetByIdOptions userFields(List<String> userFields) {
+        public GetByCreatorIdsOptions userFields(List<String> userFields) {
             this.userFields = userFields;
             return this;
         }
@@ -291,7 +291,7 @@ public final class SpacesClient {
         
         
         
-        public GetByIdOptions topicFields(List<String> topicFields) {
+        public GetByCreatorIdsOptions topicFields(List<String> topicFields) {
             this.topicFields = topicFields;
             return this;
         }
@@ -304,7 +304,7 @@ public final class SpacesClient {
         
         
 
-        public GetByIdOptions header(String name, String value) {
+        public GetByCreatorIdsOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -313,8 +313,8 @@ public final class SpacesClient {
             return this.headers;
         }
 
-        public GetByIdOptions copy() {
-            GetByIdOptions c = new GetByIdOptions();
+        public GetByCreatorIdsOptions copy() {
+            GetByCreatorIdsOptions c = new GetByCreatorIdsOptions();
             
             
             
@@ -480,20 +480,12 @@ public final class SpacesClient {
 
 
     /**
-     * Optional parameters for {@link #getBuyers}.
+     * Optional parameters for {@link #getById}.
      */
-    public static final class GetBuyersOptions {
+    public static final class GetByIdOptions {
         
         
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> userFields;
+        private List<String> spaceFields;
         
         
         
@@ -501,63 +493,41 @@ public final class SpacesClient {
         
         
         
-        private List<String> postFields;
+        private List<String> userFields;
+        
+        
+        
+        private List<String> topicFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetBuyersOptions() {}
+        public GetByIdOptions() {}
 
-        public static GetBuyersOptions builder() {
-            return new GetBuyersOptions();
+        public static GetByIdOptions builder() {
+            return new GetByIdOptions();
         }
 
         
         
         
         
-        public GetBuyersOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
+        public GetByIdOptions spaceFields(List<String> spaceFields) {
+            this.spaceFields = spaceFields;
             return this;
         }
 
-        public Integer getMaxResults() {
-            return this.maxResults;
+        public List<String> getSpaceFields() {
+            return this.spaceFields;
         }
         
         
         
         
         
-        public GetBuyersOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetBuyersOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetBuyersOptions expansions(List<String> expansions) {
+        public GetByIdOptions expansions(List<String> expansions) {
             this.expansions = expansions;
             return this;
         }
@@ -570,20 +540,33 @@ public final class SpacesClient {
         
         
         
-        public GetBuyersOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
+        public GetByIdOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
             return this;
         }
 
-        public List<String> getPostFields() {
-            return this.postFields;
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetByIdOptions topicFields(List<String> topicFields) {
+            this.topicFields = topicFields;
+            return this;
+        }
+
+        public List<String> getTopicFields() {
+            return this.topicFields;
         }
         
         
         
         
 
-        public GetBuyersOptions header(String name, String value) {
+        public GetByIdOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -592,22 +575,12 @@ public final class SpacesClient {
             return this.headers;
         }
 
-        public GetBuyersOptions copy() {
-            GetBuyersOptions c = new GetBuyersOptions();
+        public GetByIdOptions copy() {
+            GetByIdOptions c = new GetByIdOptions();
             
             
             
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.userFields = this.userFields;
+            c.spaceFields = this.spaceFields;
             
             
             
@@ -617,7 +590,12 @@ public final class SpacesClient {
             
             
             
-            c.postFields = this.postFields;
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.topicFields = this.topicFields;
             
             
             
@@ -852,16 +830,16 @@ public final class SpacesClient {
 
 
     /**
-     * Optional parameters for {@link #getByCreatorIds}.
+     * Optional parameters for {@link #getBuyers}.
      */
-    public static final class GetByCreatorIdsOptions {
+    public static final class GetBuyersOptions {
         
         
-        private List<String> spaceFields;
+        private Integer maxResults;
         
         
         
-        private List<String> expansions;
+        private String paginationToken;
         
         
         
@@ -869,50 +847,54 @@ public final class SpacesClient {
         
         
         
-        private List<String> topicFields;
+        private List<String> expansions;
+        
+        
+        
+        private List<String> postFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetByCreatorIdsOptions() {}
+        public GetBuyersOptions() {}
 
-        public static GetByCreatorIdsOptions builder() {
-            return new GetByCreatorIdsOptions();
+        public static GetBuyersOptions builder() {
+            return new GetBuyersOptions();
         }
 
         
         
         
         
-        public GetByCreatorIdsOptions spaceFields(List<String> spaceFields) {
-            this.spaceFields = spaceFields;
+        public GetBuyersOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
             return this;
         }
 
-        public List<String> getSpaceFields() {
-            return this.spaceFields;
+        public Integer getMaxResults() {
+            return this.maxResults;
         }
         
         
         
         
         
-        public GetByCreatorIdsOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
+        public GetBuyersOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
             return this;
         }
 
-        public List<String> getExpansions() {
-            return this.expansions;
+        public String getPaginationToken() {
+            return this.paginationToken;
         }
         
         
         
         
         
-        public GetByCreatorIdsOptions userFields(List<String> userFields) {
+        public GetBuyersOptions userFields(List<String> userFields) {
             this.userFields = userFields;
             return this;
         }
@@ -925,20 +907,33 @@ public final class SpacesClient {
         
         
         
-        public GetByCreatorIdsOptions topicFields(List<String> topicFields) {
-            this.topicFields = topicFields;
+        public GetBuyersOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
             return this;
         }
 
-        public List<String> getTopicFields() {
-            return this.topicFields;
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetBuyersOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
         }
         
         
         
         
 
-        public GetByCreatorIdsOptions header(String name, String value) {
+        public GetBuyersOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -947,17 +942,17 @@ public final class SpacesClient {
             return this.headers;
         }
 
-        public GetByCreatorIdsOptions copy() {
-            GetByCreatorIdsOptions c = new GetByCreatorIdsOptions();
+        public GetBuyersOptions copy() {
+            GetBuyersOptions c = new GetBuyersOptions();
             
             
             
-            c.spaceFields = this.spaceFields;
+            c.maxResults = this.maxResults;
             
             
             
             
-            c.expansions = this.expansions;
+            c.paginationToken = this.paginationToken;
             
             
             
@@ -967,7 +962,12 @@ public final class SpacesClient {
             
             
             
-            c.topicFields = this.topicFields;
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.postFields = this.postFields;
             
             
             
@@ -1081,23 +1081,25 @@ public final class SpacesClient {
 
 
     
-    public Schemas.GetSpacesByIdResponse getById(String id) {
-        return getById(id, new GetByIdOptions());
+    public Schemas.GetSpacesByCreatorIdsResponse getByCreatorIds(List<String> userIds) {
+        return getByCreatorIds(userIds, new GetByCreatorIdsOptions());
     }
     
 
-    public Schemas.GetSpacesByIdResponse getById(String id, GetByIdOptions options) {
+    public Schemas.GetSpacesByCreatorIdsResponse getByCreatorIds(List<String> userIds, GetByCreatorIdsOptions options) {
         
-        GetByIdOptions opts = options != null ? options : new GetByIdOptions();
+        GetByCreatorIdsOptions opts = options != null ? options : new GetByCreatorIdsOptions();
         
-        String path = "/2/spaces/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
+        String path = "/2/spaces/by/creator_ids";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user_ids", userIds);
+        
+        
         
         
         
@@ -1141,7 +1143,7 @@ public final class SpacesClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetSpacesByIdResponse.class);
+                Schemas.GetSpacesByCreatorIdsResponse.class);
         
     }
 
@@ -1235,16 +1237,16 @@ public final class SpacesClient {
 
 
     
-    public Schemas.GetSpacesBuyersResponse getBuyers(String id) {
-        return getBuyers(id, new GetBuyersOptions());
+    public Schemas.GetSpacesByIdResponse getById(String id) {
+        return getById(id, new GetByIdOptions());
     }
     
 
-    public Schemas.GetSpacesBuyersResponse getBuyers(String id, GetBuyersOptions options) {
+    public Schemas.GetSpacesByIdResponse getById(String id, GetByIdOptions options) {
         
-        GetBuyersOptions opts = options != null ? options : new GetBuyersOptions();
+        GetByIdOptions opts = options != null ? options : new GetByIdOptions();
         
-        String path = "/2/spaces/{id}/buyers";
+        String path = "/2/spaces/{id}";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
@@ -1255,19 +1257,7 @@ public final class SpacesClient {
         
         
         
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        XClient.addQueryParam(queryParams, "space.fields", opts.getSpaceFields());
         
         
         
@@ -1279,7 +1269,13 @@ public final class SpacesClient {
         
         
         
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "topic.fields", opts.getTopicFields());
         
         
         
@@ -1287,7 +1283,7 @@ public final class SpacesClient {
         Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
         
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
 
         Object requestBody = null;
         String contentType = "application/json";
@@ -1301,31 +1297,11 @@ public final class SpacesClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetSpacesBuyersResponse.class);
+                Schemas.GetSpacesByIdResponse.class);
         
     }
 
     
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetSpacesBuyersResponse> getBuyersPages(String id) {
-        return getBuyersPages(id, new GetBuyersOptions());
-    }
-
-    public Paginator<Schemas.GetSpacesBuyersResponse> getBuyersPages(String id, GetBuyersOptions options) {
-        GetBuyersOptions baseOpts = options != null ? options.copy() : new GetBuyersOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetBuyersOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getBuyers(id, pageOpts);
-                },
-                initialToken);
-    }
     
 
 
@@ -1457,35 +1433,33 @@ public final class SpacesClient {
 
 
     
-    public Schemas.GetSpacesByCreatorIdsResponse getByCreatorIds(List<String> userIds) {
-        return getByCreatorIds(userIds, new GetByCreatorIdsOptions());
+    public Schemas.GetSpacesBuyersResponse getBuyers(String id) {
+        return getBuyers(id, new GetBuyersOptions());
     }
     
 
-    public Schemas.GetSpacesByCreatorIdsResponse getByCreatorIds(List<String> userIds, GetByCreatorIdsOptions options) {
+    public Schemas.GetSpacesBuyersResponse getBuyers(String id, GetBuyersOptions options) {
         
-        GetByCreatorIdsOptions opts = options != null ? options : new GetByCreatorIdsOptions();
+        GetBuyersOptions opts = options != null ? options : new GetBuyersOptions();
         
-        String path = "/2/spaces/by/creator_ids";
+        String path = "/2/spaces/{id}/buyers";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
         
         
         
-        XClient.addQueryParam(queryParams, "user_ids", userIds);
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
         
         
         
         
         
-        XClient.addQueryParam(queryParams, "space.fields", opts.getSpaceFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
         
         
         
@@ -1497,7 +1471,13 @@ public final class SpacesClient {
         
         
         
-        XClient.addQueryParam(queryParams, "topic.fields", opts.getTopicFields());
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
         
         
         
@@ -1505,7 +1485,7 @@ public final class SpacesClient {
         Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
         
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
 
         Object requestBody = null;
         String contentType = "application/json";
@@ -1519,11 +1499,31 @@ public final class SpacesClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetSpacesByCreatorIdsResponse.class);
+                Schemas.GetSpacesBuyersResponse.class);
         
     }
 
     
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetSpacesBuyersResponse> getBuyersPages(String id) {
+        return getBuyersPages(id, new GetBuyersOptions());
+    }
+
+    public Paginator<Schemas.GetSpacesBuyersResponse> getBuyersPages(String id, GetBuyersOptions options) {
+        GetBuyersOptions baseOpts = options != null ? options.copy() : new GetBuyersOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetBuyersOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getBuyers(id, pageOpts);
+                },
+                initialToken);
+    }
     
 
 }

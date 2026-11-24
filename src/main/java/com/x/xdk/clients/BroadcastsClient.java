@@ -46,6 +46,273 @@ public final class BroadcastsClient {
 
 
 
+
+
+
+
+    /**
+     * Optional parameters for {@link #deleteScheduledBroadcast}.
+     */
+    public static final class DeleteScheduledBroadcastOptions {
+        
+        
+        private Boolean rollForward;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public DeleteScheduledBroadcastOptions() {}
+
+        public static DeleteScheduledBroadcastOptions builder() {
+            return new DeleteScheduledBroadcastOptions();
+        }
+
+        
+        
+        
+        
+        public DeleteScheduledBroadcastOptions rollForward(Boolean rollForward) {
+            this.rollForward = rollForward;
+            return this;
+        }
+
+        public Boolean getRollForward() {
+            return this.rollForward;
+        }
+        
+        
+        
+        
+
+        public DeleteScheduledBroadcastOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public DeleteScheduledBroadcastOptions copy() {
+            DeleteScheduledBroadcastOptions c = new DeleteScheduledBroadcastOptions();
+            
+            
+            
+            c.rollForward = this.rollForward;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getChatModerators}.
+     */
+    public static final class GetChatModeratorsOptions {
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetChatModeratorsOptions() {}
+
+        public static GetChatModeratorsOptions builder() {
+            return new GetChatModeratorsOptions();
+        }
+
+        
+        
+        
+        
+        public GetChatModeratorsOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetChatModeratorsOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetChatModeratorsOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+
+        public GetChatModeratorsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetChatModeratorsOptions copy() {
+            GetChatModeratorsOptions c = new GetChatModeratorsOptions();
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #unmuteChatUser}.
+     */
+    public static final class UnmuteChatUserOptions {
+        
+        
+        private String broadcastId;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public UnmuteChatUserOptions() {}
+
+        public static UnmuteChatUserOptions builder() {
+            return new UnmuteChatUserOptions();
+        }
+
+        
+        
+        
+        
+        public UnmuteChatUserOptions broadcastId(String broadcastId) {
+            this.broadcastId = broadcastId;
+            return this;
+        }
+
+        public String getBroadcastId() {
+            return this.broadcastId;
+        }
+        
+        
+        
+        
+
+        public UnmuteChatUserOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public UnmuteChatUserOptions copy() {
+            UnmuteChatUserOptions c = new UnmuteChatUserOptions();
+            
+            
+            
+            c.broadcastId = this.broadcastId;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Optional parameters for {@link #getChatMutedUsers}.
      */
@@ -203,55 +470,43 @@ public final class BroadcastsClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * Optional parameters for {@link #deleteScheduledBroadcast}.
+     * Optional parameters for {@link #listUser}.
      */
-    public static final class DeleteScheduledBroadcastOptions {
+    public static final class ListUserOptions {
         
         
-        private Boolean rollForward;
+        private String paginationToken;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public DeleteScheduledBroadcastOptions() {}
+        public ListUserOptions() {}
 
-        public static DeleteScheduledBroadcastOptions builder() {
-            return new DeleteScheduledBroadcastOptions();
+        public static ListUserOptions builder() {
+            return new ListUserOptions();
         }
 
         
         
         
         
-        public DeleteScheduledBroadcastOptions rollForward(Boolean rollForward) {
-            this.rollForward = rollForward;
+        public ListUserOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
             return this;
         }
 
-        public Boolean getRollForward() {
-            return this.rollForward;
+        public String getPaginationToken() {
+            return this.paginationToken;
         }
         
         
         
         
 
-        public DeleteScheduledBroadcastOptions header(String name, String value) {
+        public ListUserOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -260,12 +515,12 @@ public final class BroadcastsClient {
             return this.headers;
         }
 
-        public DeleteScheduledBroadcastOptions copy() {
-            DeleteScheduledBroadcastOptions c = new DeleteScheduledBroadcastOptions();
+        public ListUserOptions copy() {
+            ListUserOptions c = new ListUserOptions();
             
             
             
-            c.rollForward = this.rollForward;
+            c.paginationToken = this.paginationToken;
             
             
             
@@ -274,30 +529,6 @@ public final class BroadcastsClient {
             return c;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -433,6 +664,258 @@ public final class BroadcastsClient {
             return c;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #listScheduled}.
+     */
+    public static final class ListScheduledOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String oldestStartTime;
+        
+        
+        
+        private String newestStartTime;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public ListScheduledOptions() {}
+
+        public static ListScheduledOptions builder() {
+            return new ListScheduledOptions();
+        }
+
+        
+        
+        
+        
+        public ListScheduledOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public ListScheduledOptions oldestStartTime(String oldestStartTime) {
+            this.oldestStartTime = oldestStartTime;
+            return this;
+        }
+
+        public String getOldestStartTime() {
+            return this.oldestStartTime;
+        }
+        
+        
+        
+        
+        
+        public ListScheduledOptions newestStartTime(String newestStartTime) {
+            this.newestStartTime = newestStartTime;
+            return this;
+        }
+
+        public String getNewestStartTime() {
+            return this.newestStartTime;
+        }
+        
+        
+        
+        
+        
+        public ListScheduledOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+
+        public ListScheduledOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public ListScheduledOptions copy() {
+            ListScheduledOptions c = new ListScheduledOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.oldestStartTime = this.oldestStartTime;
+            
+            
+            
+            
+            c.newestStartTime = this.newestStartTime;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getBroadcast}.
+     */
+    public static final class GetBroadcastOptions {
+        
+        
+        private List<String> broadcastFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetBroadcastOptions() {}
+
+        public static GetBroadcastOptions builder() {
+            return new GetBroadcastOptions();
+        }
+
+        
+        
+        
+        
+        public GetBroadcastOptions broadcastFields(List<String> broadcastFields) {
+            this.broadcastFields = broadcastFields;
+            return this;
+        }
+
+        public List<String> getBroadcastFields() {
+            return this.broadcastFields;
+        }
+        
+        
+        
+        
+
+        public GetBroadcastOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetBroadcastOptions copy() {
+            GetBroadcastOptions c = new GetBroadcastOptions();
+            
+            
+            
+            c.broadcastFields = this.broadcastFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -608,65 +1091,13 @@ public final class BroadcastsClient {
 
 
 
-    /**
-     * Optional parameters for {@link #getBroadcast}.
-     */
-    public static final class GetBroadcastOptions {
-        
-        
-        private List<String> broadcastFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetBroadcastOptions() {}
 
-        public static GetBroadcastOptions builder() {
-            return new GetBroadcastOptions();
-        }
 
-        
-        
-        
-        
-        public GetBroadcastOptions broadcastFields(List<String> broadcastFields) {
-            this.broadcastFields = broadcastFields;
-            return this;
-        }
 
-        public List<String> getBroadcastFields() {
-            return this.broadcastFields;
-        }
-        
-        
-        
-        
 
-        public GetBroadcastOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
 
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
 
-        public GetBroadcastOptions copy() {
-            GetBroadcastOptions c = new GetBroadcastOptions();
-            
-            
-            
-            c.broadcastFields = this.broadcastFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
 
 
 
@@ -675,669 +1106,6 @@ public final class BroadcastsClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getChatModerators}.
-     */
-    public static final class GetChatModeratorsOptions {
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetChatModeratorsOptions() {}
-
-        public static GetChatModeratorsOptions builder() {
-            return new GetChatModeratorsOptions();
-        }
-
-        
-        
-        
-        
-        public GetChatModeratorsOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetChatModeratorsOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetChatModeratorsOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
-
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
-        
-        
-        
-        
-
-        public GetChatModeratorsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetChatModeratorsOptions copy() {
-            GetChatModeratorsOptions c = new GetChatModeratorsOptions();
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #unmuteChatUser}.
-     */
-    public static final class UnmuteChatUserOptions {
-        
-        
-        private String broadcastId;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public UnmuteChatUserOptions() {}
-
-        public static UnmuteChatUserOptions builder() {
-            return new UnmuteChatUserOptions();
-        }
-
-        
-        
-        
-        
-        public UnmuteChatUserOptions broadcastId(String broadcastId) {
-            this.broadcastId = broadcastId;
-            return this;
-        }
-
-        public String getBroadcastId() {
-            return this.broadcastId;
-        }
-        
-        
-        
-        
-
-        public UnmuteChatUserOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public UnmuteChatUserOptions copy() {
-            UnmuteChatUserOptions c = new UnmuteChatUserOptions();
-            
-            
-            
-            c.broadcastId = this.broadcastId;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #listScheduled}.
-     */
-    public static final class ListScheduledOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String oldestStartTime;
-        
-        
-        
-        private String newestStartTime;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public ListScheduledOptions() {}
-
-        public static ListScheduledOptions builder() {
-            return new ListScheduledOptions();
-        }
-
-        
-        
-        
-        
-        public ListScheduledOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public ListScheduledOptions oldestStartTime(String oldestStartTime) {
-            this.oldestStartTime = oldestStartTime;
-            return this;
-        }
-
-        public String getOldestStartTime() {
-            return this.oldestStartTime;
-        }
-        
-        
-        
-        
-        
-        public ListScheduledOptions newestStartTime(String newestStartTime) {
-            this.newestStartTime = newestStartTime;
-            return this;
-        }
-
-        public String getNewestStartTime() {
-            return this.newestStartTime;
-        }
-        
-        
-        
-        
-        
-        public ListScheduledOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-
-        public ListScheduledOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public ListScheduledOptions copy() {
-            ListScheduledOptions c = new ListScheduledOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.oldestStartTime = this.oldestStartTime;
-            
-            
-            
-            
-            c.newestStartTime = this.newestStartTime;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #listUser}.
-     */
-    public static final class ListUserOptions {
-        
-        
-        private String paginationToken;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public ListUserOptions() {}
-
-        public static ListUserOptions builder() {
-            return new ListUserOptions();
-        }
-
-        
-        
-        
-        
-        public ListUserOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-
-        public ListUserOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public ListUserOptions copy() {
-            ListUserOptions c = new ListUserOptions();
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GoLiveScheduledBroadcastResponse goLiveScheduledBroadcast(String id) {
-        
-        String path = "/2/broadcasts/scheduled/{id}/live";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GoLiveScheduledBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetChatMutedUsersResponse getChatMutedUsers() {
-        return getChatMutedUsers(new GetChatMutedUsersOptions());
-    }
-    
-
-    public Schemas.GetChatMutedUsersResponse getChatMutedUsers(GetChatMutedUsersOptions options) {
-        
-        GetChatMutedUsersOptions opts = options != null ? options : new GetChatMutedUsersOptions();
-        
-        String path = "/2/broadcasts/chat/mutes";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "broadcast_chat_mute.fields", opts.getBroadcastChatMuteFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetChatMutedUsersResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetChatMutedUsersResponse> getChatMutedUsersPages() {
-        return getChatMutedUsersPages(new GetChatMutedUsersOptions());
-    }
-
-    public Paginator<Schemas.GetChatMutedUsersResponse> getChatMutedUsersPages(GetChatMutedUsersOptions options) {
-        GetChatMutedUsersOptions baseOpts = options != null ? options.copy() : new GetChatMutedUsersOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetChatMutedUsersOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getChatMutedUsers(pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.MuteChatUserResponse muteChatUser(Schemas.MuteChatUserRequest body) {
-        
-        String path = "/2/broadcasts/chat/mutes";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.MuteChatUserResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GetSourceStreamKeyResponse getSourceStreamKey(String id) {
-        
-        String path = "/2/sources/{id}/stream_key";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetSourceStreamKeyResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -1483,1094 +1251,6 @@ public final class BroadcastsClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteScheduledBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteBroadcastChatMessageResponse deleteBroadcastChatMessage(String id, String messageId) {
-        
-        String path = "/2/broadcasts/{id}/chat/{message_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{message_id}", XClient.encodePathSegment(messageId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteBroadcastChatMessageResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RemoveChatModeratorResponse removeChatModerator(String userId) {
-        
-        String path = "/2/broadcasts/chat/moderators/{user_id}";
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RemoveChatModeratorResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UnmuteBroadcastChatUserResponse unmuteBroadcastChatUser(String id, String userId) {
-        
-        String path = "/2/broadcasts/{id}/chat/mutes/{user_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UnmuteBroadcastChatUserResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GetSourceResponse getSource(String id) {
-        
-        String path = "/2/sources/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateSourceResponse updateSource(String id, Schemas.UpdateSourceRequest body) {
-        
-        String path = "/2/sources/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteSourceResponse deleteSource(String id) {
-        
-        String path = "/2/sources/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateBroadcastStateResponse updateBroadcastState(String id, Schemas.UpdateBroadcastStateRequest body) {
-        
-        String path = "/2/broadcasts/{id}/state";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateBroadcastStateResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.ListBroadcastsResponse list() {
-        return list(new ListOptions());
-    }
-    
-
-    public Schemas.ListBroadcastsResponse list(ListOptions options) {
-        
-        ListOptions opts = options != null ? options : new ListOptions();
-        
-        String path = "/2/broadcasts";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "ids", opts.getIds());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "broadcast.fields", opts.getBroadcastFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ListBroadcastsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.ListBroadcastsResponse> listPages() {
-        return listPages(new ListOptions());
-    }
-
-    public Paginator<Schemas.ListBroadcastsResponse> listPages(ListOptions options) {
-        ListOptions baseOpts = options != null ? options.copy() : new ListOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    ListOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return list(pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateBroadcastResponse createBroadcast(Schemas.CreateBroadcastRequest body) {
-        
-        String path = "/2/broadcasts";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetBroadcastChatResponse getBroadcastChat(String id) {
-        return getBroadcastChat(id, new GetBroadcastChatOptions());
-    }
-    
-
-    public Schemas.GetBroadcastChatResponse getBroadcastChat(String id, GetBroadcastChatOptions options) {
-        
-        GetBroadcastChatOptions opts = options != null ? options : new GetBroadcastChatOptions();
-        
-        String path = "/2/broadcasts/{id}/chat";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "broadcast_chat_message.fields", opts.getBroadcastChatMessageFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetBroadcastChatResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetBroadcastChatResponse> getBroadcastChatPages(String id) {
-        return getBroadcastChatPages(id, new GetBroadcastChatOptions());
-    }
-
-    public Paginator<Schemas.GetBroadcastChatResponse> getBroadcastChatPages(String id, GetBroadcastChatOptions options) {
-        GetBroadcastChatOptions baseOpts = options != null ? options.copy() : new GetBroadcastChatOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetBroadcastChatOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getBroadcastChat(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.SendBroadcastChatResponse sendBroadcastChat(String id, Schemas.SendBroadcastChatRequest body) {
-        
-        String path = "/2/broadcasts/{id}/chat";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.SendBroadcastChatResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ListUserSourcesResponse listUserSources(String id) {
-        
-        String path = "/2/users/{id}/sources";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ListUserSourcesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateUserSourceResponse createUserSource(String id, Schemas.CreateUserSourceRequest body) {
-        
-        String path = "/2/users/{id}/sources";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateUserSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetBroadcastResponse getBroadcast(String id) {
-        return getBroadcast(id, new GetBroadcastOptions());
-    }
-    
-
-    public Schemas.GetBroadcastResponse getBroadcast(String id, GetBroadcastOptions options) {
-        
-        GetBroadcastOptions opts = options != null ? options : new GetBroadcastOptions();
-        
-        String path = "/2/broadcasts/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "broadcast.fields", opts.getBroadcastFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateBroadcastResponse updateBroadcast(String id, Schemas.UpdateBroadcastRequest body) {
-        
-        String path = "/2/broadcasts/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteBroadcastResponse deleteBroadcast(String id) {
-        
-        String path = "/2/broadcasts/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteBroadcastResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.ListSourcesResponse listSources() {
-        
-        String path = "/2/sources";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ListSourcesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateSourceResponse createSource(Schemas.CreateSourceRequest body) {
-        
-        String path = "/2/sources";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GetUserSourceResponse getUserSource(String id, String sourceId) {
-        
-        String path = "/2/users/{id}/sources/{source_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetUserSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.UpdateUserSourceResponse updateUserSource(String id, String sourceId, Schemas.UpdateUserSourceRequest body) {
-        
-        String path = "/2/users/{id}/sources/{source_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateUserSourceResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteUserSourceResponse deleteUserSource(String id, String sourceId) {
-        
-        String path = "/2/users/{id}/sources/{source_id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteUserSourceResponse.class);
         
     }
 
@@ -2737,16 +1417,12 @@ public final class BroadcastsClient {
 
     
 
-    public Schemas.UpdateUserBroadcastStateResponse updateUserBroadcastState(String id, String broadcastId, Schemas.UpdateUserBroadcastStateRequest body) {
+    public Schemas.GetSourceStreamKeyResponse getSourceStreamKey(String id) {
         
-        String path = "/2/users/{id}/broadcasts/{broadcast_id}/state";
+        String path = "/2/sources/{id}/stream_key";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
         
         
 
@@ -2758,19 +1434,69 @@ public final class BroadcastsClient {
 
         List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
 
-        Object requestBody = body;
+        Object requestBody = null;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "PUT",
+                "GET",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.UpdateUserBroadcastStateResponse.class);
+                Schemas.GetSourceStreamKeyResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteBroadcastChatMessageResponse deleteBroadcastChatMessage(String id, String messageId) {
+        
+        String path = "/2/broadcasts/{id}/chat/{message_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{message_id}", XClient.encodePathSegment(messageId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteBroadcastChatMessageResponse.class);
         
     }
 
@@ -2845,16 +1571,12 @@ public final class BroadcastsClient {
 
     
 
-    public Schemas.GetUserBroadcastResponse getUserBroadcast(String id, String broadcastId) {
+    public Schemas.ListUserSourcesResponse listUserSources(String id) {
         
-        String path = "/2/users/{id}/broadcasts/{broadcast_id}";
+        String path = "/2/users/{id}/sources";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
         
         
 
@@ -2878,7 +1600,7 @@ public final class BroadcastsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetUserBroadcastResponse.class);
+                Schemas.ListUserSourcesResponse.class);
         
     }
 
@@ -2895,16 +1617,12 @@ public final class BroadcastsClient {
 
     
 
-    public Schemas.DeleteUserBroadcastResponse deleteUserBroadcast(String id, String broadcastId) {
+    public Schemas.CreateUserSourceResponse createUserSource(String id, Schemas.CreateUserSourceRequest body) {
         
-        String path = "/2/users/{id}/broadcasts/{broadcast_id}";
+        String path = "/2/users/{id}/sources";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-        
-        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
         
         
 
@@ -2916,19 +1634,463 @@ public final class BroadcastsClient {
 
         List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
 
-        Object requestBody = null;
+        Object requestBody = body;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "DELETE",
+                "POST",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.DeleteUserBroadcastResponse.class);
+                Schemas.CreateUserSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetChatMutedUsersResponse getChatMutedUsers() {
+        return getChatMutedUsers(new GetChatMutedUsersOptions());
+    }
+    
+
+    public Schemas.GetChatMutedUsersResponse getChatMutedUsers(GetChatMutedUsersOptions options) {
+        
+        GetChatMutedUsersOptions opts = options != null ? options : new GetChatMutedUsersOptions();
+        
+        String path = "/2/broadcasts/chat/mutes";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "broadcast_chat_mute.fields", opts.getBroadcastChatMuteFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetChatMutedUsersResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetChatMutedUsersResponse> getChatMutedUsersPages() {
+        return getChatMutedUsersPages(new GetChatMutedUsersOptions());
+    }
+
+    public Paginator<Schemas.GetChatMutedUsersResponse> getChatMutedUsersPages(GetChatMutedUsersOptions options) {
+        GetChatMutedUsersOptions baseOpts = options != null ? options.copy() : new GetChatMutedUsersOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetChatMutedUsersOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getChatMutedUsers(pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.MuteChatUserResponse muteChatUser(Schemas.MuteChatUserRequest body) {
+        
+        String path = "/2/broadcasts/chat/mutes";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.MuteChatUserResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.ListUserBroadcastsResponse listUser(String id) {
+        return listUser(id, new ListUserOptions());
+    }
+    
+
+    public Schemas.ListUserBroadcastsResponse listUser(String id, ListUserOptions options) {
+        
+        ListUserOptions opts = options != null ? options : new ListUserOptions();
+        
+        String path = "/2/users/{id}/broadcasts";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ListUserBroadcastsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.ListUserBroadcastsResponse> listUserPages(String id) {
+        return listUserPages(id, new ListUserOptions());
+    }
+
+    public Paginator<Schemas.ListUserBroadcastsResponse> listUserPages(String id, ListUserOptions options) {
+        ListUserOptions baseOpts = options != null ? options.copy() : new ListUserOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    ListUserOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return listUser(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateUserBroadcastResponse createUserBroadcast(String id, Schemas.CreateUserBroadcastRequest body) {
+        
+        String path = "/2/users/{id}/broadcasts";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateUserBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.ListBroadcastsResponse list() {
+        return list(new ListOptions());
+    }
+    
+
+    public Schemas.ListBroadcastsResponse list(ListOptions options) {
+        
+        ListOptions opts = options != null ? options : new ListOptions();
+        
+        String path = "/2/broadcasts";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "ids", opts.getIds());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "broadcast.fields", opts.getBroadcastFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ListBroadcastsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.ListBroadcastsResponse> listPages() {
+        return listPages(new ListOptions());
+    }
+
+    public Paginator<Schemas.ListBroadcastsResponse> listPages(ListOptions options) {
+        ListOptions baseOpts = options != null ? options.copy() : new ListOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    ListOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return list(pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateBroadcastResponse createBroadcast(Schemas.CreateBroadcastRequest body) {
+        
+        String path = "/2/broadcasts";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateBroadcastStateResponse updateBroadcastState(String id, Schemas.UpdateBroadcastStateRequest body) {
+        
+        String path = "/2/broadcasts/{id}/state";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateBroadcastStateResponse.class);
         
     }
 
@@ -3079,6 +2241,256 @@ public final class BroadcastsClient {
 
     
 
+    public Schemas.UpdateUserBroadcastStateResponse updateUserBroadcastState(String id, String broadcastId, Schemas.UpdateUserBroadcastStateRequest body) {
+        
+        String path = "/2/users/{id}/broadcasts/{broadcast_id}/state";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateUserBroadcastStateResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UnmuteBroadcastChatUserResponse unmuteBroadcastChatUser(String id, String userId) {
+        
+        String path = "/2/broadcasts/{id}/chat/mutes/{user_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UnmuteBroadcastChatUserResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetBroadcastResponse getBroadcast(String id) {
+        return getBroadcast(id, new GetBroadcastOptions());
+    }
+    
+
+    public Schemas.GetBroadcastResponse getBroadcast(String id, GetBroadcastOptions options) {
+        
+        GetBroadcastOptions opts = options != null ? options : new GetBroadcastOptions();
+        
+        String path = "/2/broadcasts/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "broadcast.fields", opts.getBroadcastFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateBroadcastResponse updateBroadcast(String id, Schemas.UpdateBroadcastRequest body) {
+        
+        String path = "/2/broadcasts/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteBroadcastResponse deleteBroadcast(String id) {
+        
+        String path = "/2/broadcasts/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
     public Schemas.GetRegionResponse getRegion() {
         
         String path = "/2/region";
@@ -3166,16 +2578,312 @@ public final class BroadcastsClient {
 
 
     
-    public Schemas.ListUserBroadcastsResponse listUser(String id) {
-        return listUser(id, new ListUserOptions());
+
+    public Schemas.GoLiveScheduledBroadcastResponse goLiveScheduledBroadcast(String id) {
+        
+        String path = "/2/broadcasts/scheduled/{id}/live";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GoLiveScheduledBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetUserBroadcastResponse getUserBroadcast(String id, String broadcastId) {
+        
+        String path = "/2/users/{id}/broadcasts/{broadcast_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetUserBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteUserBroadcastResponse deleteUserBroadcast(String id, String broadcastId) {
+        
+        String path = "/2/users/{id}/broadcasts/{broadcast_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{broadcast_id}", XClient.encodePathSegment(broadcastId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteUserBroadcastResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetUserSourceResponse getUserSource(String id, String sourceId) {
+        
+        String path = "/2/users/{id}/sources/{source_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetUserSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateUserSourceResponse updateUserSource(String id, String sourceId, Schemas.UpdateUserSourceRequest body) {
+        
+        String path = "/2/users/{id}/sources/{source_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateUserSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteUserSourceResponse deleteUserSource(String id, String sourceId) {
+        
+        String path = "/2/users/{id}/sources/{source_id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+        
+        path = path.replace("{source_id}", XClient.encodePathSegment(sourceId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteUserSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetBroadcastChatResponse getBroadcastChat(String id) {
+        return getBroadcastChat(id, new GetBroadcastChatOptions());
     }
     
 
-    public Schemas.ListUserBroadcastsResponse listUser(String id, ListUserOptions options) {
+    public Schemas.GetBroadcastChatResponse getBroadcastChat(String id, GetBroadcastChatOptions options) {
         
-        ListUserOptions opts = options != null ? options : new ListUserOptions();
+        GetBroadcastChatOptions opts = options != null ? options : new GetBroadcastChatOptions();
         
-        String path = "/2/users/{id}/broadcasts";
+        String path = "/2/broadcasts/{id}/chat";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
@@ -3186,7 +2894,31 @@ public final class BroadcastsClient {
         
         
         
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
         XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "broadcast_chat_message.fields", opts.getBroadcastChatMessageFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
         
         
         
@@ -3208,7 +2940,7 @@ public final class BroadcastsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.ListUserBroadcastsResponse.class);
+                Schemas.GetBroadcastChatResponse.class);
         
     }
 
@@ -3218,18 +2950,18 @@ public final class BroadcastsClient {
     
     
 
-    public Paginator<Schemas.ListUserBroadcastsResponse> listUserPages(String id) {
-        return listUserPages(id, new ListUserOptions());
+    public Paginator<Schemas.GetBroadcastChatResponse> getBroadcastChatPages(String id) {
+        return getBroadcastChatPages(id, new GetBroadcastChatOptions());
     }
 
-    public Paginator<Schemas.ListUserBroadcastsResponse> listUserPages(String id, ListUserOptions options) {
-        ListUserOptions baseOpts = options != null ? options.copy() : new ListUserOptions();
+    public Paginator<Schemas.GetBroadcastChatResponse> getBroadcastChatPages(String id, GetBroadcastChatOptions options) {
+        GetBroadcastChatOptions baseOpts = options != null ? options.copy() : new GetBroadcastChatOptions();
         String initialToken = baseOpts.getPaginationToken();
         return new Paginator<>(
                 token -> {
-                    ListUserOptions pageOpts = baseOpts.copy();
+                    GetBroadcastChatOptions pageOpts = baseOpts.copy();
                     pageOpts.paginationToken(token);
-                    return listUser(id, pageOpts);
+                    return getBroadcastChat(id, pageOpts);
                 },
                 initialToken);
     }
@@ -3245,9 +2977,9 @@ public final class BroadcastsClient {
 
     
 
-    public Schemas.CreateUserBroadcastResponse createUserBroadcast(String id, Schemas.CreateUserBroadcastRequest body) {
+    public Schemas.SendBroadcastChatResponse sendBroadcastChat(String id, Schemas.SendBroadcastChatRequest body) {
         
-        String path = "/2/users/{id}/broadcasts";
+        String path = "/2/broadcasts/{id}/chat";
         
         
         path = path.replace("{id}", XClient.encodePathSegment(id));
@@ -3274,7 +3006,275 @@ public final class BroadcastsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.CreateUserBroadcastResponse.class);
+                Schemas.SendBroadcastChatResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RemoveChatModeratorResponse removeChatModerator(String userId) {
+        
+        String path = "/2/broadcasts/chat/moderators/{user_id}";
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RemoveChatModeratorResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetSourceResponse getSource(String id) {
+        
+        String path = "/2/sources/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateSourceResponse updateSource(String id, Schemas.UpdateSourceRequest body) {
+        
+        String path = "/2/sources/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteSourceResponse deleteSource(String id) {
+        
+        String path = "/2/sources/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteSourceResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ListSourcesResponse listSources() {
+        
+        String path = "/2/sources";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ListSourcesResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateSourceResponse createSource(Schemas.CreateSourceRequest body) {
+        
+        String path = "/2/sources";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateSourceResponse.class);
         
     }
 

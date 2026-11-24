@@ -11,53 +11,53 @@ import com.x.xdk.auth.OAuth1;
 import com.x.xdk.auth.OAuth2Pkce;
 import com.x.xdk.auth.OAuth2Token;
 
-import com.x.xdk.clients.WebhooksClient;
-
-import com.x.xdk.clients.ActivityClient;
-
-import com.x.xdk.clients.AccountActivityClient;
-
-import com.x.xdk.clients.NewsClient;
-
-import com.x.xdk.clients.ConnectionsClient;
-
-import com.x.xdk.clients.StreamClient;
-
-import com.x.xdk.clients.ArticlesClient;
-
-import com.x.xdk.clients.ListsClient;
-
-import com.x.xdk.clients.SpacesClient;
-
-import com.x.xdk.clients.ChatClient;
-
-import com.x.xdk.clients.CommunityNotesClient;
-
-import com.x.xdk.clients.AccountClient;
-
-import com.x.xdk.clients.GeneralClient;
-
-import com.x.xdk.clients.CommunitiesClient;
-
-import com.x.xdk.clients.BotsClient;
-
-import com.x.xdk.clients.MediaClient;
+import com.x.xdk.clients.UsageClient;
 
 import com.x.xdk.clients.BroadcastsClient;
 
+import com.x.xdk.clients.WebhooksClient;
+
+import com.x.xdk.clients.GeneralClient;
+
+import com.x.xdk.clients.ArticlesClient;
+
+import com.x.xdk.clients.StreamClient;
+
+import com.x.xdk.clients.AccountClient;
+
+import com.x.xdk.clients.AccountActivityClient;
+
+import com.x.xdk.clients.ChatClient;
+
+import com.x.xdk.clients.PostsClient;
+
+import com.x.xdk.clients.SpacesClient;
+
+import com.x.xdk.clients.CommunityNotesClient;
+
+import com.x.xdk.clients.MediaClient;
+
+import com.x.xdk.clients.ConnectionsClient;
+
 import com.x.xdk.clients.CallsClient;
+
+import com.x.xdk.clients.NewsClient;
 
 import com.x.xdk.clients.UsersClient;
 
 import com.x.xdk.clients.TrendsClient;
 
-import com.x.xdk.clients.DirectMessagesClient;
+import com.x.xdk.clients.ListsClient;
 
 import com.x.xdk.clients.ComplianceClient;
 
-import com.x.xdk.clients.PostsClient;
+import com.x.xdk.clients.ActivityClient;
 
-import com.x.xdk.clients.UsageClient;
+import com.x.xdk.clients.CommunitiesClient;
+
+import com.x.xdk.clients.DirectMessagesClient;
+
+import com.x.xdk.clients.BotsClient;
 
 import com.x.xdk.http.HttpTransport;
 import com.x.xdk.http.JdkHttpTransport;
@@ -78,8 +78,8 @@ import java.util.Set;
  * Primary client for interacting with the X API v2.
  */
 public final class XClient implements AutoCloseable {
-    public static final String VERSION = "0.1.1";
-    public static final String USER_AGENT = "xdk-java/0.1.1";
+    public static final String VERSION = "0.1.2";
+    public static final String USER_AGENT = "xdk-java/0.1.2";
     private static final Set<Integer> RETRYABLE_STATUSES = Set.of(429, 500, 502, 503, 504);
 
     private final String baseUrl;
@@ -95,53 +95,53 @@ public final class XClient implements AutoCloseable {
     private final ObjectMapper objectMapper;
 
 
-    private final WebhooksClient webhooks;
-
-    private final ActivityClient activity;
-
-    private final AccountActivityClient accountActivity;
-
-    private final NewsClient news;
-
-    private final ConnectionsClient connections;
-
-    private final StreamClient stream;
-
-    private final ArticlesClient articles;
-
-    private final ListsClient lists;
-
-    private final SpacesClient spaces;
-
-    private final ChatClient chat;
-
-    private final CommunityNotesClient communityNotes;
-
-    private final AccountClient account;
-
-    private final GeneralClient general;
-
-    private final CommunitiesClient communities;
-
-    private final BotsClient bots;
-
-    private final MediaClient media;
+    private final UsageClient usage;
 
     private final BroadcastsClient broadcasts;
 
+    private final WebhooksClient webhooks;
+
+    private final GeneralClient general;
+
+    private final ArticlesClient articles;
+
+    private final StreamClient stream;
+
+    private final AccountClient account;
+
+    private final AccountActivityClient accountActivity;
+
+    private final ChatClient chat;
+
+    private final PostsClient posts;
+
+    private final SpacesClient spaces;
+
+    private final CommunityNotesClient communityNotes;
+
+    private final MediaClient media;
+
+    private final ConnectionsClient connections;
+
     private final CallsClient calls;
+
+    private final NewsClient news;
 
     private final UsersClient users;
 
     private final TrendsClient trends;
 
-    private final DirectMessagesClient directMessages;
+    private final ListsClient lists;
 
     private final ComplianceClient compliance;
 
-    private final PostsClient posts;
+    private final ActivityClient activity;
 
-    private final UsageClient usage;
+    private final CommunitiesClient communities;
+
+    private final DirectMessagesClient directMessages;
+
+    private final BotsClient bots;
 
 
     public XClient() {
@@ -172,53 +172,53 @@ public final class XClient implements AutoCloseable {
                         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 
-        this.webhooks = new WebhooksClient(this);
-
-        this.activity = new ActivityClient(this);
-
-        this.accountActivity = new AccountActivityClient(this);
-
-        this.news = new NewsClient(this);
-
-        this.connections = new ConnectionsClient(this);
-
-        this.stream = new StreamClient(this);
-
-        this.articles = new ArticlesClient(this);
-
-        this.lists = new ListsClient(this);
-
-        this.spaces = new SpacesClient(this);
-
-        this.chat = new ChatClient(this);
-
-        this.communityNotes = new CommunityNotesClient(this);
-
-        this.account = new AccountClient(this);
-
-        this.general = new GeneralClient(this);
-
-        this.communities = new CommunitiesClient(this);
-
-        this.bots = new BotsClient(this);
-
-        this.media = new MediaClient(this);
+        this.usage = new UsageClient(this);
 
         this.broadcasts = new BroadcastsClient(this);
 
+        this.webhooks = new WebhooksClient(this);
+
+        this.general = new GeneralClient(this);
+
+        this.articles = new ArticlesClient(this);
+
+        this.stream = new StreamClient(this);
+
+        this.account = new AccountClient(this);
+
+        this.accountActivity = new AccountActivityClient(this);
+
+        this.chat = new ChatClient(this);
+
+        this.posts = new PostsClient(this);
+
+        this.spaces = new SpacesClient(this);
+
+        this.communityNotes = new CommunityNotesClient(this);
+
+        this.media = new MediaClient(this);
+
+        this.connections = new ConnectionsClient(this);
+
         this.calls = new CallsClient(this);
+
+        this.news = new NewsClient(this);
 
         this.users = new UsersClient(this);
 
         this.trends = new TrendsClient(this);
 
-        this.directMessages = new DirectMessagesClient(this);
+        this.lists = new ListsClient(this);
 
         this.compliance = new ComplianceClient(this);
 
-        this.posts = new PostsClient(this);
+        this.activity = new ActivityClient(this);
 
-        this.usage = new UsageClient(this);
+        this.communities = new CommunitiesClient(this);
+
+        this.directMessages = new DirectMessagesClient(this);
+
+        this.bots = new BotsClient(this);
 
     }
 
@@ -290,132 +290,12 @@ public final class XClient implements AutoCloseable {
     }
 
 
-    public WebhooksClient webhooks() {
-        return this.webhooks;
+    public UsageClient usage() {
+        return this.usage;
     }
 
-    public WebhooksClient getWebhooks() {
-        return this.webhooks;
-    }
-
-    public ActivityClient activity() {
-        return this.activity;
-    }
-
-    public ActivityClient getActivity() {
-        return this.activity;
-    }
-
-    public AccountActivityClient accountActivity() {
-        return this.accountActivity;
-    }
-
-    public AccountActivityClient getAccountActivity() {
-        return this.accountActivity;
-    }
-
-    public NewsClient news() {
-        return this.news;
-    }
-
-    public NewsClient getNews() {
-        return this.news;
-    }
-
-    public ConnectionsClient connections() {
-        return this.connections;
-    }
-
-    public ConnectionsClient getConnections() {
-        return this.connections;
-    }
-
-    public StreamClient stream() {
-        return this.stream;
-    }
-
-    public StreamClient getStream() {
-        return this.stream;
-    }
-
-    public ArticlesClient articles() {
-        return this.articles;
-    }
-
-    public ArticlesClient getArticles() {
-        return this.articles;
-    }
-
-    public ListsClient lists() {
-        return this.lists;
-    }
-
-    public ListsClient getLists() {
-        return this.lists;
-    }
-
-    public SpacesClient spaces() {
-        return this.spaces;
-    }
-
-    public SpacesClient getSpaces() {
-        return this.spaces;
-    }
-
-    public ChatClient chat() {
-        return this.chat;
-    }
-
-    public ChatClient getChat() {
-        return this.chat;
-    }
-
-    public CommunityNotesClient communityNotes() {
-        return this.communityNotes;
-    }
-
-    public CommunityNotesClient getCommunityNotes() {
-        return this.communityNotes;
-    }
-
-    public AccountClient account() {
-        return this.account;
-    }
-
-    public AccountClient getAccount() {
-        return this.account;
-    }
-
-    public GeneralClient general() {
-        return this.general;
-    }
-
-    public GeneralClient getGeneral() {
-        return this.general;
-    }
-
-    public CommunitiesClient communities() {
-        return this.communities;
-    }
-
-    public CommunitiesClient getCommunities() {
-        return this.communities;
-    }
-
-    public BotsClient bots() {
-        return this.bots;
-    }
-
-    public BotsClient getBots() {
-        return this.bots;
-    }
-
-    public MediaClient media() {
-        return this.media;
-    }
-
-    public MediaClient getMedia() {
-        return this.media;
+    public UsageClient getUsage() {
+        return this.usage;
     }
 
     public BroadcastsClient broadcasts() {
@@ -426,12 +306,116 @@ public final class XClient implements AutoCloseable {
         return this.broadcasts;
     }
 
+    public WebhooksClient webhooks() {
+        return this.webhooks;
+    }
+
+    public WebhooksClient getWebhooks() {
+        return this.webhooks;
+    }
+
+    public GeneralClient general() {
+        return this.general;
+    }
+
+    public GeneralClient getGeneral() {
+        return this.general;
+    }
+
+    public ArticlesClient articles() {
+        return this.articles;
+    }
+
+    public ArticlesClient getArticles() {
+        return this.articles;
+    }
+
+    public StreamClient stream() {
+        return this.stream;
+    }
+
+    public StreamClient getStream() {
+        return this.stream;
+    }
+
+    public AccountClient account() {
+        return this.account;
+    }
+
+    public AccountClient getAccount() {
+        return this.account;
+    }
+
+    public AccountActivityClient accountActivity() {
+        return this.accountActivity;
+    }
+
+    public AccountActivityClient getAccountActivity() {
+        return this.accountActivity;
+    }
+
+    public ChatClient chat() {
+        return this.chat;
+    }
+
+    public ChatClient getChat() {
+        return this.chat;
+    }
+
+    public PostsClient posts() {
+        return this.posts;
+    }
+
+    public PostsClient getPosts() {
+        return this.posts;
+    }
+
+    public SpacesClient spaces() {
+        return this.spaces;
+    }
+
+    public SpacesClient getSpaces() {
+        return this.spaces;
+    }
+
+    public CommunityNotesClient communityNotes() {
+        return this.communityNotes;
+    }
+
+    public CommunityNotesClient getCommunityNotes() {
+        return this.communityNotes;
+    }
+
+    public MediaClient media() {
+        return this.media;
+    }
+
+    public MediaClient getMedia() {
+        return this.media;
+    }
+
+    public ConnectionsClient connections() {
+        return this.connections;
+    }
+
+    public ConnectionsClient getConnections() {
+        return this.connections;
+    }
+
     public CallsClient calls() {
         return this.calls;
     }
 
     public CallsClient getCalls() {
         return this.calls;
+    }
+
+    public NewsClient news() {
+        return this.news;
+    }
+
+    public NewsClient getNews() {
+        return this.news;
     }
 
     public UsersClient users() {
@@ -450,12 +434,12 @@ public final class XClient implements AutoCloseable {
         return this.trends;
     }
 
-    public DirectMessagesClient directMessages() {
-        return this.directMessages;
+    public ListsClient lists() {
+        return this.lists;
     }
 
-    public DirectMessagesClient getDirectMessages() {
-        return this.directMessages;
+    public ListsClient getLists() {
+        return this.lists;
     }
 
     public ComplianceClient compliance() {
@@ -466,20 +450,36 @@ public final class XClient implements AutoCloseable {
         return this.compliance;
     }
 
-    public PostsClient posts() {
-        return this.posts;
+    public ActivityClient activity() {
+        return this.activity;
     }
 
-    public PostsClient getPosts() {
-        return this.posts;
+    public ActivityClient getActivity() {
+        return this.activity;
     }
 
-    public UsageClient usage() {
-        return this.usage;
+    public CommunitiesClient communities() {
+        return this.communities;
     }
 
-    public UsageClient getUsage() {
-        return this.usage;
+    public CommunitiesClient getCommunities() {
+        return this.communities;
+    }
+
+    public DirectMessagesClient directMessages() {
+        return this.directMessages;
+    }
+
+    public DirectMessagesClient getDirectMessages() {
+        return this.directMessages;
+    }
+
+    public BotsClient bots() {
+        return this.bots;
+    }
+
+    public BotsClient getBots() {
+        return this.bots;
     }
 
 

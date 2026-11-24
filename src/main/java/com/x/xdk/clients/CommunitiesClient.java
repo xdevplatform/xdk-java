@@ -43,6 +43,71 @@ public final class CommunitiesClient {
 
 
     /**
+     * Optional parameters for {@link #getById}.
+     */
+    public static final class GetByIdOptions {
+        
+        
+        private List<String> communityFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetByIdOptions() {}
+
+        public static GetByIdOptions builder() {
+            return new GetByIdOptions();
+        }
+
+        
+        
+        
+        
+        public GetByIdOptions communityFields(List<String> communityFields) {
+            this.communityFields = communityFields;
+            return this;
+        }
+
+        public List<String> getCommunityFields() {
+            return this.communityFields;
+        }
+        
+        
+        
+        
+
+        public GetByIdOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetByIdOptions copy() {
+            GetByIdOptions c = new GetByIdOptions();
+            
+            
+            
+            c.communityFields = this.communityFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #search}.
      */
     public static final class SearchOptions {
@@ -173,70 +238,63 @@ public final class CommunitiesClient {
 
 
 
-    /**
-     * Optional parameters for {@link #getById}.
-     */
-    public static final class GetByIdOptions {
-        
-        
-        private List<String> communityFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetByIdOptions() {}
 
-        public static GetByIdOptions builder() {
-            return new GetByIdOptions();
-        }
 
-        
-        
-        
-        
-        public GetByIdOptions communityFields(List<String> communityFields) {
-            this.communityFields = communityFields;
-            return this;
-        }
 
-        public List<String> getCommunityFields() {
-            return this.communityFields;
-        }
+
+
+
+
+    
+    public Schemas.GetCommunitiesByIdResponse getById(String id) {
+        return getById(id, new GetByIdOptions());
+    }
+    
+
+    public Schemas.GetCommunitiesByIdResponse getById(String id, GetByIdOptions options) {
         
+        GetByIdOptions opts = options != null ? options : new GetByIdOptions();
+        
+        String path = "/2/communities/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "community.fields", opts.getCommunityFields());
         
         
         
 
-        public GetByIdOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
 
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
 
-        public GetByIdOptions copy() {
-            GetByIdOptions c = new GetByIdOptions();
-            
-            
-            
-            c.communityFields = this.communityFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetCommunitiesByIdResponse.class);
+        
     }
 
-
-
-
-
+    
+    
 
 
 
@@ -334,64 +392,6 @@ public final class CommunitiesClient {
                 },
                 initialToken);
     }
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetCommunitiesByIdResponse getById(String id) {
-        return getById(id, new GetByIdOptions());
-    }
-    
-
-    public Schemas.GetCommunitiesByIdResponse getById(String id, GetByIdOptions options) {
-        
-        GetByIdOptions opts = options != null ? options : new GetByIdOptions();
-        
-        String path = "/2/communities/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "community.fields", opts.getCommunityFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetCommunitiesByIdResponse.class);
-        
-    }
-
-    
     
 
 }

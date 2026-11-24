@@ -29,53 +29,8 @@ public class StreamStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("postsFirehosePt"),
-                "Expected method postsFirehosePt on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("getRuleCounts"),
-                "Expected method getRuleCounts on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsFirehoseEn"),
-                "Expected method postsFirehoseEn on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("likesFirehose"),
-                "Expected method likesFirehose on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsFirehose"),
-                "Expected method postsFirehose on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("usersCompliance"),
-                "Expected method usersCompliance on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("activity"),
-                "Expected method activity on StreamClient");
-        
-        
-        assertTrue(
                 declared.contains("postsSample10"),
                 "Expected method postsSample10 on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsCompliance"),
-                "Expected method postsCompliance on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("labelsCompliance"),
-                "Expected method labelsCompliance on StreamClient");
         
         
         assertTrue(
@@ -84,8 +39,8 @@ public class StreamStructureTest {
         
         
         assertTrue(
-                declared.contains("postsFirehoseJa"),
-                "Expected method postsFirehoseJa on StreamClient");
+                declared.contains("likesSample10"),
+                "Expected method likesSample10 on StreamClient");
         
         
         assertTrue(
@@ -94,18 +49,28 @@ public class StreamStructureTest {
         
         
         assertTrue(
+                declared.contains("postsFirehose"),
+                "Expected method postsFirehose on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsFirehoseJa"),
+                "Expected method postsFirehoseJa on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("getRuleCounts"),
+                "Expected method getRuleCounts on StreamClient");
+        
+        
+        assertTrue(
                 declared.contains("likesCompliance"),
                 "Expected method likesCompliance on StreamClient");
         
         
         assertTrue(
-                declared.contains("postsFirehoseKo"),
-                "Expected method postsFirehoseKo on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("likesSample10"),
-                "Expected method likesSample10 on StreamClient");
+                declared.contains("labelsCompliance"),
+                "Expected method labelsCompliance on StreamClient");
         
         
         assertTrue(
@@ -120,6 +85,41 @@ public class StreamStructureTest {
         assertTrue(
                 declared.contains("updateRules"),
                 "Expected method updateRules on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("activity"),
+                "Expected method activity on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsFirehoseKo"),
+                "Expected method postsFirehoseKo on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("likesFirehose"),
+                "Expected method likesFirehose on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsCompliance"),
+                "Expected method postsCompliance on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("usersCompliance"),
+                "Expected method usersCompliance on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsFirehoseEn"),
+                "Expected method postsFirehoseEn on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsFirehosePt"),
+                "Expected method postsFirehosePt on StreamClient");
         
         
     }

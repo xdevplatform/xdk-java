@@ -29,18 +29,8 @@ public class CallsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("leaveCall"),
-                "Expected method leaveCall on CallsClient");
-        
-        
-        assertTrue(
                 declared.contains("getCall"),
                 "Expected method getCall on CallsClient");
-        
-        
-        assertTrue(
-                declared.contains("respondToScheduledCall"),
-                "Expected method respondToScheduledCall on CallsClient");
         
         
         assertTrue(
@@ -59,6 +49,16 @@ public class CallsStructureTest {
         
         
         assertTrue(
+                declared.contains("createCall"),
+                "Expected method createCall on CallsClient");
+        
+        
+        assertTrue(
+                declared.contains("joinCall"),
+                "Expected method joinCall on CallsClient");
+        
+        
+        assertTrue(
                 declared.contains("listScheduled"),
                 "Expected method listScheduled on CallsClient");
         
@@ -69,13 +69,13 @@ public class CallsStructureTest {
         
         
         assertTrue(
-                declared.contains("createCall"),
-                "Expected method createCall on CallsClient");
+                declared.contains("respondToScheduledCall"),
+                "Expected method respondToScheduledCall on CallsClient");
         
         
         assertTrue(
-                declared.contains("joinCall"),
-                "Expected method joinCall on CallsClient");
+                declared.contains("leaveCall"),
+                "Expected method leaveCall on CallsClient");
         
         
     }

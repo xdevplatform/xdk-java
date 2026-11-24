@@ -217,48 +217,6 @@ public final class ConnectionsClient {
 
     
 
-    public Schemas.DeleteAllConnectionsResponse deleteAll() {
-        
-        String path = "/2/connections/all";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteAllConnectionsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
     public Schemas.DeleteConnectionsByEndpointResponse deleteByEndpoint(String endpointId) {
         
         String path = "/2/connections/{endpoint_id}";
@@ -289,6 +247,48 @@ public final class ConnectionsClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteConnectionsByEndpointResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteAllConnectionsResponse deleteAll() {
+        
+        String path = "/2/connections/all";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteAllConnectionsResponse.class);
         
     }
 

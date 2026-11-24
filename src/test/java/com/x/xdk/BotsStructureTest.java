@@ -29,13 +29,13 @@ public class BotsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("get"),
-                "Expected method get on BotsClient");
+                declared.contains("rotateBotToken"),
+                "Expected method rotateBotToken on BotsClient");
         
         
         assertTrue(
-                declared.contains("createBot"),
-                "Expected method createBot on BotsClient");
+                declared.contains("revokeBotToken"),
+                "Expected method revokeBotToken on BotsClient");
         
         
         assertTrue(
@@ -49,13 +49,13 @@ public class BotsStructureTest {
         
         
         assertTrue(
-                declared.contains("rotateBotToken"),
-                "Expected method rotateBotToken on BotsClient");
+                declared.contains("get"),
+                "Expected method get on BotsClient");
         
         
         assertTrue(
-                declared.contains("revokeBotToken"),
-                "Expected method revokeBotToken on BotsClient");
+                declared.contains("createBot"),
+                "Expected method createBot on BotsClient");
         
         
     }

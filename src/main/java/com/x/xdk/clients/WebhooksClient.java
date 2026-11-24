@@ -145,90 +145,6 @@ public final class WebhooksClient {
 
     
 
-    public Schemas.GetWebhooksStreamLinksResponse getStreamLinks() {
-        
-        String path = "/2/tweets/search/webhooks";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetWebhooksStreamLinksResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateWebhookReplayJobResponse createWebhookReplayJob(Schemas.CreateWebhookReplayJobRequest body) {
-        
-        String path = "/2/webhooks/replay";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateWebhookReplayJobResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
     public Schemas.CreateWebhooksStreamLinkResponse createStreamLink(String webhookId) {
         
         String path = "/2/tweets/search/webhooks/{webhook_id}";
@@ -305,6 +221,98 @@ public final class WebhooksClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteWebhooksStreamLinkResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ValidateWebhooksResponse validate(String webhookId) {
+        
+        String path = "/2/webhooks/{webhook_id}";
+        
+        
+        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ValidateWebhooksResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteWebhooksResponse delete(String webhookId) {
+        
+        String path = "/2/webhooks/{webhook_id}";
+        
+        
+        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteWebhooksResponse.class);
         
     }
 
@@ -417,13 +425,9 @@ public final class WebhooksClient {
 
     
 
-    public Schemas.ValidateWebhooksResponse validate(String webhookId) {
+    public Schemas.GetWebhooksStreamLinksResponse getStreamLinks() {
         
-        String path = "/2/webhooks/{webhook_id}";
-        
-        
-        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
-        
+        String path = "/2/tweets/search/webhooks";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -432,21 +436,21 @@ public final class WebhooksClient {
         Map<String, String> extraHeaders = new LinkedHashMap<>();
         
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+        List<String> securitySchemes = Arrays.asList("BearerToken");
 
         Object requestBody = null;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "PUT",
+                "GET",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.ValidateWebhooksResponse.class);
+                Schemas.GetWebhooksStreamLinksResponse.class);
         
     }
 
@@ -463,13 +467,9 @@ public final class WebhooksClient {
 
     
 
-    public Schemas.DeleteWebhooksResponse delete(String webhookId) {
+    public Schemas.CreateWebhookReplayJobResponse createWebhookReplayJob(Schemas.CreateWebhookReplayJobRequest body) {
         
-        String path = "/2/webhooks/{webhook_id}";
-        
-        
-        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
-        
+        String path = "/2/webhooks/replay";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -478,21 +478,21 @@ public final class WebhooksClient {
         Map<String, String> extraHeaders = new LinkedHashMap<>();
         
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+        List<String> securitySchemes = Arrays.asList("BearerToken");
 
-        Object requestBody = null;
+        Object requestBody = body;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "DELETE",
+                "POST",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.DeleteWebhooksResponse.class);
+                Schemas.CreateWebhookReplayJobResponse.class);
         
     }
 

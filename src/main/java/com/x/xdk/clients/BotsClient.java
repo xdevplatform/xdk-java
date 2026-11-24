@@ -42,6 +42,22 @@ public final class BotsClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Optional parameters for {@link #get}.
      */
@@ -163,93 +179,15 @@ public final class BotsClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetBotsResponse get() {
-        return get(new GetOptions());
-    }
     
 
-    public Schemas.GetBotsResponse get(GetOptions options) {
+    public Schemas.RotateBotTokenResponse rotateBotToken(String id, Schemas.RotateBotTokenRequest body) {
         
-        GetOptions opts = options != null ? options : new GetOptions();
-        
-        String path = "/2/bots";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
+        String path = "/2/bots/{id}/token";
         
         
+        path = path.replace("{id}", XClient.encodePathSegment(id));
         
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetBotsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateBotResponse createBot(Schemas.CreateBotRequest body) {
-        
-        String path = "/2/bots";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -272,7 +210,53 @@ public final class BotsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.CreateBotResponse.class);
+                Schemas.RotateBotTokenResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RevokeBotTokenResponse revokeBotToken(String id) {
+        
+        String path = "/2/bots/{id}/token";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RevokeBotTokenResponse.class);
         
     }
 
@@ -380,14 +364,76 @@ public final class BotsClient {
 
 
     
+    public Schemas.GetBotsResponse get() {
+        return get(new GetOptions());
+    }
+    
 
-    public Schemas.RotateBotTokenResponse rotateBotToken(String id, Schemas.RotateBotTokenRequest body) {
+    public Schemas.GetBotsResponse get(GetOptions options) {
         
-        String path = "/2/bots/{id}/token";
+        GetOptions opts = options != null ? options : new GetOptions();
+        
+        String path = "/2/bots";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
         
         
-        path = path.replace("{id}", XClient.encodePathSegment(id));
         
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetBotsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateBotResponse createBot(Schemas.CreateBotRequest body) {
+        
+        String path = "/2/bots";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -410,53 +456,7 @@ public final class BotsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.RotateBotTokenResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RevokeBotTokenResponse revokeBotToken(String id) {
-        
-        String path = "/2/bots/{id}/token";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RevokeBotTokenResponse.class);
+                Schemas.CreateBotResponse.class);
         
     }
 

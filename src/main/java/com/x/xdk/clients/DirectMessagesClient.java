@@ -47,394 +47,6 @@ public final class DirectMessagesClient {
 
 
     /**
-     * Optional parameters for {@link #getEventsById}.
-     */
-    public static final class GetEventsByIdOptions {
-        
-        
-        private List<String> dmEventFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetEventsByIdOptions() {}
-
-        public static GetEventsByIdOptions builder() {
-            return new GetEventsByIdOptions();
-        }
-
-        
-        
-        
-        
-        public GetEventsByIdOptions dmEventFields(List<String> dmEventFields) {
-            this.dmEventFields = dmEventFields;
-            return this;
-        }
-
-        public List<String> getDmEventFields() {
-            return this.dmEventFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsByIdOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetEventsByIdOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsByIdOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
-
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsByIdOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-
-        public GetEventsByIdOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetEventsByIdOptions copy() {
-            GetEventsByIdOptions c = new GetEventsByIdOptions();
-            
-            
-            
-            c.dmEventFields = this.dmEventFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getEvents}.
-     */
-    public static final class GetEventsOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> eventTypes;
-        
-        
-        
-        private List<String> dmEventFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetEventsOptions() {}
-
-        public static GetEventsOptions builder() {
-            return new GetEventsOptions();
-        }
-
-        
-        
-        
-        
-        public GetEventsOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions eventTypes(List<String> eventTypes) {
-            this.eventTypes = eventTypes;
-            return this;
-        }
-
-        public List<String> getEventTypes() {
-            return this.eventTypes;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions dmEventFields(List<String> dmEventFields) {
-            this.dmEventFields = dmEventFields;
-            return this;
-        }
-
-        public List<String> getDmEventFields() {
-            return this.dmEventFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
-
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
-        
-        
-        
-        
-        
-        public GetEventsOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-
-        public GetEventsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetEventsOptions copy() {
-            GetEventsOptions c = new GetEventsOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.eventTypes = this.eventTypes;
-            
-            
-            
-            
-            c.dmEventFields = this.dmEventFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    /**
      * Optional parameters for {@link #getEventsByConversationId}.
      */
     public static final class GetEventsByConversationIdOptions {
@@ -876,43 +488,154 @@ public final class DirectMessagesClient {
 
 
 
-
-
-
-
-    
-
-    public Schemas.CreateDirectMessagesConversationResponse createConversation(Schemas.CreateDirectMessagesConversationRequest body) {
+    /**
+     * Optional parameters for {@link #getEventsById}.
+     */
+    public static final class GetEventsByIdOptions {
         
-        String path = "/2/dm_conversations";
+        
+        private List<String> dmEventFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetEventsByIdOptions() {}
+
+        public static GetEventsByIdOptions builder() {
+            return new GetEventsByIdOptions();
+        }
+
+        
+        
+        
+        
+        public GetEventsByIdOptions dmEventFields(List<String> dmEventFields) {
+            this.dmEventFields = dmEventFields;
+            return this;
+        }
+
+        public List<String> getDmEventFields() {
+            return this.dmEventFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsByIdOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetEventsByIdOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsByIdOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsByIdOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
         
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
+        public GetEventsByIdOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateDirectMessagesConversationResponse.class);
-        
+        public GetEventsByIdOptions copy() {
+            GetEventsByIdOptions c = new GetEventsByIdOptions();
+            
+            
+            
+            c.dmEventFields = this.dmEventFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
     }
 
-    
-    
 
 
 
@@ -922,79 +645,219 @@ public final class DirectMessagesClient {
 
 
 
-    
-    public Schemas.GetDirectMessagesEventsByIdResponse getEventsById(String eventId) {
-        return getEventsById(eventId, new GetEventsByIdOptions());
+    /**
+     * Optional parameters for {@link #getEvents}.
+     */
+    public static final class GetEventsOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> eventTypes;
+        
+        
+        
+        private List<String> dmEventFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetEventsOptions() {}
+
+        public static GetEventsOptions builder() {
+            return new GetEventsOptions();
+        }
+
+        
+        
+        
+        
+        public GetEventsOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions eventTypes(List<String> eventTypes) {
+            this.eventTypes = eventTypes;
+            return this;
+        }
+
+        public List<String> getEventTypes() {
+            return this.eventTypes;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions dmEventFields(List<String> dmEventFields) {
+            this.dmEventFields = dmEventFields;
+            return this;
+        }
+
+        public List<String> getDmEventFields() {
+            return this.dmEventFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+        
+        public GetEventsOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+
+        public GetEventsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetEventsOptions copy() {
+            GetEventsOptions c = new GetEventsOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.eventTypes = this.eventTypes;
+            
+            
+            
+            
+            c.dmEventFields = this.dmEventFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
     }
-    
-
-    public Schemas.GetDirectMessagesEventsByIdResponse getEventsById(String eventId, GetEventsByIdOptions options) {
-        
-        GetEventsByIdOptions opts = options != null ? options : new GetEventsByIdOptions();
-        
-        String path = "/2/dm_events/{event_id}";
-        
-        
-        path = path.replace("{event_id}", XClient.encodePathSegment(eventId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "dm_event.fields", opts.getDmEventFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetDirectMessagesEventsByIdResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -1004,43 +867,10 @@ public final class DirectMessagesClient {
 
 
 
-    
 
-    public Schemas.DeleteDirectMessagesEventsResponse deleteEvents(String eventId) {
-        
-        String path = "/2/dm_events/{event_id}";
-        
-        
-        path = path.replace("{event_id}", XClient.encodePathSegment(eventId));
-        
-        
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteDirectMessagesEventsResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -1089,214 +919,6 @@ public final class DirectMessagesClient {
                 requestBody,
                 contentType,
                 securitySchemes);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateDirectMessagesByParticipantIdResponse createByParticipantId(String participantId, Schemas.CreateDirectMessagesByParticipantIdRequest body) {
-        
-        String path = "/2/dm_conversations/with/{participant_id}/messages";
-        
-        
-        path = path.replace("{participant_id}", XClient.encodePathSegment(participantId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateDirectMessagesByParticipantIdResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetDirectMessagesEventsResponse getEvents() {
-        return getEvents(new GetEventsOptions());
-    }
-    
-
-    public Schemas.GetDirectMessagesEventsResponse getEvents(GetEventsOptions options) {
-        
-        GetEventsOptions opts = options != null ? options : new GetEventsOptions();
-        
-        String path = "/2/dm_events";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "event_types", opts.getEventTypes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "dm_event.fields", opts.getDmEventFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetDirectMessagesEventsResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetDirectMessagesEventsResponse> getEventsPages() {
-        return getEventsPages(new GetEventsOptions());
-    }
-
-    public Paginator<Schemas.GetDirectMessagesEventsResponse> getEventsPages(GetEventsOptions options) {
-        GetEventsOptions baseOpts = options != null ? options.copy() : new GetEventsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetEventsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getEvents(pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateDirectMessagesByConversationIdResponse createByConversationId(String dmConversationId, Schemas.CreateDirectMessagesByConversationIdRequest body) {
-        
-        String path = "/2/dm_conversations/{dm_conversation_id}/messages";
-        
-        
-        path = path.replace("{dm_conversation_id}", XClient.encodePathSegment(dmConversationId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateDirectMessagesByConversationIdResponse.class);
         
     }
 
@@ -1541,6 +1163,384 @@ public final class DirectMessagesClient {
                 },
                 initialToken);
     }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateDirectMessagesByConversationIdResponse createByConversationId(String dmConversationId, Schemas.CreateDirectMessagesByConversationIdRequest body) {
+        
+        String path = "/2/dm_conversations/{dm_conversation_id}/messages";
+        
+        
+        path = path.replace("{dm_conversation_id}", XClient.encodePathSegment(dmConversationId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateDirectMessagesByConversationIdResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetDirectMessagesEventsByIdResponse getEventsById(String eventId) {
+        return getEventsById(eventId, new GetEventsByIdOptions());
+    }
+    
+
+    public Schemas.GetDirectMessagesEventsByIdResponse getEventsById(String eventId, GetEventsByIdOptions options) {
+        
+        GetEventsByIdOptions opts = options != null ? options : new GetEventsByIdOptions();
+        
+        String path = "/2/dm_events/{event_id}";
+        
+        
+        path = path.replace("{event_id}", XClient.encodePathSegment(eventId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "dm_event.fields", opts.getDmEventFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetDirectMessagesEventsByIdResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteDirectMessagesEventsResponse deleteEvents(String eventId) {
+        
+        String path = "/2/dm_events/{event_id}";
+        
+        
+        path = path.replace("{event_id}", XClient.encodePathSegment(eventId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteDirectMessagesEventsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetDirectMessagesEventsResponse getEvents() {
+        return getEvents(new GetEventsOptions());
+    }
+    
+
+    public Schemas.GetDirectMessagesEventsResponse getEvents(GetEventsOptions options) {
+        
+        GetEventsOptions opts = options != null ? options : new GetEventsOptions();
+        
+        String path = "/2/dm_events";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "event_types", opts.getEventTypes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "dm_event.fields", opts.getDmEventFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetDirectMessagesEventsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetDirectMessagesEventsResponse> getEventsPages() {
+        return getEventsPages(new GetEventsOptions());
+    }
+
+    public Paginator<Schemas.GetDirectMessagesEventsResponse> getEventsPages(GetEventsOptions options) {
+        GetEventsOptions baseOpts = options != null ? options.copy() : new GetEventsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetEventsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getEvents(pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateDirectMessagesByParticipantIdResponse createByParticipantId(String participantId, Schemas.CreateDirectMessagesByParticipantIdRequest body) {
+        
+        String path = "/2/dm_conversations/with/{participant_id}/messages";
+        
+        
+        path = path.replace("{participant_id}", XClient.encodePathSegment(participantId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateDirectMessagesByParticipantIdResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateDirectMessagesConversationResponse createConversation(Schemas.CreateDirectMessagesConversationRequest body) {
+        
+        String path = "/2/dm_conversations";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateDirectMessagesConversationResponse.class);
+        
+    }
+
+    
     
 
 }

@@ -42,14 +42,6 @@ public final class ActivityClient {
 
 
 
-
-
-
-
-
-
-
-
     /**
      * Optional parameters for {@link #getSubscriptions}.
      */
@@ -174,90 +166,6 @@ public final class ActivityClient {
 
 
 
-
-    
-
-    public Schemas.UpdateActivitySubscriptionResponse updateSubscription(String subscriptionId, Schemas.UpdateActivitySubscriptionRequest body) {
-        
-        String path = "/2/activity/subscriptions/{subscription_id}";
-        
-        
-        path = path.replace("{subscription_id}", XClient.encodePathSegment(subscriptionId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UpdateActivitySubscriptionResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteActivitySubscriptionResponse deleteSubscription(String subscriptionId) {
-        
-        String path = "/2/activity/subscriptions/{subscription_id}";
-        
-        
-        path = path.replace("{subscription_id}", XClient.encodePathSegment(subscriptionId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteActivitySubscriptionResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -429,6 +337,98 @@ public final class ActivityClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteActivitySubscriptionsByIdsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.UpdateActivitySubscriptionResponse updateSubscription(String subscriptionId, Schemas.UpdateActivitySubscriptionRequest body) {
+        
+        String path = "/2/activity/subscriptions/{subscription_id}";
+        
+        
+        path = path.replace("{subscription_id}", XClient.encodePathSegment(subscriptionId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UpdateActivitySubscriptionResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteActivitySubscriptionResponse deleteSubscription(String subscriptionId) {
+        
+        String path = "/2/activity/subscriptions/{subscription_id}";
+        
+        
+        path = path.replace("{subscription_id}", XClient.encodePathSegment(subscriptionId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteActivitySubscriptionResponse.class);
         
     }
 

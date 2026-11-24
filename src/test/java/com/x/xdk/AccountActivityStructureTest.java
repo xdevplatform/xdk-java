@@ -29,13 +29,18 @@ public class AccountActivityStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
+                declared.contains("getSubscriptions"),
+                "Expected method getSubscriptions on AccountActivityClient");
+        
+        
+        assertTrue(
                 declared.contains("getSubscriptionCount"),
                 "Expected method getSubscriptionCount on AccountActivityClient");
         
         
         assertTrue(
-                declared.contains("getSubscriptions"),
-                "Expected method getSubscriptions on AccountActivityClient");
+                declared.contains("deleteSubscription"),
+                "Expected method deleteSubscription on AccountActivityClient");
         
         
         assertTrue(
@@ -46,11 +51,6 @@ public class AccountActivityStructureTest {
         assertTrue(
                 declared.contains("createSubscription"),
                 "Expected method createSubscription on AccountActivityClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteSubscription"),
-                "Expected method deleteSubscription on AccountActivityClient");
         
         
     }
