@@ -60,6 +60,8 @@ jobs:
           server-id: central
           server-username: SONATYPE_USERNAME
           server-password: SONATYPE_TOKEN
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       # Maven 3.10 stages a maven-metadata-local.xml that
       # central-publishing-maven-plugin 0.11.0 leaves in the upload bundle, and
@@ -95,8 +97,7 @@ jobs:
             echo "::warning::SONATYPE_USERNAME / SONATYPE_TOKEN / MAVEN_GPG_PRIVATE_KEY secrets are not configured yet; skipping Maven Central deploy."
             exit 0
           fi
-          echo "$MAVEN_GPG_PRIVATE_KEY" | gpg --batch --import
-          mvn deploy -Prelease -DskipTests -B ${MAVEN_GPG_PASSPHRASE:+-Dgpg.passphrase="$MAVEN_GPG_PASSPHRASE"}
+          mvn deploy -Prelease -DskipTests -B
 
       - name: Create tag
         if: needs.check-version.outputs.version != ''
