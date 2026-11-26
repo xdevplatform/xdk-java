@@ -29,23 +29,8 @@ public class ComplianceStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getJobs"),
-                "Expected method getJobs on ComplianceClient");
-        
-        
-        assertTrue(
-                declared.contains("createJobs"),
-                "Expected method createJobs on ComplianceClient");
-        
-        
-        assertTrue(
                 declared.contains("downloadJobResults"),
                 "Expected method downloadJobResults on ComplianceClient");
-        
-        
-        assertTrue(
-                declared.contains("uploadJobSubmission"),
-                "Expected method uploadJobSubmission on ComplianceClient");
         
         
         assertTrue(
@@ -56,6 +41,21 @@ public class ComplianceStructureTest {
         assertTrue(
                 declared.contains("deleteJobsById"),
                 "Expected method deleteJobsById on ComplianceClient");
+        
+        
+        assertTrue(
+                declared.contains("uploadJobSubmission"),
+                "Expected method uploadJobSubmission on ComplianceClient");
+        
+        
+        assertTrue(
+                declared.contains("getJobs"),
+                "Expected method getJobs on ComplianceClient");
+        
+        
+        assertTrue(
+                declared.contains("createJobs"),
+                "Expected method createJobs on ComplianceClient");
         
         
     }

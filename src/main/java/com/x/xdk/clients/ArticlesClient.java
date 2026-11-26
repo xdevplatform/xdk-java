@@ -60,48 +60,6 @@ public final class ArticlesClient {
 
     
 
-    public Schemas.ArticleCreateDraftResponse articleCreateDraft(Schemas.ArticleCreateDraftRequest body) {
-        
-        String path = "/2/articles/draft";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.ArticleCreateDraftResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
     public Schemas.ArticlePublishResponse articlePublish(String articleId) {
         
         String path = "/2/articles/{article_id}/publish";
@@ -132,6 +90,48 @@ public final class ArticlesClient {
                 contentType,
                 securitySchemes,
                 Schemas.ArticlePublishResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.ArticleCreateDraftResponse articleCreateDraft(Schemas.ArticleCreateDraftRequest body) {
+        
+        String path = "/2/articles/draft";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.ArticleCreateDraftResponse.class);
         
     }
 

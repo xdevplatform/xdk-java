@@ -60,99 +60,6 @@ public class ConnectionsContractsTest {
 
     
     @Test
-    void contract_deleteByEndpoint() throws Exception {
-        String mockJson = "{\"data\":{\"failed_kills\":1,\"results\":[{\"success\":true,\"uuid\":\"test_value\"}],\"successful_kills\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.connections()
-                        .deleteByEndpoint("test_endpointId");
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/connections/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_deleteAll() throws Exception {
-        String mockJson = "{\"data\":{\"failed_kills\":1,\"results\":[{\"success\":true,\"uuid\":\"test_value\"}],\"successful_kills\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-
-        Object result =
-                client.connections()
-                        .deleteAll();
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("DELETE", captured.getMethod());
-        String baseSegment = "/2/connections/all";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_getConnectionHistory() throws Exception {
         String mockJson = "{\"data\":[{\"client_ip\":\"test_value\",\"connected_at\":\"2025-01-15T12:00:00.000Z\",\"disconnect_reason\":\"test_value\",\"disconnected_at\":\"2025-01-15T12:00:00.000Z\",\"endpoint_name\":\"test_value\",\"id\":\"1234567890\"}],\"meta\":{\"result_count\":1}}";
         
@@ -282,6 +189,99 @@ public class ConnectionsContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_deleteAll() throws Exception {
+        String mockJson = "{\"data\":{\"failed_kills\":1,\"results\":[{\"success\":true,\"uuid\":\"test_value\"}],\"successful_kills\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+
+        Object result =
+                client.connections()
+                        .deleteAll();
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/connections/all";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_deleteByEndpoint() throws Exception {
+        String mockJson = "{\"data\":{\"failed_kills\":1,\"results\":[{\"success\":true,\"uuid\":\"test_value\"}],\"successful_kills\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.connections()
+                        .deleteByEndpoint("test_endpointId");
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("DELETE", captured.getMethod());
+        String baseSegment = "/2/connections/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }

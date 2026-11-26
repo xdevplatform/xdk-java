@@ -60,6 +60,191 @@ public class WebhooksContractsTest {
 
     
     @Test
+    void contract_get() throws Exception {
+        String mockJson = "{\"data\":[{\"created_at\":\"test_value\",\"id\":\"1234567890\",\"url\":\"test_value\",\"valid\":true}],\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        WebhooksClient.GetOptions options =
+                WebhooksClient.GetOptions.builder()
+                        .header("X-Contract-Operation", "get");
+        
+        
+        
+        options.webhookConfigFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.webhooks()
+                        .get(options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/webhooks";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("get", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_create() throws Exception {
+        String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"id\":\"1234567890\",\"url\":\"test_value\",\"valid\":true}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"url\":\"test_value\"}";
+        Schemas.CreateWebhooksRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateWebhooksRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.webhooks()
+                        .create(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/webhooks";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_createWebhookReplayJob() throws Exception {
+        String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"job_id\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"from_date\":\"test_value\",\"to_date\":\"test_value\",\"webhook_id\":\"test_value\"}";
+        Schemas.CreateWebhookReplayJobRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateWebhookReplayJobRequest>() {});
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.webhooks()
+                        .createWebhookReplayJob(reqBody);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/webhooks/replay";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
     void contract_createStreamLink() throws Exception {
         String mockJson = "{\"data\":{\"provisioned\":true}}";
         
@@ -256,129 +441,6 @@ public class WebhooksContractsTest {
     }
     
     @Test
-    void contract_get() throws Exception {
-        String mockJson = "{\"data\":[{\"created_at\":\"test_value\",\"id\":\"1234567890\",\"url\":\"test_value\",\"valid\":true}],\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        WebhooksClient.GetOptions options =
-                WebhooksClient.GetOptions.builder()
-                        .header("X-Contract-Operation", "get");
-        
-        
-        
-        options.webhookConfigFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.webhooks()
-                        .get(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/webhooks";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("get", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_create() throws Exception {
-        String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"id\":\"1234567890\",\"url\":\"test_value\",\"valid\":true}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"url\":\"test_value\"}";
-        Schemas.CreateWebhooksRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateWebhooksRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.webhooks()
-                        .create(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/webhooks";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
     void contract_getStreamLinks() throws Exception {
         String mockJson = "{\"data\":[{\"application_id\":\"test_value\",\"business_user_id\":\"test_value\",\"created_at\":\"test_value\",\"fields\":[\"test_value\"],\"instance_id\":\"test_value\",\"webhook_id\":\"test_value\"}]}";
         
@@ -418,68 +480,6 @@ public class WebhooksContractsTest {
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_createWebhookReplayJob() throws Exception {
-        String mockJson = "{\"data\":{\"created_at\":\"test_value\",\"job_id\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"from_date\":\"test_value\",\"to_date\":\"test_value\",\"webhook_id\":\"test_value\"}";
-        Schemas.CreateWebhookReplayJobRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateWebhookReplayJobRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.webhooks()
-                        .createWebhookReplayJob(reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/webhooks/replay";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }

@@ -69,7 +69,7 @@ public final class XdkCanaryApp implements AutoCloseable {
 
     public static final class CanarySnapshot {
         public final String sdk = "java";
-        public final String version = "0.1.2";
+        public final String version = "0.2.0";
         public final String timestamp;
         public final long cycle;
         public final boolean healthy;
@@ -421,7 +421,7 @@ public final class XdkCanaryApp implements AutoCloseable {
         CanarySnapshot snap = latestSnapshot.get();
         Map<String, Object> doc = new LinkedHashMap<>();
         doc.put("sdk", "java");
-        doc.put("version", "0.1.2");
+        doc.put("version", "0.2.0");
         doc.put("startedAt", startedAt.toString());
         doc.put("totalCycles", totalCycles.get());
         doc.put("totalProbeFailures", totalProbeFailures.get());

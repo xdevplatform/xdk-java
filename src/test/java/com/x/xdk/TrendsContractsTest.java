@@ -121,6 +121,67 @@ public class TrendsContractsTest {
     }
     
     @Test
+    void contract_getLocations() throws Exception {
+        String mockJson = "{\"data\":[{\"country\":\"test_value\",\"country_code\":\"test_value\",\"name\":\"test_value\",\"parent_id\":1,\"place_type\":\"test_value\",\"woeid\":1}]}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        TrendsClient.GetLocationsOptions options =
+                TrendsClient.GetLocationsOptions.builder()
+                        .header("X-Contract-Operation", "getLocations");
+        
+        
+        
+        options.trendLocationFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.trends()
+                        .getLocations(options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/trends/locations";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getLocations", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
     void contract_getByWoeid() throws Exception {
         String mockJson = "{\"data\":[{\"trend_name\":\"test_value\",\"tweet_count\":1}],\"meta\":{\"location\":{}}}";
         
@@ -184,67 +245,6 @@ public class TrendsContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("getByWoeid", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_getLocations() throws Exception {
-        String mockJson = "{\"data\":[{\"country\":\"test_value\",\"country_code\":\"test_value\",\"name\":\"test_value\",\"parent_id\":1,\"place_type\":\"test_value\",\"woeid\":1}]}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        TrendsClient.GetLocationsOptions options =
-                TrendsClient.GetLocationsOptions.builder()
-                        .header("X-Contract-Operation", "getLocations");
-        
-        
-        
-        options.trendLocationFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.trends()
-                        .getLocations(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/trends/locations";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getLocations", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

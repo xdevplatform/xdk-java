@@ -29,16 +29,6 @@ public class ConnectionsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("deleteByEndpoint"),
-                "Expected method deleteByEndpoint on ConnectionsClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteAll"),
-                "Expected method deleteAll on ConnectionsClient");
-        
-        
-        assertTrue(
                 declared.contains("getConnectionHistory"),
                 "Expected method getConnectionHistory on ConnectionsClient");
         
@@ -50,6 +40,16 @@ public class ConnectionsStructureTest {
         assertTrue(
                 declared.contains("deleteByUuids"),
                 "Expected method deleteByUuids on ConnectionsClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteAll"),
+                "Expected method deleteAll on ConnectionsClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteByEndpoint"),
+                "Expected method deleteByEndpoint on ConnectionsClient");
         
         
     }

@@ -60,6 +60,72 @@ public class NewsContractsTest {
 
     
     @Test
+    void contract_get() throws Exception {
+        String mockJson = "{\"data\":{\"category\":\"test_value\",\"cluster_posts_results\":[{\"post_id\":\"test_value\"}],\"contexts\":{},\"disclaimer\":\"test_value\",\"hook\":\"test_value\",\"id\":\"1234567890\",\"keywords\":{},\"name\":\"test_value\",\"summary\":\"test_value\",\"updated_at\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        NewsClient.GetOptions options =
+                NewsClient.GetOptions.builder()
+                        .header("X-Contract-Operation", "get");
+        
+        
+        
+        options.newsFields(Arrays.asList("id", "created_at"));
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.news()
+                        .get("test_id", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/news/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("get", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
     void contract_search() throws Exception {
         String mockJson = "{\"data\":[{\"category\":\"test_value\",\"cluster_posts_results\":[{\"post_id\":\"test_value\"}],\"contexts\":{},\"disclaimer\":\"test_value\",\"hook\":\"test_value\",\"id\":\"1234567890\",\"keywords\":{},\"name\":\"test_value\",\"summary\":\"test_value\",\"updated_at\":\"test_value\"}],\"meta\":{\"result_count\":1}}";
         
@@ -125,72 +191,6 @@ public class NewsContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("search", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_get() throws Exception {
-        String mockJson = "{\"data\":{\"category\":\"test_value\",\"cluster_posts_results\":[{\"post_id\":\"test_value\"}],\"contexts\":{},\"disclaimer\":\"test_value\",\"hook\":\"test_value\",\"id\":\"1234567890\",\"keywords\":{},\"name\":\"test_value\",\"summary\":\"test_value\",\"updated_at\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        NewsClient.GetOptions options =
-                NewsClient.GetOptions.builder()
-                        .header("X-Contract-Operation", "get");
-        
-        
-        
-        options.newsFields(Arrays.asList("id", "created_at"));
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.news()
-                        .get("test_id", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/news/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("get", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

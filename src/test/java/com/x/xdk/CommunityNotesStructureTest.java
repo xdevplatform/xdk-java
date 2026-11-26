@@ -29,12 +29,12 @@ public class CommunityNotesStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("searchWritten"),
-                "Expected method searchWritten on CommunityNotesClient");
+                declared.contains("searchEligiblePosts"),
+                "Expected method searchEligiblePosts on CommunityNotesClient");
         
         assertTrue(
-                declared.contains("searchWrittenPages"),
-                "Expected pagination helper searchWrittenPages on CommunityNotesClient");
+                declared.contains("searchEligiblePostsPages"),
+                "Expected pagination helper searchEligiblePostsPages on CommunityNotesClient");
         
         
         assertTrue(
@@ -48,12 +48,12 @@ public class CommunityNotesStructureTest {
         
         
         assertTrue(
-                declared.contains("searchEligiblePosts"),
-                "Expected method searchEligiblePosts on CommunityNotesClient");
+                declared.contains("searchWritten"),
+                "Expected method searchWritten on CommunityNotesClient");
         
         assertTrue(
-                declared.contains("searchEligiblePostsPages"),
-                "Expected pagination helper searchEligiblePostsPages on CommunityNotesClient");
+                declared.contains("searchWrittenPages"),
+                "Expected pagination helper searchWrittenPages on CommunityNotesClient");
         
         
         assertTrue(

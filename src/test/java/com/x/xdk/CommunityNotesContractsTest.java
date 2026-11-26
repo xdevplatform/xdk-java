@@ -60,8 +60,8 @@ public class CommunityNotesContractsTest {
 
     
     @Test
-    void contract_searchWritten() throws Exception {
-        String mockJson = "{\"data\":[{\"id\":\"1234567890\",\"info\":{\"text\":\"Hello from XDK!\"},\"scoring_status\":{},\"status\":\"test_value\",\"test_result\":{}}],\"meta\":{\"result_count\":1}}";
+    void contract_searchEligiblePosts() throws Exception {
+        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -72,9 +72,9 @@ public class CommunityNotesContractsTest {
         
 
         
-        CommunityNotesClient.SearchWrittenOptions options =
-                CommunityNotesClient.SearchWrittenOptions.builder()
-                        .header("X-Contract-Operation", "searchWritten");
+        CommunityNotesClient.SearchEligiblePostsOptions options =
+                CommunityNotesClient.SearchEligiblePostsOptions.builder()
+                        .header("X-Contract-Operation", "searchEligiblePosts");
         
         
         
@@ -84,6 +84,18 @@ public class CommunityNotesContractsTest {
         
         
         options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -107,7 +119,7 @@ public class CommunityNotesContractsTest {
 
         Object result =
                 client.communityNotes()
-                        .searchWritten(true, options);
+                        .searchEligiblePosts(true, options);
         assertNotNull(result);
 
         
@@ -119,12 +131,12 @@ public class CommunityNotesContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/notes/search/notes_written";
+        String baseSegment = "/2/notes/search/posts_eligible_for_notes";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("searchWritten", captured.firstHeader("x-contract-operation"));
+        assertEquals("searchEligiblePosts", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
@@ -257,8 +269,8 @@ public class CommunityNotesContractsTest {
     }
     
     @Test
-    void contract_searchEligiblePosts() throws Exception {
-        String mockJson = "{\"data\":[{\"article\":{},\"article_title\":{},\"attachments\":{},\"author_id\":\"test_value\",\"card_uri\":\"test_value\",\"community_id\":\"test_value\",\"context_annotations\":[{\"domain\":{\"id\":\"test_value\",\"name\":\"test_value\"},\"entity\":{\"id\":\"test_value\",\"name\":\"test_value\"}}],\"conversation_id\":\"test_value\",\"created_at\":\"2025-01-15T12:00:00.000Z\",\"display_text_range\":[1],\"edit_controls\":{},\"edit_history_post_ids\":[\"test_value\"],\"entities\":{},\"geo\":{},\"id\":\"1234567890\",\"in_reply_to_user_id\":\"test_value\",\"lang\":\"test_value\",\"matched_media_notes\":[{}],\"media_metadata\":[{}],\"non_public_metrics\":{},\"note_post\":{\"text\":\"Hello from XDK!\"},\"note_request_suggestions\":[{}],\"organic_metrics\":{},\"paid_partnership\":true,\"possibly_sensitive\":true,\"promoted_metrics\":{},\"public_metrics\":{\"bookmark_count\":1,\"impression_count\":1,\"like_count\":1,\"quote_count\":1,\"reply_count\":1,\"repost_count\":1},\"referenced_posts\":[{\"id\":\"1234567890\",\"type\":\"retweeted\"}],\"reply_settings\":\"test_value\",\"scopes\":{\"followers\":true},\"source\":\"test_value\",\"suggested_source_links\":[\"test_value\"],\"suggested_source_links_with_counts\":[{}],\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\",\"withheld\":{\"copyright\":true,\"country_codes\":[\"test_value\"]}}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+    void contract_searchWritten() throws Exception {
+        String mockJson = "{\"data\":[{\"id\":\"1234567890\",\"info\":{\"text\":\"Hello from XDK!\"},\"scoring_status\":{},\"status\":\"test_value\",\"test_result\":{}}],\"meta\":{\"result_count\":1}}";
         
         server.setResponder(
                 req ->
@@ -269,9 +281,9 @@ public class CommunityNotesContractsTest {
         
 
         
-        CommunityNotesClient.SearchEligiblePostsOptions options =
-                CommunityNotesClient.SearchEligiblePostsOptions.builder()
-                        .header("X-Contract-Operation", "searchEligiblePosts");
+        CommunityNotesClient.SearchWrittenOptions options =
+                CommunityNotesClient.SearchWrittenOptions.builder()
+                        .header("X-Contract-Operation", "searchWritten");
         
         
         
@@ -281,18 +293,6 @@ public class CommunityNotesContractsTest {
         
         
         options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -316,7 +316,7 @@ public class CommunityNotesContractsTest {
 
         Object result =
                 client.communityNotes()
-                        .searchEligiblePosts(true, options);
+                        .searchWritten(true, options);
         assertNotNull(result);
 
         
@@ -328,12 +328,12 @@ public class CommunityNotesContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/notes/search/posts_eligible_for_notes";
+        String baseSegment = "/2/notes/search/notes_written";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
-        assertEquals("searchEligiblePosts", captured.firstHeader("x-contract-operation"));
+        assertEquals("searchWritten", captured.firstHeader("x-contract-operation"));
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

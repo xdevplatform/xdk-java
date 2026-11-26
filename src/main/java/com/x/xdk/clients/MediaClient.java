@@ -42,43 +42,55 @@ public final class MediaClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     /**
-     * Optional parameters for {@link #getLibraryCategories}.
+     * Optional parameters for {@link #getByKey}.
      */
-    public static final class GetLibraryCategoriesOptions {
+    public static final class GetByKeyOptions {
         
         
-        private String lang;
+        private List<String> mediaFields;
         
         
         
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetLibraryCategoriesOptions() {}
+        public GetByKeyOptions() {}
 
-        public static GetLibraryCategoriesOptions builder() {
-            return new GetLibraryCategoriesOptions();
+        public static GetByKeyOptions builder() {
+            return new GetByKeyOptions();
         }
 
         
         
         
         
-        public GetLibraryCategoriesOptions lang(String lang) {
-            this.lang = lang;
+        public GetByKeyOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
             return this;
         }
 
-        public String getLang() {
-            return this.lang;
+        public List<String> getMediaFields() {
+            return this.mediaFields;
         }
         
         
         
         
 
-        public GetLibraryCategoriesOptions header(String name, String value) {
+        public GetByKeyOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -87,12 +99,12 @@ public final class MediaClient {
             return this.headers;
         }
 
-        public GetLibraryCategoriesOptions copy() {
-            GetLibraryCategoriesOptions c = new GetLibraryCategoriesOptions();
+        public GetByKeyOptions copy() {
+            GetByKeyOptions c = new GetByKeyOptions();
             
             
             
-            c.lang = this.lang;
+            c.mediaFields = this.mediaFields;
             
             
             
@@ -101,22 +113,6 @@ public final class MediaClient {
             return c;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -210,91 +206,6 @@ public final class MediaClient {
 
 
 
-    /**
-     * Optional parameters for {@link #getByKeys}.
-     */
-    public static final class GetByKeysOptions {
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetByKeysOptions() {}
-
-        public static GetByKeysOptions builder() {
-            return new GetByKeysOptions();
-        }
-
-        
-        
-        
-        
-        public GetByKeysOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-
-        public GetByKeysOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetByKeysOptions copy() {
-            GetByKeysOptions c = new GetByKeysOptions();
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -380,10 +291,34 @@ public final class MediaClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
-     * Optional parameters for {@link #getByKey}.
+     * Optional parameters for {@link #getByKeys}.
      */
-    public static final class GetByKeyOptions {
+    public static final class GetByKeysOptions {
         
         
         private List<String> mediaFields;
@@ -393,17 +328,17 @@ public final class MediaClient {
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetByKeyOptions() {}
+        public GetByKeysOptions() {}
 
-        public static GetByKeyOptions builder() {
-            return new GetByKeyOptions();
+        public static GetByKeysOptions builder() {
+            return new GetByKeysOptions();
         }
 
         
         
         
         
-        public GetByKeyOptions mediaFields(List<String> mediaFields) {
+        public GetByKeysOptions mediaFields(List<String> mediaFields) {
             this.mediaFields = mediaFields;
             return this;
         }
@@ -416,7 +351,7 @@ public final class MediaClient {
         
         
 
-        public GetByKeyOptions header(String name, String value) {
+        public GetByKeysOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -425,12 +360,77 @@ public final class MediaClient {
             return this.headers;
         }
 
-        public GetByKeyOptions copy() {
-            GetByKeyOptions c = new GetByKeyOptions();
+        public GetByKeysOptions copy() {
+            GetByKeysOptions c = new GetByKeysOptions();
             
             
             
             c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getLibraryCategories}.
+     */
+    public static final class GetLibraryCategoriesOptions {
+        
+        
+        private String lang;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetLibraryCategoriesOptions() {}
+
+        public static GetLibraryCategoriesOptions builder() {
+            return new GetLibraryCategoriesOptions();
+        }
+
+        
+        
+        
+        
+        public GetLibraryCategoriesOptions lang(String lang) {
+            this.lang = lang;
+            return this;
+        }
+
+        public String getLang() {
+            return this.lang;
+        }
+        
+        
+        
+        
+
+        public GetLibraryCategoriesOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetLibraryCategoriesOptions copy() {
+            GetLibraryCategoriesOptions c = new GetLibraryCategoriesOptions();
+            
+            
+            
+            c.lang = this.lang;
             
             
             
@@ -454,198 +454,10 @@ public final class MediaClient {
 
 
     
-    public Schemas.GetMediaLibraryCategoriesResponse getLibraryCategories() {
-        return getLibraryCategories(new GetLibraryCategoriesOptions());
-    }
-    
 
-    public Schemas.GetMediaLibraryCategoriesResponse getLibraryCategories(GetLibraryCategoriesOptions options) {
+    public Schemas.AddMediaToLibraryResponse addToLibrary(Schemas.AddMediaToLibraryRequest body) {
         
-        GetLibraryCategoriesOptions opts = options != null ? options : new GetLibraryCategoriesOptions();
-        
-        String path = "/2/media/library/categories";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "lang", opts.getLang());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetMediaLibraryCategoriesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GetAmplifyProgramsResponse getAmplifyPrograms() {
-        
-        String path = "/2/media/amplify/programs";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetAmplifyProgramsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.FinalizeMediaUploadResponse finalizeUpload(String id) {
-        
-        String path = "/2/media/upload/{id}/finalize";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.FinalizeMediaUploadResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.GetAmplifyProgramPostsResponse getAmplifyProgramPosts(String programId) {
-        
-        String path = "/2/media/amplify/programs/{program_id}/posts";
-        
-        
-        path = path.replace("{program_id}", XClient.encodePathSegment(programId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetAmplifyProgramPostsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.InitializeMediaUploadResponse initializeUpload(Schemas.InitializeMediaUploadRequest body) {
-        
-        String path = "/2/media/upload/initialize";
+        String path = "/2/media/library";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -668,229 +480,7 @@ public final class MediaClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.InitializeMediaUploadResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetMediaAnalyticsResponse getAnalytics(List<String> mediaKeys, String startTime, String endTime) {
-        return getAnalytics(mediaKeys, startTime, endTime, new GetAnalyticsOptions());
-    }
-    
-
-    public Schemas.GetMediaAnalyticsResponse getAnalytics(List<String> mediaKeys, String startTime, String endTime, GetAnalyticsOptions options) {
-        
-        GetAnalyticsOptions opts = options != null ? options : new GetAnalyticsOptions();
-        
-        String path = "/2/media/analytics";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media_keys", mediaKeys);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", startTime);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", endTime);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "granularity", opts.getGranularity());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media_analytics.fields", opts.getMediaAnalyticsFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetMediaAnalyticsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetMediaByMediaKeysResponse getByKeys(List<String> mediaKeys) {
-        return getByKeys(mediaKeys, new GetByKeysOptions());
-    }
-    
-
-    public Schemas.GetMediaByMediaKeysResponse getByKeys(List<String> mediaKeys, GetByKeysOptions options) {
-        
-        GetByKeysOptions opts = options != null ? options : new GetByKeysOptions();
-        
-        String path = "/2/media";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media_keys", mediaKeys);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetMediaByMediaKeysResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateMediaSubtitlesResponse createSubtitles(Schemas.CreateMediaSubtitlesRequest body) {
-        
-        String path = "/2/media/subtitles";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateMediaSubtitlesResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteMediaSubtitlesResponse deleteSubtitles(Schemas.DeleteMediaSubtitlesRequest body) {
-        
-        String path = "/2/media/subtitles";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteMediaSubtitlesResponse.class);
+                Schemas.AddMediaToLibraryResponse.class);
         
     }
 
@@ -998,33 +588,127 @@ public final class MediaClient {
 
 
     
+    public Schemas.GetMediaByMediaKeyResponse getByKey(String mediaKey) {
+        return getByKey(mediaKey, new GetByKeyOptions());
+    }
+    
 
-    public Schemas.CreateMediaMetadataResponse createMetadata(Schemas.CreateMediaMetadataRequest body) {
+    public Schemas.GetMediaByMediaKeyResponse getByKey(String mediaKey, GetByKeyOptions options) {
         
-        String path = "/2/media/metadata";
+        GetByKeyOptions opts = options != null ? options : new GetByKeyOptions();
+        
+        String path = "/2/media/{media_key}";
+        
+        
+        path = path.replace("{media_key}", XClient.encodePathSegment(mediaKey));
+        
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
         
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
         
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
 
-        Object requestBody = body;
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "POST",
+                "GET",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.CreateMediaMetadataResponse.class);
+                Schemas.GetMediaByMediaKeyResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetMediaAnalyticsResponse getAnalytics(List<String> mediaKeys, String startTime, String endTime) {
+        return getAnalytics(mediaKeys, startTime, endTime, new GetAnalyticsOptions());
+    }
+    
+
+    public Schemas.GetMediaAnalyticsResponse getAnalytics(List<String> mediaKeys, String startTime, String endTime, GetAnalyticsOptions options) {
+        
+        GetAnalyticsOptions opts = options != null ? options : new GetAnalyticsOptions();
+        
+        String path = "/2/media/analytics";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media_keys", mediaKeys);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", startTime);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", endTime);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "granularity", opts.getGranularity());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media_analytics.fields", opts.getMediaAnalyticsFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetMediaAnalyticsResponse.class);
         
     }
 
@@ -1083,59 +767,9 @@ public final class MediaClient {
 
     
 
-    public Schemas.GetAmplifyProgramResponse getAmplifyProgram(String programId) {
+    public Schemas.CreateMediaMetadataResponse createMetadata(Schemas.CreateMediaMetadataRequest body) {
         
-        String path = "/2/media/amplify/programs/{program_id}";
-        
-        
-        path = path.replace("{program_id}", XClient.encodePathSegment(programId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetAmplifyProgramResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AppendMediaUploadResponse appendUpload(String id, Schemas.AppendMediaUploadRequest body) {
-        
-        String path = "/2/media/upload/{id}/append";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
+        String path = "/2/media/metadata";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -1158,7 +792,7 @@ public final class MediaClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.AppendMediaUploadResponse.class);
+                Schemas.CreateMediaMetadataResponse.class);
         
     }
 
@@ -1175,9 +809,9 @@ public final class MediaClient {
 
     
 
-    public Schemas.AddMediaToLibraryResponse addToLibrary(Schemas.AddMediaToLibraryRequest body) {
+    public Schemas.CreateMediaSubtitlesResponse createSubtitles(Schemas.CreateMediaSubtitlesRequest body) {
         
-        String path = "/2/media/library";
+        String path = "/2/media/subtitles";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -1200,7 +834,49 @@ public final class MediaClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.AddMediaToLibraryResponse.class);
+                Schemas.CreateMediaSubtitlesResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteMediaSubtitlesResponse deleteSubtitles(Schemas.DeleteMediaSubtitlesRequest body) {
+        
+        String path = "/2/media/subtitles";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteMediaSubtitlesResponse.class);
         
     }
 
@@ -1318,23 +994,293 @@ public final class MediaClient {
 
 
     
-    public Schemas.GetMediaByMediaKeyResponse getByKey(String mediaKey) {
-        return getByKey(mediaKey, new GetByKeyOptions());
-    }
-    
 
-    public Schemas.GetMediaByMediaKeyResponse getByKey(String mediaKey, GetByKeyOptions options) {
+    public Schemas.AppendMediaUploadResponse appendUpload(String id, Schemas.AppendMediaUploadRequest body) {
         
-        GetByKeyOptions opts = options != null ? options : new GetByKeyOptions();
-        
-        String path = "/2/media/{media_key}";
+        String path = "/2/media/upload/{id}/append";
         
         
-        path = path.replace("{media_key}", XClient.encodePathSegment(mediaKey));
+        path = path.replace("{id}", XClient.encodePathSegment(id));
         
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.AppendMediaUploadResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetAmplifyProgramsResponse getAmplifyPrograms() {
+        
+        String path = "/2/media/amplify/programs";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetAmplifyProgramsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.FinalizeMediaUploadResponse finalizeUpload(String id) {
+        
+        String path = "/2/media/upload/{id}/finalize";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.FinalizeMediaUploadResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetAmplifyProgramResponse getAmplifyProgram(String programId) {
+        
+        String path = "/2/media/amplify/programs/{program_id}";
+        
+        
+        path = path.replace("{program_id}", XClient.encodePathSegment(programId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetAmplifyProgramResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.InitializeMediaUploadResponse initializeUpload(Schemas.InitializeMediaUploadRequest body) {
+        
+        String path = "/2/media/upload/initialize";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.InitializeMediaUploadResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetAmplifyProgramPostsResponse getAmplifyProgramPosts(String programId) {
+        
+        String path = "/2/media/amplify/programs/{program_id}/posts";
+        
+        
+        path = path.replace("{program_id}", XClient.encodePathSegment(programId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetAmplifyProgramPostsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetMediaByMediaKeysResponse getByKeys(List<String> mediaKeys) {
+        return getByKeys(mediaKeys, new GetByKeysOptions());
+    }
+    
+
+    public Schemas.GetMediaByMediaKeysResponse getByKeys(List<String> mediaKeys, GetByKeysOptions options) {
+        
+        GetByKeysOptions opts = options != null ? options : new GetByKeysOptions();
+        
+        String path = "/2/media";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media_keys", mediaKeys);
+        
+        
         
         
         
@@ -1360,7 +1306,61 @@ public final class MediaClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetMediaByMediaKeyResponse.class);
+                Schemas.GetMediaByMediaKeysResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetMediaLibraryCategoriesResponse getLibraryCategories() {
+        return getLibraryCategories(new GetLibraryCategoriesOptions());
+    }
+    
+
+    public Schemas.GetMediaLibraryCategoriesResponse getLibraryCategories(GetLibraryCategoriesOptions options) {
+        
+        GetLibraryCategoriesOptions opts = options != null ? options : new GetLibraryCategoriesOptions();
+        
+        String path = "/2/media/library/categories";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "lang", opts.getLang());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetMediaLibraryCategoriesResponse.class);
         
     }
 

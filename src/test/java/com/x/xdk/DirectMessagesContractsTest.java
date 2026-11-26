@@ -60,21 +60,46 @@ public class DirectMessagesContractsTest {
 
     
     @Test
-    void contract_dmConversationsMediaDownload() throws Exception {
-        String mockJson = "{}";
+    void contract_getEvents() throws Exception {
+        String mockJson = "{\"data\":[{\"attachments\":{},\"created_at\":\"2025-01-15T12:00:00.000Z\",\"dm_conversation_id\":\"test_value\",\"entities\":{},\"event_type\":\"test_value\",\"id\":\"1234567890\",\"participant_ids\":[\"test_value\"],\"referenced_posts\":[{\"id\":\"1234567890\"}],\"sender_id\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
         
-        byte[] expectedBinary = new byte[] {0x00, 0x01, 0x58, 0x44, 0x4B, (byte) 0xFF};
         server.setResponder(
                 req ->
-                        MockXApiServer.MockResponse.bytes(
-                                200,
-                                "application/octet-stream",
-                                expectedBinary));
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
         
 
         
 
         
+        DirectMessagesClient.GetEventsOptions options =
+                DirectMessagesClient.GetEventsOptions.builder()
+                        .header("X-Contract-Operation", "getEvents");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         
         
@@ -82,6 +107,59 @@ public class DirectMessagesContractsTest {
         
         
         
+        
+        
+
+        Object result =
+                client.directMessages()
+                        .getEvents(options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/dm_events";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getEvents", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_createByConversationId() throws Exception {
+        String mockJson = "{\"data\":{\"dm_conversation_id\":\"test_value\",\"dm_event_id\":\"test_value\"}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                201, mockJson));
+        
+
+        
+        
+        String reqMockJson = "{\"attachments\":[{\"media_id\":\"1234567890\"}],\"text\":\"Hello from XDK!\"}";
+        Schemas.CreateDirectMessagesByConversationIdRequest reqBody =
+                client.getObjectMapper()
+                        .readValue(
+                                reqMockJson,
+                                new TypeReference<Schemas.CreateDirectMessagesByConversationIdRequest>() {});
+        
+        
+
+        
+
         
         
         
@@ -98,23 +176,30 @@ public class DirectMessagesContractsTest {
 
         Object result =
                 client.directMessages()
-                        .dmConversationsMediaDownload("test_dmId", "test_mediaId", "test_resourceId");
+                        .createByConversationId("test_dmConversationId", reqBody);
         assertNotNull(result);
 
         
-        assertArrayEquals(expectedBinary, (byte[]) result);
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
         
 
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/dm_conversations/media/";
+        assertEquals("POST", captured.getMethod());
+        String baseSegment = "/2/dm_conversations/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
+        
+        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
         
         
     }
@@ -203,90 +288,7 @@ public class DirectMessagesContractsTest {
     }
     
     @Test
-    void contract_getEventsByParticipantId() throws Exception {
-        String mockJson = "{\"data\":[{\"attachments\":{},\"created_at\":\"2025-01-15T12:00:00.000Z\",\"dm_conversation_id\":\"test_value\",\"entities\":{},\"event_type\":\"test_value\",\"id\":\"1234567890\",\"participant_ids\":[\"test_value\"],\"referenced_posts\":[{\"id\":\"1234567890\"}],\"sender_id\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        DirectMessagesClient.GetEventsByParticipantIdOptions options =
-                DirectMessagesClient.GetEventsByParticipantIdOptions.builder()
-                        .header("X-Contract-Operation", "getEventsByParticipantId");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.directMessages()
-                        .getEventsByParticipantId("test_participantId", options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/dm_conversations/with/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getEventsByParticipantId", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_createByConversationId() throws Exception {
+    void contract_createByParticipantId() throws Exception {
         String mockJson = "{\"data\":{\"dm_conversation_id\":\"test_value\",\"dm_event_id\":\"test_value\"}}";
         
         server.setResponder(
@@ -298,11 +300,11 @@ public class DirectMessagesContractsTest {
         
         
         String reqMockJson = "{\"attachments\":[{\"media_id\":\"1234567890\"}],\"text\":\"Hello from XDK!\"}";
-        Schemas.CreateDirectMessagesByConversationIdRequest reqBody =
+        Schemas.CreateDirectMessagesByParticipantIdRequest reqBody =
                 client.getObjectMapper()
                         .readValue(
                                 reqMockJson,
-                                new TypeReference<Schemas.CreateDirectMessagesByConversationIdRequest>() {});
+                                new TypeReference<Schemas.CreateDirectMessagesByParticipantIdRequest>() {});
         
         
 
@@ -324,7 +326,7 @@ public class DirectMessagesContractsTest {
 
         Object result =
                 client.directMessages()
-                        .createByConversationId("test_dmConversationId", reqBody);
+                        .createByParticipantId("test_participantId", reqBody);
         assertNotNull(result);
 
         
@@ -336,7 +338,7 @@ public class DirectMessagesContractsTest {
         MockXApiServer.RecordedRequest captured = server.lastRequest();
         assertNotNull(captured, "Loopback HTTP server should receive request");
         assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/dm_conversations/";
+        String baseSegment = "/2/dm_conversations/with/";
         assertTrue(
                 captured.getPath().contains(baseSegment),
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
@@ -479,151 +481,6 @@ public class DirectMessagesContractsTest {
     }
     
     @Test
-    void contract_getEvents() throws Exception {
-        String mockJson = "{\"data\":[{\"attachments\":{},\"created_at\":\"2025-01-15T12:00:00.000Z\",\"dm_conversation_id\":\"test_value\",\"entities\":{},\"event_type\":\"test_value\",\"id\":\"1234567890\",\"participant_ids\":[\"test_value\"],\"referenced_posts\":[{\"id\":\"1234567890\"}],\"sender_id\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-        DirectMessagesClient.GetEventsOptions options =
-                DirectMessagesClient.GetEventsOptions.builder()
-                        .header("X-Contract-Operation", "getEvents");
-        
-        
-        
-        options.maxResults(10);
-        
-        
-        
-        
-        options.paginationToken("opt_paginationToken");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.directMessages()
-                        .getEvents(options);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/dm_events";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        assertEquals("getEvents", captured.firstHeader("x-contract-operation"));
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
-    void contract_createByParticipantId() throws Exception {
-        String mockJson = "{\"data\":{\"dm_conversation_id\":\"test_value\",\"dm_event_id\":\"test_value\"}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                201, mockJson));
-        
-
-        
-        
-        String reqMockJson = "{\"attachments\":[{\"media_id\":\"1234567890\"}],\"text\":\"Hello from XDK!\"}";
-        Schemas.CreateDirectMessagesByParticipantIdRequest reqBody =
-                client.getObjectMapper()
-                        .readValue(
-                                reqMockJson,
-                                new TypeReference<Schemas.CreateDirectMessagesByParticipantIdRequest>() {});
-        
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        Object result =
-                client.directMessages()
-                        .createByParticipantId("test_participantId", reqBody);
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("POST", captured.getMethod());
-        String baseSegment = "/2/dm_conversations/with/";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-        assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
-        
-        assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
-        
-        
-    }
-    
-    @Test
     void contract_createConversation() throws Exception {
         String mockJson = "{\"data\":{\"dm_conversation_id\":\"test_value\",\"dm_event_id\":\"test_value\"}}";
         
@@ -681,6 +538,149 @@ public class DirectMessagesContractsTest {
         assertTrue(captured.getBodyBytes().length > 0, "Expected non-empty request body");
         
         assertNotNull(client.getObjectMapper().readTree(captured.getBodyBytes()));
+        
+        
+    }
+    
+    @Test
+    void contract_getEventsByParticipantId() throws Exception {
+        String mockJson = "{\"data\":[{\"attachments\":{},\"created_at\":\"2025-01-15T12:00:00.000Z\",\"dm_conversation_id\":\"test_value\",\"entities\":{},\"event_type\":\"test_value\",\"id\":\"1234567890\",\"participant_ids\":[\"test_value\"],\"referenced_posts\":[{\"id\":\"1234567890\"}],\"sender_id\":\"test_value\",\"text\":\"Hello from XDK!\"}],\"includes\":{\"calls\":[{\"id\":\"1234567890\"}],\"media\":[{}],\"places\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"polls\":[{\"id\":\"1234567890\"}],\"posts\":[{\"id\":\"1234567890\",\"text\":\"Hello from XDK!\",\"username\":\"XDevelopers\"}],\"topics\":[{\"id\":\"1234567890\",\"name\":\"test_value\"}],\"users\":[{\"id\":\"1234567890\",\"name\":\"test_value\",\"username\":\"XDevelopers\"}]},\"meta\":{\"result_count\":1}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+        DirectMessagesClient.GetEventsByParticipantIdOptions options =
+                DirectMessagesClient.GetEventsByParticipantIdOptions.builder()
+                        .header("X-Contract-Operation", "getEventsByParticipantId");
+        
+        
+        
+        options.maxResults(10);
+        
+        
+        
+        
+        options.paginationToken("opt_paginationToken");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.directMessages()
+                        .getEventsByParticipantId("test_participantId", options);
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/dm_conversations/with/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        assertEquals("getEventsByParticipantId", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_dmConversationsMediaDownload() throws Exception {
+        String mockJson = "{}";
+        
+        byte[] expectedBinary = new byte[] {0x00, 0x01, 0x58, 0x44, 0x4B, (byte) 0xFF};
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.bytes(
+                                200,
+                                "application/octet-stream",
+                                expectedBinary));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        Object result =
+                client.directMessages()
+                        .dmConversationsMediaDownload("test_dmId", "test_mediaId", "test_resourceId");
+        assertNotNull(result);
+
+        
+        assertArrayEquals(expectedBinary, (byte[]) result);
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/dm_conversations/media/";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
         
         
     }

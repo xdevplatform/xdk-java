@@ -29,36 +29,6 @@ public class StreamStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("postsSample10"),
-                "Expected method postsSample10 on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsSample"),
-                "Expected method postsSample on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("likesSample10"),
-                "Expected method likesSample10 on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("posts"),
-                "Expected method posts on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsFirehose"),
-                "Expected method postsFirehose on StreamClient");
-        
-        
-        assertTrue(
-                declared.contains("postsFirehoseJa"),
-                "Expected method postsFirehoseJa on StreamClient");
-        
-        
-        assertTrue(
                 declared.contains("getRuleCounts"),
                 "Expected method getRuleCounts on StreamClient");
         
@@ -69,8 +39,38 @@ public class StreamStructureTest {
         
         
         assertTrue(
+                declared.contains("postsFirehoseJa"),
+                "Expected method postsFirehoseJa on StreamClient");
+        
+        
+        assertTrue(
                 declared.contains("labelsCompliance"),
                 "Expected method labelsCompliance on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsFirehoseEn"),
+                "Expected method postsFirehoseEn on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("likesFirehose"),
+                "Expected method likesFirehose on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("activity"),
+                "Expected method activity on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsSample"),
+                "Expected method postsSample on StreamClient");
+        
+        
+        assertTrue(
+                declared.contains("postsCompliance"),
+                "Expected method postsCompliance on StreamClient");
         
         
         assertTrue(
@@ -88,8 +88,8 @@ public class StreamStructureTest {
         
         
         assertTrue(
-                declared.contains("activity"),
-                "Expected method activity on StreamClient");
+                declared.contains("postsFirehosePt"),
+                "Expected method postsFirehosePt on StreamClient");
         
         
         assertTrue(
@@ -98,13 +98,13 @@ public class StreamStructureTest {
         
         
         assertTrue(
-                declared.contains("likesFirehose"),
-                "Expected method likesFirehose on StreamClient");
+                declared.contains("posts"),
+                "Expected method posts on StreamClient");
         
         
         assertTrue(
-                declared.contains("postsCompliance"),
-                "Expected method postsCompliance on StreamClient");
+                declared.contains("likesSample10"),
+                "Expected method likesSample10 on StreamClient");
         
         
         assertTrue(
@@ -113,13 +113,13 @@ public class StreamStructureTest {
         
         
         assertTrue(
-                declared.contains("postsFirehoseEn"),
-                "Expected method postsFirehoseEn on StreamClient");
+                declared.contains("postsSample10"),
+                "Expected method postsSample10 on StreamClient");
         
         
         assertTrue(
-                declared.contains("postsFirehosePt"),
-                "Expected method postsFirehosePt on StreamClient");
+                declared.contains("postsFirehose"),
+                "Expected method postsFirehose on StreamClient");
         
         
     }

@@ -108,6 +108,71 @@ public final class TrendsClient {
 
 
     /**
+     * Optional parameters for {@link #getLocations}.
+     */
+    public static final class GetLocationsOptions {
+        
+        
+        private List<String> trendLocationFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetLocationsOptions() {}
+
+        public static GetLocationsOptions builder() {
+            return new GetLocationsOptions();
+        }
+
+        
+        
+        
+        
+        public GetLocationsOptions trendLocationFields(List<String> trendLocationFields) {
+            this.trendLocationFields = trendLocationFields;
+            return this;
+        }
+
+        public List<String> getTrendLocationFields() {
+            return this.trendLocationFields;
+        }
+        
+        
+        
+        
+
+        public GetLocationsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetLocationsOptions copy() {
+            GetLocationsOptions c = new GetLocationsOptions();
+            
+            
+            
+            c.trendLocationFields = this.trendLocationFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #getByWoeid}.
      */
     public static final class GetByWoeidOptions {
@@ -194,71 +259,6 @@ public final class TrendsClient {
 
 
 
-    /**
-     * Optional parameters for {@link #getLocations}.
-     */
-    public static final class GetLocationsOptions {
-        
-        
-        private List<String> trendLocationFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetLocationsOptions() {}
-
-        public static GetLocationsOptions builder() {
-            return new GetLocationsOptions();
-        }
-
-        
-        
-        
-        
-        public GetLocationsOptions trendLocationFields(List<String> trendLocationFields) {
-            this.trendLocationFields = trendLocationFields;
-            return this;
-        }
-
-        public List<String> getTrendLocationFields() {
-            return this.trendLocationFields;
-        }
-        
-        
-        
-        
-
-        public GetLocationsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetLocationsOptions copy() {
-            GetLocationsOptions c = new GetLocationsOptions();
-            
-            
-            
-            c.trendLocationFields = this.trendLocationFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
 
 
 
@@ -307,6 +307,60 @@ public final class TrendsClient {
                 contentType,
                 securitySchemes,
                 Schemas.GetTrendsPersonalizedTrendsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetTrendsLocationsResponse getLocations() {
+        return getLocations(new GetLocationsOptions());
+    }
+    
+
+    public Schemas.GetTrendsLocationsResponse getLocations(GetLocationsOptions options) {
+        
+        GetLocationsOptions opts = options != null ? options : new GetLocationsOptions();
+        
+        String path = "/2/trends/locations";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "trend_location.fields", opts.getTrendLocationFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetTrendsLocationsResponse.class);
         
     }
 
@@ -371,60 +425,6 @@ public final class TrendsClient {
                 contentType,
                 securitySchemes,
                 Schemas.GetTrendsByWoeidResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetTrendsLocationsResponse getLocations() {
-        return getLocations(new GetLocationsOptions());
-    }
-    
-
-    public Schemas.GetTrendsLocationsResponse getLocations(GetLocationsOptions options) {
-        
-        GetLocationsOptions opts = options != null ? options : new GetLocationsOptions();
-        
-        String path = "/2/trends/locations";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "trend_location.fields", opts.getTrendLocationFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetTrendsLocationsResponse.class);
         
     }
 

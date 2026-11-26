@@ -60,50 +60,6 @@ public class UsageContractsTest {
 
     
     @Test
-    void contract_getCredits() throws Exception {
-        String mockJson = "{\"data\":{\"free_balance\":1.5,\"free_grants\":[{\"amount\":1.5}],\"prepaid_balance\":1.5,\"total_balance\":1.5}}";
-        
-        server.setResponder(
-                req ->
-                        MockXApiServer.MockResponse.json(
-                                200, mockJson));
-        
-
-        
-
-        
-
-        
-        
-        
-        
-
-        Object result =
-                client.usage()
-                        .getCredits();
-        assertNotNull(result);
-
-        
-        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
-        assertNotNull(roundTripJson);
-        assertFalse(roundTripJson.isEmpty());
-        
-
-        MockXApiServer.RecordedRequest captured = server.lastRequest();
-        assertNotNull(captured, "Loopback HTTP server should receive request");
-        assertEquals("GET", captured.getMethod());
-        String baseSegment = "/2/usage/credits";
-        assertTrue(
-                captured.getPath().contains(baseSegment),
-                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
-        
-        
-        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
-        
-        
-    }
-    
-    @Test
     void contract_get() throws Exception {
         String mockJson = "{\"data\":{\"cap_reset_day\":1,\"daily_client_app_usage\":[{\"usage_result_count\":1}],\"daily_project_usage\":{\"project_id\":\"test_value\",\"usage\":[{\"date\":\"test_value\"}]},\"project_cap\":\"test_value\",\"project_id\":\"test_value\",\"project_usage\":\"test_value\"}}";
         
@@ -162,6 +118,50 @@ public class UsageContractsTest {
                 "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         assertEquals("get", captured.firstHeader("x-contract-operation"));
+        
+        
+        assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");
+        
+        
+    }
+    
+    @Test
+    void contract_getCredits() throws Exception {
+        String mockJson = "{\"data\":{\"free_balance\":1.5,\"free_grants\":[{\"amount\":1.5}],\"prepaid_balance\":1.5,\"total_balance\":1.5}}";
+        
+        server.setResponder(
+                req ->
+                        MockXApiServer.MockResponse.json(
+                                200, mockJson));
+        
+
+        
+
+        
+
+        
+        
+        
+        
+
+        Object result =
+                client.usage()
+                        .getCredits();
+        assertNotNull(result);
+
+        
+        String roundTripJson = client.getObjectMapper().writeValueAsString(result);
+        assertNotNull(roundTripJson);
+        assertFalse(roundTripJson.isEmpty());
+        
+
+        MockXApiServer.RecordedRequest captured = server.lastRequest();
+        assertNotNull(captured, "Loopback HTTP server should receive request");
+        assertEquals("GET", captured.getMethod());
+        String baseSegment = "/2/usage/credits";
+        assertTrue(
+                captured.getPath().contains(baseSegment),
+                "Expected path to contain " + baseSegment + " but got " + captured.getPath());
         
         
         assertNotNull(captured.firstHeader("authorization"), "Expected Authorization header");

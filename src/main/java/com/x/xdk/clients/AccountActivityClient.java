@@ -118,98 +118,6 @@ public final class AccountActivityClient {
 
     
 
-    public Schemas.GetAccountActivitySubscriptionCountResponse getSubscriptionCount() {
-        
-        String path = "/2/account_activity/subscriptions/count";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetAccountActivitySubscriptionCountResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.DeleteAccountActivitySubscriptionResponse deleteSubscription(String webhookId, String userId) {
-        
-        String path = "/2/account_activity/webhooks/{webhook_id}/subscriptions/{user_id}/all";
-        
-        
-        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
-        
-        
-        
-        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "DELETE",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.DeleteAccountActivitySubscriptionResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
     public Schemas.ValidateAccountActivitySubscriptionResponse validateSubscription(String webhookId) {
         
         String path = "/2/account_activity/webhooks/{webhook_id}/subscriptions/all";
@@ -286,6 +194,98 @@ public final class AccountActivityClient {
                 contentType,
                 securitySchemes,
                 Schemas.CreateAccountActivitySubscriptionResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetAccountActivitySubscriptionCountResponse getSubscriptionCount() {
+        
+        String path = "/2/account_activity/subscriptions/count";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetAccountActivitySubscriptionCountResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.DeleteAccountActivitySubscriptionResponse deleteSubscription(String webhookId, String userId) {
+        
+        String path = "/2/account_activity/webhooks/{webhook_id}/subscriptions/{user_id}/all";
+        
+        
+        path = path.replace("{webhook_id}", XClient.encodePathSegment(webhookId));
+        
+        
+        
+        path = path.replace("{user_id}", XClient.encodePathSegment(userId));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "DELETE",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.DeleteAccountActivitySubscriptionResponse.class);
         
     }
 

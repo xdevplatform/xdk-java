@@ -43,123 +43,6 @@ public final class CommunityNotesClient {
 
 
     /**
-     * Optional parameters for {@link #searchWritten}.
-     */
-    public static final class SearchWrittenOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> noteFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public SearchWrittenOptions() {}
-
-        public static SearchWrittenOptions builder() {
-            return new SearchWrittenOptions();
-        }
-
-        
-        
-        
-        
-        public SearchWrittenOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public SearchWrittenOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public SearchWrittenOptions noteFields(List<String> noteFields) {
-            this.noteFields = noteFields;
-            return this;
-        }
-
-        public List<String> getNoteFields() {
-            return this.noteFields;
-        }
-        
-        
-        
-        
-
-        public SearchWrittenOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public SearchWrittenOptions copy() {
-            SearchWrittenOptions c = new SearchWrittenOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.noteFields = this.noteFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
      * Optional parameters for {@link #searchEligiblePosts}.
      */
     public static final class SearchEligiblePostsOptions {
@@ -408,135 +291,110 @@ public final class CommunityNotesClient {
 
 
 
+    /**
+     * Optional parameters for {@link #searchWritten}.
+     */
+    public static final class SearchWrittenOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> noteFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
 
+        public SearchWrittenOptions() {}
 
-
-
-    
-    public Schemas.SearchCommunityNotesWrittenResponse searchWritten(Boolean testMode) {
-        return searchWritten(testMode, new SearchWrittenOptions());
-    }
-    
-
-    public Schemas.SearchCommunityNotesWrittenResponse searchWritten(Boolean testMode, SearchWrittenOptions options) {
-        
-        SearchWrittenOptions opts = options != null ? options : new SearchWrittenOptions();
-        
-        String path = "/2/notes/search/notes_written";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "test_mode", testMode);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "note.fields", opts.getNoteFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
+        public static SearchWrittenOptions builder() {
+            return new SearchWrittenOptions();
+        }
 
         
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.SearchCommunityNotesWrittenResponse.class);
         
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.SearchCommunityNotesWrittenResponse> searchWrittenPages(Boolean testMode) {
-        return searchWrittenPages(testMode, new SearchWrittenOptions());
-    }
-
-    public Paginator<Schemas.SearchCommunityNotesWrittenResponse> searchWrittenPages(Boolean testMode, SearchWrittenOptions options) {
-        SearchWrittenOptions baseOpts = options != null ? options.copy() : new SearchWrittenOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    SearchWrittenOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return searchWritten(testMode, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateCommunityNotesResponse create(Schemas.CreateCommunityNotesRequest body) {
         
-        String path = "/2/notes";
+        
+        public SearchWrittenOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public SearchWrittenOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public SearchWrittenOptions noteFields(List<String> noteFields) {
+            this.noteFields = noteFields;
+            return this;
+        }
+
+        public List<String> getNoteFields() {
+            return this.noteFields;
+        }
+        
+        
+        
         
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
+        public SearchWrittenOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateCommunityNotesResponse.class);
-        
+        public SearchWrittenOptions copy() {
+            SearchWrittenOptions c = new SearchWrittenOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.noteFields = this.noteFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
     }
 
-    
-    
 
 
 
@@ -545,40 +403,6 @@ public final class CommunityNotesClient {
 
 
 
-
-    
-
-    public Schemas.EvaluateCommunityNotesResponse evaluate(Schemas.EvaluateCommunityNotesRequest body) {
-        
-        String path = "/2/notes/evaluate";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.EvaluateCommunityNotesResponse.class);
-        
-    }
-
-    
-    
 
 
 
@@ -703,6 +527,182 @@ public final class CommunityNotesClient {
                     SearchEligiblePostsOptions pageOpts = baseOpts.copy();
                     pageOpts.paginationToken(token);
                     return searchEligiblePosts(testMode, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateCommunityNotesResponse create(Schemas.CreateCommunityNotesRequest body) {
+        
+        String path = "/2/notes";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateCommunityNotesResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.EvaluateCommunityNotesResponse evaluate(Schemas.EvaluateCommunityNotesRequest body) {
+        
+        String path = "/2/notes/evaluate";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.EvaluateCommunityNotesResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.SearchCommunityNotesWrittenResponse searchWritten(Boolean testMode) {
+        return searchWritten(testMode, new SearchWrittenOptions());
+    }
+    
+
+    public Schemas.SearchCommunityNotesWrittenResponse searchWritten(Boolean testMode, SearchWrittenOptions options) {
+        
+        SearchWrittenOptions opts = options != null ? options : new SearchWrittenOptions();
+        
+        String path = "/2/notes/search/notes_written";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "test_mode", testMode);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "note.fields", opts.getNoteFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.SearchCommunityNotesWrittenResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.SearchCommunityNotesWrittenResponse> searchWrittenPages(Boolean testMode) {
+        return searchWrittenPages(testMode, new SearchWrittenOptions());
+    }
+
+    public Paginator<Schemas.SearchCommunityNotesWrittenResponse> searchWrittenPages(Boolean testMode, SearchWrittenOptions options) {
+        SearchWrittenOptions baseOpts = options != null ? options.copy() : new SearchWrittenOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    SearchWrittenOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return searchWritten(testMode, pageOpts);
                 },
                 initialToken);
     }

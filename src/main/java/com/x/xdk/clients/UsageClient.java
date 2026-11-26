@@ -42,10 +42,6 @@ public final class UsageClient {
 
 
 
-
-
-
-
     /**
      * Optional parameters for {@link #get}.
      */
@@ -141,44 +137,6 @@ public final class UsageClient {
 
 
 
-    
-
-    public Schemas.GetUsageCreditsResponse getCredits() {
-        
-        String path = "/2/usage/credits";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetUsageCreditsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
 
 
 
@@ -229,6 +187,48 @@ public final class UsageClient {
                 contentType,
                 securitySchemes,
                 Schemas.GetUsageResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.GetUsageCreditsResponse getCredits() {
+        
+        String path = "/2/usage/credits";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetUsageCreditsResponse.class);
         
     }
 

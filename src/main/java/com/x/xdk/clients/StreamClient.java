@@ -43,36 +43,77 @@ public final class StreamClient {
 
 
     /**
-     * Optional parameters for {@link #postsSample10}.
+     * Optional parameters for {@link #getRuleCounts}.
      */
-    public static final class PostsSample10Options {
+    public static final class GetRuleCountsOptions {
+        
+        
+        private String rulesCountFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetRuleCountsOptions() {}
+
+        public static GetRuleCountsOptions builder() {
+            return new GetRuleCountsOptions();
+        }
+
+        
+        
+        
+        
+        public GetRuleCountsOptions rulesCountFields(String rulesCountFields) {
+            this.rulesCountFields = rulesCountFields;
+            return this;
+        }
+
+        public String getRulesCountFields() {
+            return this.rulesCountFields;
+        }
+        
+        
+        
+        
+
+        public GetRuleCountsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetRuleCountsOptions copy() {
+            GetRuleCountsOptions c = new GetRuleCountsOptions();
+            
+            
+            
+            c.rulesCountFields = this.rulesCountFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #likesCompliance}.
+     */
+    public static final class LikesComplianceOptions {
         
         
         private Integer backfillMinutes;
-        
-        
-        
-        private List<String> tweetFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> pollFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> placeFields;
         
         
         
@@ -89,17 +130,17 @@ public final class StreamClient {
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public PostsSample10Options() {}
+        public LikesComplianceOptions() {}
 
-        public static PostsSample10Options builder() {
-            return new PostsSample10Options();
+        public static LikesComplianceOptions builder() {
+            return new LikesComplianceOptions();
         }
 
         
         
         
         
-        public PostsSample10Options backfillMinutes(Integer backfillMinutes) {
+        public LikesComplianceOptions backfillMinutes(Integer backfillMinutes) {
             this.backfillMinutes = backfillMinutes;
             return this;
         }
@@ -112,85 +153,7 @@ public final class StreamClient {
         
         
         
-        public PostsSample10Options tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
-            return this;
-        }
-
-        public List<String> getTweetFields() {
-            return this.tweetFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options pollFields(List<String> pollFields) {
-            this.pollFields = pollFields;
-            return this;
-        }
-
-        public List<String> getPollFields() {
-            return this.pollFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options placeFields(List<String> placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public List<String> getPlaceFields() {
-            return this.placeFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSample10Options startTime(String startTime) {
+        public LikesComplianceOptions startTime(String startTime) {
             this.startTime = startTime;
             return this;
         }
@@ -203,7 +166,7 @@ public final class StreamClient {
         
         
         
-        public PostsSample10Options endTime(String endTime) {
+        public LikesComplianceOptions endTime(String endTime) {
             this.endTime = endTime;
             return this;
         }
@@ -215,7 +178,7 @@ public final class StreamClient {
         
         
         
-        public PostsSample10Options streamConfig(StreamConfig streamConfig) {
+        public LikesComplianceOptions streamConfig(StreamConfig streamConfig) {
             this.streamConfig = streamConfig;
             return this;
         }
@@ -225,7 +188,7 @@ public final class StreamClient {
         }
         
 
-        public PostsSample10Options header(String name, String value) {
+        public LikesComplianceOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -234,992 +197,12 @@ public final class StreamClient {
             return this.headers;
         }
 
-        public PostsSample10Options copy() {
-            PostsSample10Options c = new PostsSample10Options();
+        public LikesComplianceOptions copy() {
+            LikesComplianceOptions c = new LikesComplianceOptions();
             
             
             
             c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.pollFields = this.pollFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.placeFields = this.placeFields;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #postsSample}.
-     */
-    public static final class PostsSampleOptions {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private List<String> tweetFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> pollFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> placeFields;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public PostsSampleOptions() {}
-
-        public static PostsSampleOptions builder() {
-            return new PostsSampleOptions();
-        }
-
-        
-        
-        
-        
-        public PostsSampleOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
-            return this;
-        }
-
-        public List<String> getTweetFields() {
-            return this.tweetFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions pollFields(List<String> pollFields) {
-            this.pollFields = pollFields;
-            return this;
-        }
-
-        public List<String> getPollFields() {
-            return this.pollFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public PostsSampleOptions placeFields(List<String> placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public List<String> getPlaceFields() {
-            return this.placeFields;
-        }
-        
-        
-        
-        
-        public PostsSampleOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public PostsSampleOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public PostsSampleOptions copy() {
-            PostsSampleOptions c = new PostsSampleOptions();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.pollFields = this.pollFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.placeFields = this.placeFields;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #likesSample10}.
-     */
-    public static final class LikesSample10Options {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        private List<String> likeWithTweetAuthorFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> tweetFields;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public LikesSample10Options() {}
-
-        public static LikesSample10Options builder() {
-            return new LikesSample10Options();
-        }
-
-        
-        
-        
-        
-        public LikesSample10Options backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options likeWithTweetAuthorFields(List<String> likeWithTweetAuthorFields) {
-            this.likeWithTweetAuthorFields = likeWithTweetAuthorFields;
-            return this;
-        }
-
-        public List<String> getLikeWithTweetAuthorFields() {
-            return this.likeWithTweetAuthorFields;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public LikesSample10Options tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
-            return this;
-        }
-
-        public List<String> getTweetFields() {
-            return this.tweetFields;
-        }
-        
-        
-        
-        
-        public LikesSample10Options streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public LikesSample10Options header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public LikesSample10Options copy() {
-            LikesSample10Options c = new LikesSample10Options();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.likeWithTweetAuthorFields = this.likeWithTweetAuthorFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #posts}.
-     */
-    public static final class PostsOptions {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        private List<String> tweetFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> pollFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> placeFields;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public PostsOptions() {}
-
-        public static PostsOptions builder() {
-            return new PostsOptions();
-        }
-
-        
-        
-        
-        
-        public PostsOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
-            return this;
-        }
-
-        public List<String> getTweetFields() {
-            return this.tweetFields;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions pollFields(List<String> pollFields) {
-            this.pollFields = pollFields;
-            return this;
-        }
-
-        public List<String> getPollFields() {
-            return this.pollFields;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public PostsOptions placeFields(List<String> placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public List<String> getPlaceFields() {
-            return this.placeFields;
-        }
-        
-        
-        
-        
-        public PostsOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public PostsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public PostsOptions copy() {
-            PostsOptions c = new PostsOptions();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.pollFields = this.pollFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.placeFields = this.placeFields;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #postsFirehose}.
-     */
-    public static final class PostsFirehoseOptions {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private List<String> tweetFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> pollFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> placeFields;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public PostsFirehoseOptions() {}
-
-        public static PostsFirehoseOptions builder() {
-            return new PostsFirehoseOptions();
-        }
-
-        
-        
-        
-        
-        public PostsFirehoseOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
-            return this;
-        }
-
-        public List<String> getTweetFields() {
-            return this.tweetFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions pollFields(List<String> pollFields) {
-            this.pollFields = pollFields;
-            return this;
-        }
-
-        public List<String> getPollFields() {
-            return this.pollFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions placeFields(List<String> placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public List<String> getPlaceFields() {
-            return this.placeFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseOptions endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        public PostsFirehoseOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public PostsFirehoseOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public PostsFirehoseOptions copy() {
-            PostsFirehoseOptions c = new PostsFirehoseOptions();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.pollFields = this.pollFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.placeFields = this.placeFields;
             
             
             
@@ -1501,193 +484,6 @@ public final class StreamClient {
 
 
     /**
-     * Optional parameters for {@link #getRuleCounts}.
-     */
-    public static final class GetRuleCountsOptions {
-        
-        
-        private String rulesCountFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetRuleCountsOptions() {}
-
-        public static GetRuleCountsOptions builder() {
-            return new GetRuleCountsOptions();
-        }
-
-        
-        
-        
-        
-        public GetRuleCountsOptions rulesCountFields(String rulesCountFields) {
-            this.rulesCountFields = rulesCountFields;
-            return this;
-        }
-
-        public String getRulesCountFields() {
-            return this.rulesCountFields;
-        }
-        
-        
-        
-        
-
-        public GetRuleCountsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetRuleCountsOptions copy() {
-            GetRuleCountsOptions c = new GetRuleCountsOptions();
-            
-            
-            
-            c.rulesCountFields = this.rulesCountFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #likesCompliance}.
-     */
-    public static final class LikesComplianceOptions {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public LikesComplianceOptions() {}
-
-        public static LikesComplianceOptions builder() {
-            return new LikesComplianceOptions();
-        }
-
-        
-        
-        
-        
-        public LikesComplianceOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public LikesComplianceOptions startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public LikesComplianceOptions endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        public LikesComplianceOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public LikesComplianceOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public LikesComplianceOptions copy() {
-            LikesComplianceOptions c = new LikesComplianceOptions();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
      * Optional parameters for {@link #labelsCompliance}.
      */
     public static final class LabelsComplianceOptions {
@@ -1810,327 +606,9 @@ public final class StreamClient {
 
 
     /**
-     * Optional parameters for {@link #getRules}.
+     * Optional parameters for {@link #postsFirehoseEn}.
      */
-    public static final class GetRulesOptions {
-        
-        
-        private List<String> ids;
-        
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetRulesOptions() {}
-
-        public static GetRulesOptions builder() {
-            return new GetRulesOptions();
-        }
-
-        
-        
-        
-        
-        public GetRulesOptions ids(List<String> ids) {
-            this.ids = ids;
-            return this;
-        }
-
-        public List<String> getIds() {
-            return this.ids;
-        }
-        
-        
-        
-        
-        
-        public GetRulesOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetRulesOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-
-        public GetRulesOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetRulesOptions copy() {
-            GetRulesOptions c = new GetRulesOptions();
-            
-            
-            
-            c.ids = this.ids;
-            
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #updateRules}.
-     */
-    public static final class UpdateRulesOptions {
-        
-        
-        private Boolean dryRun;
-        
-        
-        
-        private Boolean deleteAll;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public UpdateRulesOptions() {}
-
-        public static UpdateRulesOptions builder() {
-            return new UpdateRulesOptions();
-        }
-
-        
-        
-        
-        
-        public UpdateRulesOptions dryRun(Boolean dryRun) {
-            this.dryRun = dryRun;
-            return this;
-        }
-
-        public Boolean getDryRun() {
-            return this.dryRun;
-        }
-        
-        
-        
-        
-        
-        public UpdateRulesOptions deleteAll(Boolean deleteAll) {
-            this.deleteAll = deleteAll;
-            return this;
-        }
-
-        public Boolean getDeleteAll() {
-            return this.deleteAll;
-        }
-        
-        
-        
-        
-
-        public UpdateRulesOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public UpdateRulesOptions copy() {
-            UpdateRulesOptions c = new UpdateRulesOptions();
-            
-            
-            
-            c.dryRun = this.dryRun;
-            
-            
-            
-            
-            c.deleteAll = this.deleteAll;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #activity}.
-     */
-    public static final class ActivityOptions {
-        
-        
-        private Integer backfillMinutes;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public ActivityOptions() {}
-
-        public static ActivityOptions builder() {
-            return new ActivityOptions();
-        }
-
-        
-        
-        
-        
-        public ActivityOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
-            return this;
-        }
-
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
-        }
-        
-        
-        
-        
-        
-        public ActivityOptions startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public ActivityOptions endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        public ActivityOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
-        
-
-        public ActivityOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public ActivityOptions copy() {
-            ActivityOptions c = new ActivityOptions();
-            
-            
-            
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #postsFirehoseKo}.
-     */
-    public static final class PostsFirehoseKoOptions {
+    public static final class PostsFirehoseEnOptions {
         
         
         private Integer backfillMinutes;
@@ -2174,17 +652,17 @@ public final class StreamClient {
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public PostsFirehoseKoOptions() {}
+        public PostsFirehoseEnOptions() {}
 
-        public static PostsFirehoseKoOptions builder() {
-            return new PostsFirehoseKoOptions();
+        public static PostsFirehoseEnOptions builder() {
+            return new PostsFirehoseEnOptions();
         }
 
         
         
         
         
-        public PostsFirehoseKoOptions backfillMinutes(Integer backfillMinutes) {
+        public PostsFirehoseEnOptions backfillMinutes(Integer backfillMinutes) {
             this.backfillMinutes = backfillMinutes;
             return this;
         }
@@ -2197,7 +675,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions tweetFields(List<String> tweetFields) {
+        public PostsFirehoseEnOptions tweetFields(List<String> tweetFields) {
             this.tweetFields = tweetFields;
             return this;
         }
@@ -2210,7 +688,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions expansions(List<String> expansions) {
+        public PostsFirehoseEnOptions expansions(List<String> expansions) {
             this.expansions = expansions;
             return this;
         }
@@ -2223,7 +701,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions mediaFields(List<String> mediaFields) {
+        public PostsFirehoseEnOptions mediaFields(List<String> mediaFields) {
             this.mediaFields = mediaFields;
             return this;
         }
@@ -2236,7 +714,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions pollFields(List<String> pollFields) {
+        public PostsFirehoseEnOptions pollFields(List<String> pollFields) {
             this.pollFields = pollFields;
             return this;
         }
@@ -2249,7 +727,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions userFields(List<String> userFields) {
+        public PostsFirehoseEnOptions userFields(List<String> userFields) {
             this.userFields = userFields;
             return this;
         }
@@ -2262,7 +740,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions placeFields(List<String> placeFields) {
+        public PostsFirehoseEnOptions placeFields(List<String> placeFields) {
             this.placeFields = placeFields;
             return this;
         }
@@ -2275,7 +753,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions startTime(String startTime) {
+        public PostsFirehoseEnOptions startTime(String startTime) {
             this.startTime = startTime;
             return this;
         }
@@ -2288,7 +766,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions endTime(String endTime) {
+        public PostsFirehoseEnOptions endTime(String endTime) {
             this.endTime = endTime;
             return this;
         }
@@ -2300,7 +778,7 @@ public final class StreamClient {
         
         
         
-        public PostsFirehoseKoOptions streamConfig(StreamConfig streamConfig) {
+        public PostsFirehoseEnOptions streamConfig(StreamConfig streamConfig) {
             this.streamConfig = streamConfig;
             return this;
         }
@@ -2310,7 +788,7 @@ public final class StreamClient {
         }
         
 
-        public PostsFirehoseKoOptions header(String name, String value) {
+        public PostsFirehoseEnOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -2319,8 +797,8 @@ public final class StreamClient {
             return this.headers;
         }
 
-        public PostsFirehoseKoOptions copy() {
-            PostsFirehoseKoOptions c = new PostsFirehoseKoOptions();
+        public PostsFirehoseEnOptions copy() {
+            PostsFirehoseEnOptions c = new PostsFirehoseEnOptions();
             
             
             
@@ -2614,6 +1092,338 @@ public final class StreamClient {
 
 
     /**
+     * Optional parameters for {@link #activity}.
+     */
+    public static final class ActivityOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public ActivityOptions() {}
+
+        public static ActivityOptions builder() {
+            return new ActivityOptions();
+        }
+
+        
+        
+        
+        
+        public ActivityOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public ActivityOptions startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public ActivityOptions endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        public ActivityOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public ActivityOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public ActivityOptions copy() {
+            ActivityOptions c = new ActivityOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #postsSample}.
+     */
+    public static final class PostsSampleOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> pollFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> placeFields;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public PostsSampleOptions() {}
+
+        public static PostsSampleOptions builder() {
+            return new PostsSampleOptions();
+        }
+
+        
+        
+        
+        
+        public PostsSampleOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions pollFields(List<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        public List<String> getPollFields() {
+            return this.pollFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSampleOptions placeFields(List<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        public List<String> getPlaceFields() {
+            return this.placeFields;
+        }
+        
+        
+        
+        
+        public PostsSampleOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public PostsSampleOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public PostsSampleOptions copy() {
+            PostsSampleOptions c = new PostsSampleOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.pollFields = this.pollFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.placeFields = this.placeFields;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #postsCompliance}.
      */
     public static final class PostsComplianceOptions {
@@ -2736,87 +1546,76 @@ public final class StreamClient {
 
 
     /**
-     * Optional parameters for {@link #usersCompliance}.
+     * Optional parameters for {@link #getRules}.
      */
-    public static final class UsersComplianceOptions {
+    public static final class GetRulesOptions {
         
         
-        private Integer backfillMinutes;
-        
-        
-        
-        private String startTime;
+        private List<String> ids;
         
         
         
-        private String endTime;
+        private Integer maxResults;
         
         
         
+        private String paginationToken;
         
-        private StreamConfig streamConfig;
+        
+        
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public UsersComplianceOptions() {}
+        public GetRulesOptions() {}
 
-        public static UsersComplianceOptions builder() {
-            return new UsersComplianceOptions();
+        public static GetRulesOptions builder() {
+            return new GetRulesOptions();
         }
 
         
         
         
         
-        public UsersComplianceOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
+        public GetRulesOptions ids(List<String> ids) {
+            this.ids = ids;
             return this;
         }
 
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
+        public List<String> getIds() {
+            return this.ids;
         }
         
         
         
         
         
-        public UsersComplianceOptions startTime(String startTime) {
-            this.startTime = startTime;
+        public GetRulesOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
             return this;
         }
 
-        public String getStartTime() {
-            return this.startTime;
+        public Integer getMaxResults() {
+            return this.maxResults;
         }
         
         
         
         
         
-        public UsersComplianceOptions endTime(String endTime) {
-            this.endTime = endTime;
+        public GetRulesOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
             return this;
         }
 
-        public String getEndTime() {
-            return this.endTime;
+        public String getPaginationToken() {
+            return this.paginationToken;
         }
         
         
         
-        
-        public UsersComplianceOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
         
 
-        public UsersComplianceOptions header(String name, String value) {
+        public GetRulesOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -2825,27 +1624,25 @@ public final class StreamClient {
             return this.headers;
         }
 
-        public UsersComplianceOptions copy() {
-            UsersComplianceOptions c = new UsersComplianceOptions();
+        public GetRulesOptions copy() {
+            GetRulesOptions c = new GetRulesOptions();
             
             
             
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.startTime = this.startTime;
+            c.ids = this.ids;
             
             
             
             
-            c.endTime = this.endTime;
+            c.maxResults = this.maxResults;
             
             
             
             
-            c.streamConfig = this.streamConfig;
+            c.paginationToken = this.paginationToken;
+            
+            
+            
             
             c.headers.putAll(this.headers);
             return c;
@@ -2858,189 +1655,59 @@ public final class StreamClient {
 
 
     /**
-     * Optional parameters for {@link #postsFirehoseEn}.
+     * Optional parameters for {@link #updateRules}.
      */
-    public static final class PostsFirehoseEnOptions {
+    public static final class UpdateRulesOptions {
         
         
-        private Integer backfillMinutes;
-        
-        
-        
-        private List<String> tweetFields;
+        private Boolean dryRun;
         
         
         
-        private List<String> expansions;
+        private Boolean deleteAll;
         
         
         
-        private List<String> mediaFields;
-        
-        
-        
-        private List<String> pollFields;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> placeFields;
-        
-        
-        
-        private String startTime;
-        
-        
-        
-        private String endTime;
-        
-        
-        
-        
-        private StreamConfig streamConfig;
         
         private Map<String, String> headers = new LinkedHashMap<>();
 
-        public PostsFirehoseEnOptions() {}
+        public UpdateRulesOptions() {}
 
-        public static PostsFirehoseEnOptions builder() {
-            return new PostsFirehoseEnOptions();
+        public static UpdateRulesOptions builder() {
+            return new UpdateRulesOptions();
         }
 
         
         
         
         
-        public PostsFirehoseEnOptions backfillMinutes(Integer backfillMinutes) {
-            this.backfillMinutes = backfillMinutes;
+        public UpdateRulesOptions dryRun(Boolean dryRun) {
+            this.dryRun = dryRun;
             return this;
         }
 
-        public Integer getBackfillMinutes() {
-            return this.backfillMinutes;
+        public Boolean getDryRun() {
+            return this.dryRun;
         }
         
         
         
         
         
-        public PostsFirehoseEnOptions tweetFields(List<String> tweetFields) {
-            this.tweetFields = tweetFields;
+        public UpdateRulesOptions deleteAll(Boolean deleteAll) {
+            this.deleteAll = deleteAll;
             return this;
         }
 
-        public List<String> getTweetFields() {
-            return this.tweetFields;
+        public Boolean getDeleteAll() {
+            return this.deleteAll;
         }
         
         
         
-        
-        
-        public PostsFirehoseEnOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions mediaFields(List<String> mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public List<String> getMediaFields() {
-            return this.mediaFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions pollFields(List<String> pollFields) {
-            this.pollFields = pollFields;
-            return this;
-        }
-
-        public List<String> getPollFields() {
-            return this.pollFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions placeFields(List<String> placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public List<String> getPlaceFields() {
-            return this.placeFields;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions startTime(String startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public String getStartTime() {
-            return this.startTime;
-        }
-        
-        
-        
-        
-        
-        public PostsFirehoseEnOptions endTime(String endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        public String getEndTime() {
-            return this.endTime;
-        }
-        
-        
-        
-        
-        public PostsFirehoseEnOptions streamConfig(StreamConfig streamConfig) {
-            this.streamConfig = streamConfig;
-            return this;
-        }
-
-        public StreamConfig getStreamConfig() {
-            return this.streamConfig;
-        }
         
 
-        public PostsFirehoseEnOptions header(String name, String value) {
+        public UpdateRulesOptions header(String name, String value) {
             this.headers.put(name, value);
             return this;
         }
@@ -3049,57 +1716,20 @@ public final class StreamClient {
             return this.headers;
         }
 
-        public PostsFirehoseEnOptions copy() {
-            PostsFirehoseEnOptions c = new PostsFirehoseEnOptions();
+        public UpdateRulesOptions copy() {
+            UpdateRulesOptions c = new UpdateRulesOptions();
             
             
             
-            c.backfillMinutes = this.backfillMinutes;
-            
-            
-            
-            
-            c.tweetFields = this.tweetFields;
+            c.dryRun = this.dryRun;
             
             
             
             
-            c.expansions = this.expansions;
+            c.deleteAll = this.deleteAll;
             
             
             
-            
-            c.mediaFields = this.mediaFields;
-            
-            
-            
-            
-            c.pollFields = this.pollFields;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.placeFields = this.placeFields;
-            
-            
-            
-            
-            c.startTime = this.startTime;
-            
-            
-            
-            
-            c.endTime = this.endTime;
-            
-            
-            
-            
-            c.streamConfig = this.streamConfig;
             
             c.headers.putAll(this.headers);
             return c;
@@ -3365,623 +1995,1375 @@ public final class StreamClient {
 
 
 
+    /**
+     * Optional parameters for {@link #postsFirehoseKo}.
+     */
+    public static final class PostsFirehoseKoOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> pollFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> placeFields;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
 
+        public PostsFirehoseKoOptions() {}
 
-
-
-
-
-
-
-    
-    public EventStream<Schemas.StreamPostsSample10Response> postsSample10(Integer partition) {
-        return postsSample10(partition, new PostsSample10Options());
-    }
-    
-
-    public EventStream<Schemas.StreamPostsSample10Response> postsSample10(Integer partition, PostsSample10Options options) {
-        
-        PostsSample10Options opts = options != null ? options : new PostsSample10Options();
-        
-        String path = "/2/tweets/sample10/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "partition", partition);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
+        public static PostsFirehoseKoOptions builder() {
+            return new PostsFirehoseKoOptions();
+        }
 
         
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamPostsSample10Response.class,
-                opts.getStreamConfig());
         
-    }
+        
+        
+        public PostsFirehoseKoOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
 
-    
-    
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
 
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
 
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
 
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions pollFields(List<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
 
+        public List<String> getPollFields() {
+            return this.pollFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
 
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions placeFields(List<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
 
+        public List<String> getPlaceFields() {
+            return this.placeFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
 
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseKoOptions endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
 
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        public PostsFirehoseKoOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
 
-    
-    public EventStream<Schemas.StreamPostsSampleResponse> postsSample() {
-        return postsSample(new PostsSampleOptions());
-    }
-    
-
-    public EventStream<Schemas.StreamPostsSampleResponse> postsSample(PostsSampleOptions options) {
-        
-        PostsSampleOptions opts = options != null ? options : new PostsSampleOptions();
-        
-        String path = "/2/tweets/sample/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamPostsSampleResponse.class,
-                opts.getStreamConfig());
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public EventStream<Schemas.StreamLikesSample10Response> likesSample10(Integer partition) {
-        return likesSample10(partition, new LikesSample10Options());
-    }
-    
-
-    public EventStream<Schemas.StreamLikesSample10Response> likesSample10(Integer partition, LikesSample10Options options) {
-        
-        LikesSample10Options opts = options != null ? options : new LikesSample10Options();
-        
-        String path = "/2/likes/sample10/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "partition", partition);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "like_with_tweet_author.fields", opts.getLikeWithTweetAuthorFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
         
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
+        public PostsFirehoseKoOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
 
-        List<String> securitySchemes = Arrays.asList("BearerToken");
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
 
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamLikesSample10Response.class,
-                opts.getStreamConfig());
-        
+        public PostsFirehoseKoOptions copy() {
+            PostsFirehoseKoOptions c = new PostsFirehoseKoOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.pollFields = this.pollFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.placeFields = this.placeFields;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
     }
 
-    
-    
 
 
 
 
 
+    /**
+     * Optional parameters for {@link #posts}.
+     */
+    public static final class PostsOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> pollFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> placeFields;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
 
+        public PostsOptions() {}
 
-
-
-    
-    public EventStream<Schemas.StreamPostsResponse> posts() {
-        return posts(new PostsOptions());
-    }
-    
-
-    public EventStream<Schemas.StreamPostsResponse> posts(PostsOptions options) {
-        
-        PostsOptions opts = options != null ? options : new PostsOptions();
-        
-        String path = "/2/tweets/search/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
+        public static PostsOptions builder() {
+            return new PostsOptions();
+        }
 
         
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamPostsResponse.class,
-                opts.getStreamConfig());
         
-    }
+        
+        
+        public PostsOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
 
-    
-    
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
 
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
 
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
 
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
 
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
 
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions pollFields(List<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
 
+        public List<String> getPollFields() {
+            return this.pollFields;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
 
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public PostsOptions placeFields(List<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
 
+        public List<String> getPlaceFields() {
+            return this.placeFields;
+        }
+        
+        
+        
+        
+        public PostsOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
 
-    
-    public EventStream<Schemas.StreamPostsFirehoseResponse> postsFirehose(Integer partition) {
-        return postsFirehose(partition, new PostsFirehoseOptions());
-    }
-    
-
-    public EventStream<Schemas.StreamPostsFirehoseResponse> postsFirehose(Integer partition, PostsFirehoseOptions options) {
-        
-        PostsFirehoseOptions opts = options != null ? options : new PostsFirehoseOptions();
-        
-        String path = "/2/tweets/firehose/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "partition", partition);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamPostsFirehoseResponse.class,
-                opts.getStreamConfig());
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public EventStream<Schemas.StreamPostsFirehoseJaResponse> postsFirehoseJa(Integer partition) {
-        return postsFirehoseJa(partition, new PostsFirehoseJaOptions());
-    }
-    
-
-    public EventStream<Schemas.StreamPostsFirehoseJaResponse> postsFirehoseJa(Integer partition, PostsFirehoseJaOptions options) {
-        
-        PostsFirehoseJaOptions opts = options != null ? options : new PostsFirehoseJaOptions();
-        
-        String path = "/2/tweets/firehose/stream/lang/ja";
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
         
 
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "partition", partition);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
+        public PostsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
 
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                Schemas.StreamPostsFirehoseJaResponse.class,
-                opts.getStreamConfig());
-        
+        public PostsOptions copy() {
+            PostsOptions c = new PostsOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.pollFields = this.pollFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.placeFields = this.placeFields;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
     }
 
-    
-    
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #likesSample10}.
+     */
+    public static final class LikesSample10Options {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        private List<String> likeWithTweetAuthorFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public LikesSample10Options() {}
+
+        public static LikesSample10Options builder() {
+            return new LikesSample10Options();
+        }
+
+        
+        
+        
+        
+        public LikesSample10Options backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options likeWithTweetAuthorFields(List<String> likeWithTweetAuthorFields) {
+            this.likeWithTweetAuthorFields = likeWithTweetAuthorFields;
+            return this;
+        }
+
+        public List<String> getLikeWithTweetAuthorFields() {
+            return this.likeWithTweetAuthorFields;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public LikesSample10Options tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        public LikesSample10Options streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public LikesSample10Options header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public LikesSample10Options copy() {
+            LikesSample10Options c = new LikesSample10Options();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.likeWithTweetAuthorFields = this.likeWithTweetAuthorFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #usersCompliance}.
+     */
+    public static final class UsersComplianceOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public UsersComplianceOptions() {}
+
+        public static UsersComplianceOptions builder() {
+            return new UsersComplianceOptions();
+        }
+
+        
+        
+        
+        
+        public UsersComplianceOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public UsersComplianceOptions startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public UsersComplianceOptions endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        public UsersComplianceOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public UsersComplianceOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public UsersComplianceOptions copy() {
+            UsersComplianceOptions c = new UsersComplianceOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #postsSample10}.
+     */
+    public static final class PostsSample10Options {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> pollFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> placeFields;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public PostsSample10Options() {}
+
+        public static PostsSample10Options builder() {
+            return new PostsSample10Options();
+        }
+
+        
+        
+        
+        
+        public PostsSample10Options backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options pollFields(List<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        public List<String> getPollFields() {
+            return this.pollFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options placeFields(List<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        public List<String> getPlaceFields() {
+            return this.placeFields;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public PostsSample10Options endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        public PostsSample10Options streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public PostsSample10Options header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public PostsSample10Options copy() {
+            PostsSample10Options c = new PostsSample10Options();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.pollFields = this.pollFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.placeFields = this.placeFields;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #postsFirehose}.
+     */
+    public static final class PostsFirehoseOptions {
+        
+        
+        private Integer backfillMinutes;
+        
+        
+        
+        private List<String> tweetFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> mediaFields;
+        
+        
+        
+        private List<String> pollFields;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> placeFields;
+        
+        
+        
+        private String startTime;
+        
+        
+        
+        private String endTime;
+        
+        
+        
+        
+        private StreamConfig streamConfig;
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public PostsFirehoseOptions() {}
+
+        public static PostsFirehoseOptions builder() {
+            return new PostsFirehoseOptions();
+        }
+
+        
+        
+        
+        
+        public PostsFirehoseOptions backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        public Integer getBackfillMinutes() {
+            return this.backfillMinutes;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions tweetFields(List<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        public List<String> getTweetFields() {
+            return this.tweetFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions mediaFields(List<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        public List<String> getMediaFields() {
+            return this.mediaFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions pollFields(List<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        public List<String> getPollFields() {
+            return this.pollFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions placeFields(List<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        public List<String> getPlaceFields() {
+            return this.placeFields;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions startTime(String startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public String getStartTime() {
+            return this.startTime;
+        }
+        
+        
+        
+        
+        
+        public PostsFirehoseOptions endTime(String endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public String getEndTime() {
+            return this.endTime;
+        }
+        
+        
+        
+        
+        public PostsFirehoseOptions streamConfig(StreamConfig streamConfig) {
+            this.streamConfig = streamConfig;
+            return this;
+        }
+
+        public StreamConfig getStreamConfig() {
+            return this.streamConfig;
+        }
+        
+
+        public PostsFirehoseOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public PostsFirehoseOptions copy() {
+            PostsFirehoseOptions c = new PostsFirehoseOptions();
+            
+            
+            
+            c.backfillMinutes = this.backfillMinutes;
+            
+            
+            
+            
+            c.tweetFields = this.tweetFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.mediaFields = this.mediaFields;
+            
+            
+            
+            
+            c.pollFields = this.pollFields;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.placeFields = this.placeFields;
+            
+            
+            
+            
+            c.startTime = this.startTime;
+            
+            
+            
+            
+            c.endTime = this.endTime;
+            
+            
+            
+            
+            c.streamConfig = this.streamConfig;
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
 
 
 
@@ -4112,6 +3494,114 @@ public final class StreamClient {
 
 
     
+    public EventStream<Schemas.StreamPostsFirehoseJaResponse> postsFirehoseJa(Integer partition) {
+        return postsFirehoseJa(partition, new PostsFirehoseJaOptions());
+    }
+    
+
+    public EventStream<Schemas.StreamPostsFirehoseJaResponse> postsFirehoseJa(Integer partition, PostsFirehoseJaOptions options) {
+        
+        PostsFirehoseJaOptions opts = options != null ? options : new PostsFirehoseJaOptions();
+        
+        String path = "/2/tweets/firehose/stream/lang/ja";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "partition", partition);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.StreamPostsFirehoseJaResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
     public EventStream<JsonNode> labelsCompliance() {
         return labelsCompliance(new LabelsComplianceOptions());
     }
@@ -4129,6 +3619,444 @@ public final class StreamClient {
         
         
         XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                JsonNode.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<Schemas.StreamPostsFirehoseEnResponse> postsFirehoseEn(Integer partition) {
+        return postsFirehoseEn(partition, new PostsFirehoseEnOptions());
+    }
+    
+
+    public EventStream<Schemas.StreamPostsFirehoseEnResponse> postsFirehoseEn(Integer partition, PostsFirehoseEnOptions options) {
+        
+        PostsFirehoseEnOptions opts = options != null ? options : new PostsFirehoseEnOptions();
+        
+        String path = "/2/tweets/firehose/stream/lang/en";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "partition", partition);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.StreamPostsFirehoseEnResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<Schemas.StreamLikesFirehoseResponse> likesFirehose(Integer partition) {
+        return likesFirehose(partition, new LikesFirehoseOptions());
+    }
+    
+
+    public EventStream<Schemas.StreamLikesFirehoseResponse> likesFirehose(Integer partition, LikesFirehoseOptions options) {
+        
+        LikesFirehoseOptions opts = options != null ? options : new LikesFirehoseOptions();
+        
+        String path = "/2/likes/firehose/stream";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "partition", partition);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "like_with_tweet_author.fields", opts.getLikeWithTweetAuthorFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.StreamLikesFirehoseResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<Schemas.ActivityStreamResponse> activity() {
+        return activity(new ActivityOptions());
+    }
+    
+
+    public EventStream<Schemas.ActivityStreamResponse> activity(ActivityOptions options) {
+        
+        ActivityOptions opts = options != null ? options : new ActivityOptions();
+        
+        String path = "/2/activity/stream";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.ActivityStreamResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<Schemas.StreamPostsSampleResponse> postsSample() {
+        return postsSample(new PostsSampleOptions());
+    }
+    
+
+    public EventStream<Schemas.StreamPostsSampleResponse> postsSample(PostsSampleOptions options) {
+        
+        PostsSampleOptions opts = options != null ? options : new PostsSampleOptions();
+        
+        String path = "/2/tweets/sample/stream";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.StreamPostsSampleResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<JsonNode> postsCompliance(Integer partition) {
+        return postsCompliance(partition, new PostsComplianceOptions());
+    }
+    
+
+    public EventStream<JsonNode> postsCompliance(Integer partition, PostsComplianceOptions options) {
+        
+        PostsComplianceOptions opts = options != null ? options : new PostsComplianceOptions();
+        
+        String path = "/2/tweets/compliance/stream";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "partition", partition);
         
         
         
@@ -4324,16 +4252,16 @@ public final class StreamClient {
 
 
     
-    public EventStream<Schemas.ActivityStreamResponse> activity() {
-        return activity(new ActivityOptions());
+    public EventStream<Schemas.StreamPostsFirehosePtResponse> postsFirehosePt(Integer partition) {
+        return postsFirehosePt(partition, new PostsFirehosePtOptions());
     }
     
 
-    public EventStream<Schemas.ActivityStreamResponse> activity(ActivityOptions options) {
+    public EventStream<Schemas.StreamPostsFirehosePtResponse> postsFirehosePt(Integer partition, PostsFirehosePtOptions options) {
         
-        ActivityOptions opts = options != null ? options : new ActivityOptions();
+        PostsFirehosePtOptions opts = options != null ? options : new PostsFirehosePtOptions();
         
-        String path = "/2/activity/stream";
+        String path = "/2/tweets/firehose/stream/lang/pt";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -4341,6 +4269,48 @@ public final class StreamClient {
         
         
         XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "partition", partition);
         
         
         
@@ -4373,7 +4343,7 @@ public final class StreamClient {
                 extraHeaders,
                 requestBody,
                 securitySchemes,
-                Schemas.ActivityStreamResponse.class,
+                Schemas.StreamPostsFirehosePtResponse.class,
                 opts.getStreamConfig());
         
     }
@@ -4498,16 +4468,118 @@ public final class StreamClient {
 
 
     
-    public EventStream<Schemas.StreamLikesFirehoseResponse> likesFirehose(Integer partition) {
-        return likesFirehose(partition, new LikesFirehoseOptions());
+    public EventStream<Schemas.StreamPostsResponse> posts() {
+        return posts(new PostsOptions());
     }
     
 
-    public EventStream<Schemas.StreamLikesFirehoseResponse> likesFirehose(Integer partition, LikesFirehoseOptions options) {
+    public EventStream<Schemas.StreamPostsResponse> posts(PostsOptions options) {
         
-        LikesFirehoseOptions opts = options != null ? options : new LikesFirehoseOptions();
+        PostsOptions opts = options != null ? options : new PostsOptions();
         
-        String path = "/2/likes/firehose/stream";
+        String path = "/2/tweets/search/stream";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "tweet.fields", opts.getTweetFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.openStream(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                securitySchemes,
+                Schemas.StreamPostsResponse.class,
+                opts.getStreamConfig());
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public EventStream<Schemas.StreamLikesSample10Response> likesSample10(Integer partition) {
+        return likesSample10(partition, new LikesSample10Options());
+    }
+    
+
+    public EventStream<Schemas.StreamLikesSample10Response> likesSample10(Integer partition, LikesSample10Options options) {
+        
+        LikesSample10Options opts = options != null ? options : new LikesSample10Options();
+        
+        String path = "/2/likes/sample10/stream";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -4583,79 +4655,7 @@ public final class StreamClient {
                 extraHeaders,
                 requestBody,
                 securitySchemes,
-                Schemas.StreamLikesFirehoseResponse.class,
-                opts.getStreamConfig());
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public EventStream<JsonNode> postsCompliance(Integer partition) {
-        return postsCompliance(partition, new PostsComplianceOptions());
-    }
-    
-
-    public EventStream<JsonNode> postsCompliance(Integer partition, PostsComplianceOptions options) {
-        
-        PostsComplianceOptions opts = options != null ? options : new PostsComplianceOptions();
-        
-        String path = "/2/tweets/compliance/stream";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "backfill_minutes", opts.getBackfillMinutes());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "partition", partition);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "start_time", opts.getStartTime());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "end_time", opts.getEndTime());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.openStream(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                securitySchemes,
-                JsonNode.class,
+                Schemas.StreamLikesSample10Response.class,
                 opts.getStreamConfig());
         
     }
@@ -4744,16 +4744,16 @@ public final class StreamClient {
 
 
     
-    public EventStream<Schemas.StreamPostsFirehoseEnResponse> postsFirehoseEn(Integer partition) {
-        return postsFirehoseEn(partition, new PostsFirehoseEnOptions());
+    public EventStream<Schemas.StreamPostsSample10Response> postsSample10(Integer partition) {
+        return postsSample10(partition, new PostsSample10Options());
     }
     
 
-    public EventStream<Schemas.StreamPostsFirehoseEnResponse> postsFirehoseEn(Integer partition, PostsFirehoseEnOptions options) {
+    public EventStream<Schemas.StreamPostsSample10Response> postsSample10(Integer partition, PostsSample10Options options) {
         
-        PostsFirehoseEnOptions opts = options != null ? options : new PostsFirehoseEnOptions();
+        PostsSample10Options opts = options != null ? options : new PostsSample10Options();
         
-        String path = "/2/tweets/firehose/stream/lang/en";
+        String path = "/2/tweets/sample10/stream";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -4835,7 +4835,7 @@ public final class StreamClient {
                 extraHeaders,
                 requestBody,
                 securitySchemes,
-                Schemas.StreamPostsFirehoseEnResponse.class,
+                Schemas.StreamPostsSample10Response.class,
                 opts.getStreamConfig());
         
     }
@@ -4852,16 +4852,16 @@ public final class StreamClient {
 
 
     
-    public EventStream<Schemas.StreamPostsFirehosePtResponse> postsFirehosePt(Integer partition) {
-        return postsFirehosePt(partition, new PostsFirehosePtOptions());
+    public EventStream<Schemas.StreamPostsFirehoseResponse> postsFirehose(Integer partition) {
+        return postsFirehose(partition, new PostsFirehoseOptions());
     }
     
 
-    public EventStream<Schemas.StreamPostsFirehosePtResponse> postsFirehosePt(Integer partition, PostsFirehosePtOptions options) {
+    public EventStream<Schemas.StreamPostsFirehoseResponse> postsFirehose(Integer partition, PostsFirehoseOptions options) {
         
-        PostsFirehosePtOptions opts = options != null ? options : new PostsFirehosePtOptions();
+        PostsFirehoseOptions opts = options != null ? options : new PostsFirehoseOptions();
         
-        String path = "/2/tweets/firehose/stream/lang/pt";
+        String path = "/2/tweets/firehose/stream";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -4943,7 +4943,7 @@ public final class StreamClient {
                 extraHeaders,
                 requestBody,
                 securitySchemes,
-                Schemas.StreamPostsFirehosePtResponse.class,
+                Schemas.StreamPostsFirehoseResponse.class,
                 opts.getStreamConfig());
         
     }

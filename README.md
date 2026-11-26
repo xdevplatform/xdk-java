@@ -14,7 +14,7 @@ Official Java SDK for the X API v2 (Java 17+).
 <dependency>
     <groupId>com.x</groupId>
     <artifactId>xdk</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 

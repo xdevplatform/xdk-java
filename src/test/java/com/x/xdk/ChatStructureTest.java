@@ -29,38 +29,13 @@ public class ChatStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("markConversationUnread"),
-                "Expected method markConversationUnread on ChatClient");
+                declared.contains("createConversation"),
+                "Expected method createConversation on ChatClient");
         
         
         assertTrue(
-                declared.contains("removeGroupMembers"),
-                "Expected method removeGroupMembers on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("getConversation"),
-                "Expected method getConversation on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("updateGroup"),
-                "Expected method updateGroup on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteConversation"),
-                "Expected method deleteConversation on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("muteConversation"),
-                "Expected method muteConversation on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("unmuteConversation"),
-                "Expected method unmuteConversation on ChatClient");
+                declared.contains("mediaUploadFinalize"),
+                "Expected method mediaUploadFinalize on ChatClient");
         
         
         assertTrue(
@@ -74,18 +49,42 @@ public class ChatStructureTest {
         
         
         assertTrue(
-                declared.contains("enableGroupInvite"),
-                "Expected method enableGroupInvite on ChatClient");
+                declared.contains("addUserPublicKey"),
+                "Expected method addUserPublicKey on ChatClient");
         
         
         assertTrue(
-                declared.contains("disableGroupInvite"),
-                "Expected method disableGroupInvite on ChatClient");
+                declared.contains("getGroupInvite"),
+                "Expected method getGroupInvite on ChatClient");
         
         
         assertTrue(
-                declared.contains("getConversationPinnedMessages"),
-                "Expected method getConversationPinnedMessages on ChatClient");
+                declared.contains("addGroupMembers"),
+                "Expected method addGroupMembers on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("getConversations"),
+                "Expected method getConversations on ChatClient");
+        
+        assertTrue(
+                declared.contains("getConversationsPages"),
+                "Expected pagination helper getConversationsPages on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("mediaUploadAppend"),
+                "Expected method mediaUploadAppend on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("getMessageRequest"),
+                "Expected method getMessageRequest on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("sendMessage"),
+                "Expected method sendMessage on ChatClient");
         
         
         assertTrue(
@@ -99,81 +98,18 @@ public class ChatStructureTest {
         
         
         assertTrue(
-                declared.contains("addGroupMembers"),
-                "Expected method addGroupMembers on ChatClient");
+                declared.contains("getSettings"),
+                "Expected method getSettings on ChatClient");
         
         
         assertTrue(
-                declared.contains("markConversationRead"),
-                "Expected method markConversationRead on ChatClient");
+                declared.contains("updateSettings"),
+                "Expected method updateSettings on ChatClient");
         
         
         assertTrue(
-                declared.contains("deleteMessages"),
-                "Expected method deleteMessages on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("addGroupAdmins"),
-                "Expected method addGroupAdmins on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("getConversations"),
-                "Expected method getConversations on ChatClient");
-        
-        assertTrue(
-                declared.contains("getConversationsPages"),
-                "Expected pagination helper getConversationsPages on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("mediaUploadInitialize"),
-                "Expected method mediaUploadInitialize on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("approveGroupAdminRequest"),
-                "Expected method approveGroupAdminRequest on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("mediaDownload"),
-                "Expected method mediaDownload on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("rejectGroupJoinRequests"),
-                "Expected method rejectGroupJoinRequests on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("archiveConversation"),
-                "Expected method archiveConversation on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("unarchiveConversation"),
-                "Expected method unarchiveConversation on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("getConversationEvents"),
-                "Expected method getConversationEvents on ChatClient");
-        
-        assertTrue(
-                declared.contains("getConversationEventsPages"),
-                "Expected pagination helper getConversationEventsPages on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("removeGroupAdmins"),
-                "Expected method removeGroupAdmins on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("rejectGroupAdminRequest"),
-                "Expected method rejectGroupAdminRequest on ChatClient");
+                declared.contains("updateConversationScreenCapture"),
+                "Expected method updateConversationScreenCapture on ChatClient");
         
         
         assertTrue(
@@ -186,58 +122,33 @@ public class ChatStructureTest {
         
         
         assertTrue(
+                declared.contains("markConversationUnread"),
+                "Expected method markConversationUnread on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("initializeGroup"),
+                "Expected method initializeGroup on ChatClient");
+        
+        
+        assertTrue(
                 declared.contains("sendTypingIndicator"),
                 "Expected method sendTypingIndicator on ChatClient");
         
         
         assertTrue(
-                declared.contains("addConversationKeys"),
-                "Expected method addConversationKeys on ChatClient");
+                declared.contains("rejectGroupJoinRequests"),
+                "Expected method rejectGroupJoinRequests on ChatClient");
         
         
         assertTrue(
-                declared.contains("getSettings"),
-                "Expected method getSettings on ChatClient");
+                declared.contains("rejectGroupAdminRequest"),
+                "Expected method rejectGroupAdminRequest on ChatClient");
         
         
         assertTrue(
-                declared.contains("updateSettings"),
-                "Expected method updateSettings on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("getMessageRequest"),
-                "Expected method getMessageRequest on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("getGroupInvite"),
-                "Expected method getGroupInvite on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("mediaUploadFinalize"),
-                "Expected method mediaUploadFinalize on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("updateGroupAdminSettings"),
-                "Expected method updateGroupAdminSettings on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("updateConversationScreenCapture"),
-                "Expected method updateConversationScreenCapture on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("mediaUploadAppend"),
-                "Expected method mediaUploadAppend on ChatClient");
-        
-        
-        assertTrue(
-                declared.contains("createConversation"),
-                "Expected method createConversation on ChatClient");
+                declared.contains("mediaDownload"),
+                "Expected method mediaDownload on ChatClient");
         
         
         assertTrue(
@@ -246,23 +157,122 @@ public class ChatStructureTest {
         
         
         assertTrue(
+                declared.contains("unmuteConversation"),
+                "Expected method unmuteConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("unarchiveConversation"),
+                "Expected method unarchiveConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("mediaUploadInitialize"),
+                "Expected method mediaUploadInitialize on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("archiveConversation"),
+                "Expected method archiveConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("unarchiveConversationLegacy"),
+                "Expected method unarchiveConversationLegacy on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteConversation"),
+                "Expected method deleteConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("removeGroupAdmins"),
+                "Expected method removeGroupAdmins on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("markConversationRead"),
+                "Expected method markConversationRead on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("getConversationPinnedMessages"),
+                "Expected method getConversationPinnedMessages on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("muteConversation"),
+                "Expected method muteConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("updateGroupAdminSettings"),
+                "Expected method updateGroupAdminSettings on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("addConversationKeys"),
+                "Expected method addConversationKeys on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("disableGroupInvite"),
+                "Expected method disableGroupInvite on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("enableGroupInvite"),
+                "Expected method enableGroupInvite on ChatClient");
+        
+        
+        assertTrue(
                 declared.contains("deleteConversationMessageTtl"),
                 "Expected method deleteConversationMessageTtl on ChatClient");
         
         
         assertTrue(
-                declared.contains("sendMessage"),
-                "Expected method sendMessage on ChatClient");
+                declared.contains("removeGroupMembers"),
+                "Expected method removeGroupMembers on ChatClient");
         
         
         assertTrue(
-                declared.contains("addUserPublicKey"),
-                "Expected method addUserPublicKey on ChatClient");
+                declared.contains("getConversationEvents"),
+                "Expected method getConversationEvents on ChatClient");
+        
+        assertTrue(
+                declared.contains("getConversationEventsPages"),
+                "Expected pagination helper getConversationEventsPages on ChatClient");
         
         
         assertTrue(
-                declared.contains("initializeGroup"),
-                "Expected method initializeGroup on ChatClient");
+                declared.contains("deleteMessages"),
+                "Expected method deleteMessages on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("getConversation"),
+                "Expected method getConversation on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("updateGroup"),
+                "Expected method updateGroup on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteConversationLegacy"),
+                "Expected method deleteConversationLegacy on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("approveGroupAdminRequest"),
+                "Expected method approveGroupAdminRequest on ChatClient");
+        
+        
+        assertTrue(
+                declared.contains("addGroupAdmins"),
+                "Expected method addGroupAdmins on ChatClient");
         
         
     }

@@ -42,441 +42,6 @@ public final class ListsClient {
 
 
 
-
-
-
-
-    /**
-     * Optional parameters for {@link #getById}.
-     */
-    public static final class GetByIdOptions {
-        
-        
-        private List<String> listFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetByIdOptions() {}
-
-        public static GetByIdOptions builder() {
-            return new GetByIdOptions();
-        }
-
-        
-        
-        
-        
-        public GetByIdOptions listFields(List<String> listFields) {
-            this.listFields = listFields;
-            return this;
-        }
-
-        public List<String> getListFields() {
-            return this.listFields;
-        }
-        
-        
-        
-        
-        
-        public GetByIdOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetByIdOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-
-        public GetByIdOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetByIdOptions copy() {
-            GetByIdOptions c = new GetByIdOptions();
-            
-            
-            
-            c.listFields = this.listFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getMembers}.
-     */
-    public static final class GetMembersOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetMembersOptions() {}
-
-        public static GetMembersOptions builder() {
-            return new GetMembersOptions();
-        }
-
-        
-        
-        
-        
-        public GetMembersOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetMembersOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
-
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
-        
-        
-        
-        
-
-        public GetMembersOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetMembersOptions copy() {
-            GetMembersOptions c = new GetMembersOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getFollowers}.
-     */
-    public static final class GetFollowersOptions {
-        
-        
-        private Integer maxResults;
-        
-        
-        
-        private String paginationToken;
-        
-        
-        
-        private List<String> userFields;
-        
-        
-        
-        private List<String> expansions;
-        
-        
-        
-        private List<String> postFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetFollowersOptions() {}
-
-        public static GetFollowersOptions builder() {
-            return new GetFollowersOptions();
-        }
-
-        
-        
-        
-        
-        public GetFollowersOptions maxResults(Integer maxResults) {
-            this.maxResults = maxResults;
-            return this;
-        }
-
-        public Integer getMaxResults() {
-            return this.maxResults;
-        }
-        
-        
-        
-        
-        
-        public GetFollowersOptions paginationToken(String paginationToken) {
-            this.paginationToken = paginationToken;
-            return this;
-        }
-
-        public String getPaginationToken() {
-            return this.paginationToken;
-        }
-        
-        
-        
-        
-        
-        public GetFollowersOptions userFields(List<String> userFields) {
-            this.userFields = userFields;
-            return this;
-        }
-
-        public List<String> getUserFields() {
-            return this.userFields;
-        }
-        
-        
-        
-        
-        
-        public GetFollowersOptions expansions(List<String> expansions) {
-            this.expansions = expansions;
-            return this;
-        }
-
-        public List<String> getExpansions() {
-            return this.expansions;
-        }
-        
-        
-        
-        
-        
-        public GetFollowersOptions postFields(List<String> postFields) {
-            this.postFields = postFields;
-            return this;
-        }
-
-        public List<String> getPostFields() {
-            return this.postFields;
-        }
-        
-        
-        
-        
-
-        public GetFollowersOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetFollowersOptions copy() {
-            GetFollowersOptions c = new GetFollowersOptions();
-            
-            
-            
-            c.maxResults = this.maxResults;
-            
-            
-            
-            
-            c.paginationToken = this.paginationToken;
-            
-            
-            
-            
-            c.userFields = this.userFields;
-            
-            
-            
-            
-            c.expansions = this.expansions;
-            
-            
-            
-            
-            c.postFields = this.postFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
     /**
      * Optional parameters for {@link #getPosts}.
      */
@@ -696,6 +261,663 @@ public final class ListsClient {
 
 
 
+    /**
+     * Optional parameters for {@link #getMembers}.
+     */
+    public static final class GetMembersOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetMembersOptions() {}
+
+        public static GetMembersOptions builder() {
+            return new GetMembersOptions();
+        }
+
+        
+        
+        
+        
+        public GetMembersOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetMembersOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+
+        public GetMembersOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetMembersOptions copy() {
+            GetMembersOptions c = new GetMembersOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getById}.
+     */
+    public static final class GetByIdOptions {
+        
+        
+        private List<String> listFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetByIdOptions() {}
+
+        public static GetByIdOptions builder() {
+            return new GetByIdOptions();
+        }
+
+        
+        
+        
+        
+        public GetByIdOptions listFields(List<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        public List<String> getListFields() {
+            return this.listFields;
+        }
+        
+        
+        
+        
+        
+        public GetByIdOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetByIdOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+
+        public GetByIdOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetByIdOptions copy() {
+            GetByIdOptions c = new GetByIdOptions();
+            
+            
+            
+            c.listFields = this.listFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getFollowers}.
+     */
+    public static final class GetFollowersOptions {
+        
+        
+        private Integer maxResults;
+        
+        
+        
+        private String paginationToken;
+        
+        
+        
+        private List<String> userFields;
+        
+        
+        
+        private List<String> expansions;
+        
+        
+        
+        private List<String> postFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetFollowersOptions() {}
+
+        public static GetFollowersOptions builder() {
+            return new GetFollowersOptions();
+        }
+
+        
+        
+        
+        
+        public GetFollowersOptions maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        public Integer getMaxResults() {
+            return this.maxResults;
+        }
+        
+        
+        
+        
+        
+        public GetFollowersOptions paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        public String getPaginationToken() {
+            return this.paginationToken;
+        }
+        
+        
+        
+        
+        
+        public GetFollowersOptions userFields(List<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        public List<String> getUserFields() {
+            return this.userFields;
+        }
+        
+        
+        
+        
+        
+        public GetFollowersOptions expansions(List<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        public List<String> getExpansions() {
+            return this.expansions;
+        }
+        
+        
+        
+        
+        
+        public GetFollowersOptions postFields(List<String> postFields) {
+            this.postFields = postFields;
+            return this;
+        }
+
+        public List<String> getPostFields() {
+            return this.postFields;
+        }
+        
+        
+        
+        
+
+        public GetFollowersOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetFollowersOptions copy() {
+            GetFollowersOptions c = new GetFollowersOptions();
+            
+            
+            
+            c.maxResults = this.maxResults;
+            
+            
+            
+            
+            c.paginationToken = this.paginationToken;
+            
+            
+            
+            
+            c.userFields = this.userFields;
+            
+            
+            
+            
+            c.expansions = this.expansions;
+            
+            
+            
+            
+            c.postFields = this.postFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetListsPostsResponse getPosts(String id) {
+        return getPosts(id, new GetPostsOptions());
+    }
+    
+
+    public Schemas.GetListsPostsResponse getPosts(String id, GetPostsOptions options) {
+        
+        GetPostsOptions opts = options != null ? options : new GetPostsOptions();
+        
+        String path = "/2/lists/{id}/tweets";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetListsPostsResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetListsPostsResponse> getPostsPages(String id) {
+        return getPostsPages(id, new GetPostsOptions());
+    }
+
+    public Paginator<Schemas.GetListsPostsResponse> getPostsPages(String id, GetPostsOptions options) {
+        GetPostsOptions baseOpts = options != null ? options.copy() : new GetPostsOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetPostsOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getPosts(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetListsMembersResponse getMembers(String id) {
+        return getMembers(id, new GetMembersOptions());
+    }
+    
+
+    public Schemas.GetListsMembersResponse getMembers(String id, GetMembersOptions options) {
+        
+        GetMembersOptions opts = options != null ? options : new GetMembersOptions();
+        
+        String path = "/2/lists/{id}/members";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetListsMembersResponse.class);
+        
+    }
+
+    
+    
+    
+    
+    
+
+    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id) {
+        return getMembersPages(id, new GetMembersOptions());
+    }
+
+    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id, GetMembersOptions options) {
+        GetMembersOptions baseOpts = options != null ? options.copy() : new GetMembersOptions();
+        String initialToken = baseOpts.getPaginationToken();
+        return new Paginator<>(
+                token -> {
+                    GetMembersOptions pageOpts = baseOpts.copy();
+                    pageOpts.paginationToken(token);
+                    return getMembers(id, pageOpts);
+                },
+                initialToken);
+    }
+    
+
 
 
 
@@ -706,9 +928,13 @@ public final class ListsClient {
 
     
 
-    public Schemas.CreateListsResponse create(Schemas.CreateListsRequest body) {
+    public Schemas.AddListsMemberResponse addMember(String id, Schemas.AddListsMemberRequest body) {
         
-        String path = "/2/lists";
+        String path = "/2/lists/{id}/members";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
@@ -731,7 +957,7 @@ public final class ListsClient {
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.CreateListsResponse.class);
+                Schemas.AddListsMemberResponse.class);
         
     }
 
@@ -959,154 +1185,6 @@ public final class ListsClient {
 
 
     
-    public Schemas.GetListsMembersResponse getMembers(String id) {
-        return getMembers(id, new GetMembersOptions());
-    }
-    
-
-    public Schemas.GetListsMembersResponse getMembers(String id, GetMembersOptions options) {
-        
-        GetMembersOptions opts = options != null ? options : new GetMembersOptions();
-        
-        String path = "/2/lists/{id}/members";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetListsMembersResponse.class);
-        
-    }
-
-    
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id) {
-        return getMembersPages(id, new GetMembersOptions());
-    }
-
-    public Paginator<Schemas.GetListsMembersResponse> getMembersPages(String id, GetMembersOptions options) {
-        GetMembersOptions baseOpts = options != null ? options.copy() : new GetMembersOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetMembersOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getMembers(id, pageOpts);
-                },
-                initialToken);
-    }
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.AddListsMemberResponse addMember(String id, Schemas.AddListsMemberRequest body) {
-        
-        String path = "/2/lists/{id}/members";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.AddListsMemberResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
     public Schemas.GetListsFollowersResponse getFollowers(String id) {
         return getFollowers(id, new GetFollowersOptions());
     }
@@ -1209,115 +1287,37 @@ public final class ListsClient {
 
 
     
-    public Schemas.GetListsPostsResponse getPosts(String id) {
-        return getPosts(id, new GetPostsOptions());
-    }
-    
 
-    public Schemas.GetListsPostsResponse getPosts(String id, GetPostsOptions options) {
+    public Schemas.CreateListsResponse create(Schemas.CreateListsRequest body) {
         
-        GetPostsOptions opts = options != null ? options : new GetPostsOptions();
-        
-        String path = "/2/lists/{id}/tweets";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
+        String path = "/2/lists";
         
 
         Map<String, String> queryParams = new LinkedHashMap<>();
         
-        
-        
-        XClient.addQueryParam(queryParams, "max_results", opts.getMaxResults());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "pagination_token", opts.getPaginationToken());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "post.fields", opts.getPostFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "expansions", opts.getExpansions());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "user.fields", opts.getUserFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "media.fields", opts.getMediaFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "poll.fields", opts.getPollFields());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "place.fields", opts.getPlaceFields());
-        
-        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
         
 
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
 
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
+        Object requestBody = body;
         String contentType = "application/json";
 
         
         return client.sendJson(
-                "GET",
+                "POST",
                 path,
                 queryParams,
                 extraHeaders,
                 requestBody,
                 contentType,
                 securitySchemes,
-                Schemas.GetListsPostsResponse.class);
+                Schemas.CreateListsResponse.class);
         
     }
 
     
-    
-    
-    
-    
-
-    public Paginator<Schemas.GetListsPostsResponse> getPostsPages(String id) {
-        return getPostsPages(id, new GetPostsOptions());
-    }
-
-    public Paginator<Schemas.GetListsPostsResponse> getPostsPages(String id, GetPostsOptions options) {
-        GetPostsOptions baseOpts = options != null ? options.copy() : new GetPostsOptions();
-        String initialToken = baseOpts.getPaginationToken();
-        return new Paginator<>(
-                token -> {
-                    GetPostsOptions pageOpts = baseOpts.copy();
-                    pageOpts.paginationToken(token);
-                    return getPosts(id, pageOpts);
-                },
-                initialToken);
-    }
     
 
 }

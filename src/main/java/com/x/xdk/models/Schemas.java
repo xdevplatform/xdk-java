@@ -10875,6 +10875,229 @@ public final class Schemas {
 
 
     /**
+     * Model for DeleteChatConversationLegacyActionSignatures
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyActionSignatures {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Base64-encoded Thrift MessageEventDetail for the signed action. */
+        @JsonProperty("encoded_message_event_detail")
+        private String encodedMessageEventDetail;
+        @JsonProperty("message_event_signature")
+        private DeleteChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature;
+        /** Client-generated ID of the message being signed. */
+        @JsonProperty("message_id")
+        private String messageId;
+        /** Payload string the client signed; used only in server-side failure logs. */
+        @JsonProperty("signature_payload")
+        private String signaturePayload;
+
+        public DeleteChatConversationLegacyActionSignatures() {}
+
+        public String getEncodedMessageEventDetail() { return this.encodedMessageEventDetail; }
+        public void setEncodedMessageEventDetail(String encodedMessageEventDetail) { this.encodedMessageEventDetail = encodedMessageEventDetail; }
+        public DeleteChatConversationLegacyActionSignatures encodedMessageEventDetail(String encodedMessageEventDetail) { this.encodedMessageEventDetail = encodedMessageEventDetail; return this; }
+
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature getMessageEventSignature() { return this.messageEventSignature; }
+        public void setMessageEventSignature(DeleteChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature) { this.messageEventSignature = messageEventSignature; }
+        public DeleteChatConversationLegacyActionSignatures messageEventSignature(DeleteChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature) { this.messageEventSignature = messageEventSignature; return this; }
+
+        public String getMessageId() { return this.messageId; }
+        public void setMessageId(String messageId) { this.messageId = messageId; }
+        public DeleteChatConversationLegacyActionSignatures messageId(String messageId) { this.messageId = messageId; return this; }
+
+        public String getSignaturePayload() { return this.signaturePayload; }
+        public void setSignaturePayload(String signaturePayload) { this.signaturePayload = signaturePayload; }
+        public DeleteChatConversationLegacyActionSignatures signaturePayload(String signaturePayload) { this.signaturePayload = signaturePayload; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for DeleteChatConversationLegacyActionSignaturesMessageEventSignature
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyActionSignaturesMessageEventSignature {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** List of signing key information for message verification. */
+        @JsonProperty("message_signing_key_info_list")
+        private List<DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList;
+        /** The version of the public key used for signing. */
+        @JsonProperty("public_key_version")
+        private String publicKeyVersion;
+        /** The signature of the message event. */
+        @JsonProperty("signature")
+        private String signature;
+        /** The version of the signature algorithm. */
+        @JsonProperty("signature_version")
+        private String signatureVersion;
+        /** The public key used for signing. */
+        @JsonProperty("signing_public_key")
+        private String signingPublicKey;
+
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature() {}
+
+        public List<DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> getMessageSigningKeyInfoList() { return this.messageSigningKeyInfoList; }
+        public void setMessageSigningKeyInfoList(List<DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList) { this.messageSigningKeyInfoList = messageSigningKeyInfoList; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature messageSigningKeyInfoList(List<DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList) { this.messageSigningKeyInfoList = messageSigningKeyInfoList; return this; }
+
+        public String getPublicKeyVersion() { return this.publicKeyVersion; }
+        public void setPublicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature publicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; return this; }
+
+        public String getSignature() { return this.signature; }
+        public void setSignature(String signature) { this.signature = signature; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature signature(String signature) { this.signature = signature; return this; }
+
+        public String getSignatureVersion() { return this.signatureVersion; }
+        public void setSignatureVersion(String signatureVersion) { this.signatureVersion = signatureVersion; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature signatureVersion(String signatureVersion) { this.signatureVersion = signatureVersion; return this; }
+
+        public String getSigningPublicKey() { return this.signingPublicKey; }
+        public void setSigningPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignature signingPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** The member ID associated with this signing key. */
+        @JsonProperty("member_id")
+        private String memberId;
+        /** The version of the public key. */
+        @JsonProperty("public_key_version")
+        private String publicKeyVersion;
+        /** The signing public key. */
+        @JsonProperty("signing_public_key")
+        private String signingPublicKey;
+
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList() {}
+
+        public String getMemberId() { return this.memberId; }
+        public void setMemberId(String memberId) { this.memberId = memberId; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList memberId(String memberId) { this.memberId = memberId; return this; }
+
+        public String getPublicKeyVersion() { return this.publicKeyVersion; }
+        public void setPublicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList publicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; return this; }
+
+        public String getSigningPublicKey() { return this.signingPublicKey; }
+        public void setSigningPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; }
+        public DeleteChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList signingPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for DeleteChatConversationLegacyRequest
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyRequest {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Signatures for this action, forwarded in the order they are sent. */
+        @JsonProperty("action_signatures")
+        private List<DeleteChatConversationLegacyActionSignatures> actionSignatures;
+
+        public DeleteChatConversationLegacyRequest() {}
+
+        public List<DeleteChatConversationLegacyActionSignatures> getActionSignatures() { return this.actionSignatures; }
+        public void setActionSignatures(List<DeleteChatConversationLegacyActionSignatures> actionSignatures) { this.actionSignatures = actionSignatures; }
+        public DeleteChatConversationLegacyRequest actionSignatures(List<DeleteChatConversationLegacyActionSignatures> actionSignatures) { this.actionSignatures = actionSignatures; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for DeleteChatConversationLegacyResponse
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyResponse {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        @JsonProperty("data")
+        private DeleteChatConversationLegacyResponseData data;
+        @JsonProperty("errors")
+        private List<JsonNode> errors;
+
+        public DeleteChatConversationLegacyResponse() {}
+
+        public DeleteChatConversationLegacyResponseData getData() { return this.data; }
+        public void setData(DeleteChatConversationLegacyResponseData data) { this.data = data; }
+        public DeleteChatConversationLegacyResponse data(DeleteChatConversationLegacyResponseData data) { this.data = data; return this; }
+
+        public List<JsonNode> getErrors() { return this.errors; }
+        public void setErrors(List<JsonNode> errors) { this.errors = errors; }
+        public DeleteChatConversationLegacyResponse errors(List<JsonNode> errors) { this.errors = errors; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for DeleteChatConversationLegacyResponseData
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DeleteChatConversationLegacyResponseData {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Whether the conversation was deleted. */
+        @JsonProperty("deleted")
+        private Boolean deleted;
+
+        public DeleteChatConversationLegacyResponseData() {}
+
+        public Boolean getDeleted() { return this.deleted; }
+        public void setDeleted(Boolean deleted) { this.deleted = deleted; }
+        public DeleteChatConversationLegacyResponseData deleted(Boolean deleted) { this.deleted = deleted; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
      * Model for DeleteChatConversationMessageTtlActionSignatures
      */
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -31305,6 +31528,229 @@ public final class Schemas {
         public String getSigningPublicKey() { return this.signingPublicKey; }
         public void setSigningPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; }
         public UnarchiveChatConversationActionSignaturesMessageEventSignatureMessageSigningKeyInfoList signingPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyActionSignatures
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyActionSignatures {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Base64-encoded Thrift MessageEventDetail for the signed action. */
+        @JsonProperty("encoded_message_event_detail")
+        private String encodedMessageEventDetail;
+        @JsonProperty("message_event_signature")
+        private UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature;
+        /** Client-generated ID of the message being signed. */
+        @JsonProperty("message_id")
+        private String messageId;
+        /** Payload string the client signed; used only in server-side failure logs. */
+        @JsonProperty("signature_payload")
+        private String signaturePayload;
+
+        public UnarchiveChatConversationLegacyActionSignatures() {}
+
+        public String getEncodedMessageEventDetail() { return this.encodedMessageEventDetail; }
+        public void setEncodedMessageEventDetail(String encodedMessageEventDetail) { this.encodedMessageEventDetail = encodedMessageEventDetail; }
+        public UnarchiveChatConversationLegacyActionSignatures encodedMessageEventDetail(String encodedMessageEventDetail) { this.encodedMessageEventDetail = encodedMessageEventDetail; return this; }
+
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature getMessageEventSignature() { return this.messageEventSignature; }
+        public void setMessageEventSignature(UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature) { this.messageEventSignature = messageEventSignature; }
+        public UnarchiveChatConversationLegacyActionSignatures messageEventSignature(UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature messageEventSignature) { this.messageEventSignature = messageEventSignature; return this; }
+
+        public String getMessageId() { return this.messageId; }
+        public void setMessageId(String messageId) { this.messageId = messageId; }
+        public UnarchiveChatConversationLegacyActionSignatures messageId(String messageId) { this.messageId = messageId; return this; }
+
+        public String getSignaturePayload() { return this.signaturePayload; }
+        public void setSignaturePayload(String signaturePayload) { this.signaturePayload = signaturePayload; }
+        public UnarchiveChatConversationLegacyActionSignatures signaturePayload(String signaturePayload) { this.signaturePayload = signaturePayload; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** List of signing key information for message verification. */
+        @JsonProperty("message_signing_key_info_list")
+        private List<UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList;
+        /** The version of the public key used for signing. */
+        @JsonProperty("public_key_version")
+        private String publicKeyVersion;
+        /** The signature of the message event. */
+        @JsonProperty("signature")
+        private String signature;
+        /** The version of the signature algorithm. */
+        @JsonProperty("signature_version")
+        private String signatureVersion;
+        /** The public key used for signing. */
+        @JsonProperty("signing_public_key")
+        private String signingPublicKey;
+
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature() {}
+
+        public List<UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> getMessageSigningKeyInfoList() { return this.messageSigningKeyInfoList; }
+        public void setMessageSigningKeyInfoList(List<UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList) { this.messageSigningKeyInfoList = messageSigningKeyInfoList; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature messageSigningKeyInfoList(List<UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList> messageSigningKeyInfoList) { this.messageSigningKeyInfoList = messageSigningKeyInfoList; return this; }
+
+        public String getPublicKeyVersion() { return this.publicKeyVersion; }
+        public void setPublicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature publicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; return this; }
+
+        public String getSignature() { return this.signature; }
+        public void setSignature(String signature) { this.signature = signature; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature signature(String signature) { this.signature = signature; return this; }
+
+        public String getSignatureVersion() { return this.signatureVersion; }
+        public void setSignatureVersion(String signatureVersion) { this.signatureVersion = signatureVersion; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature signatureVersion(String signatureVersion) { this.signatureVersion = signatureVersion; return this; }
+
+        public String getSigningPublicKey() { return this.signingPublicKey; }
+        public void setSigningPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignature signingPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** The member ID associated with this signing key. */
+        @JsonProperty("member_id")
+        private String memberId;
+        /** The version of the public key. */
+        @JsonProperty("public_key_version")
+        private String publicKeyVersion;
+        /** The signing public key. */
+        @JsonProperty("signing_public_key")
+        private String signingPublicKey;
+
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList() {}
+
+        public String getMemberId() { return this.memberId; }
+        public void setMemberId(String memberId) { this.memberId = memberId; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList memberId(String memberId) { this.memberId = memberId; return this; }
+
+        public String getPublicKeyVersion() { return this.publicKeyVersion; }
+        public void setPublicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList publicKeyVersion(String publicKeyVersion) { this.publicKeyVersion = publicKeyVersion; return this; }
+
+        public String getSigningPublicKey() { return this.signingPublicKey; }
+        public void setSigningPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; }
+        public UnarchiveChatConversationLegacyActionSignaturesMessageEventSignatureMessageSigningKeyInfoList signingPublicKey(String signingPublicKey) { this.signingPublicKey = signingPublicKey; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyRequest
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyRequest {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Signatures for this action, forwarded in the order they are sent. */
+        @JsonProperty("action_signatures")
+        private List<UnarchiveChatConversationLegacyActionSignatures> actionSignatures;
+
+        public UnarchiveChatConversationLegacyRequest() {}
+
+        public List<UnarchiveChatConversationLegacyActionSignatures> getActionSignatures() { return this.actionSignatures; }
+        public void setActionSignatures(List<UnarchiveChatConversationLegacyActionSignatures> actionSignatures) { this.actionSignatures = actionSignatures; }
+        public UnarchiveChatConversationLegacyRequest actionSignatures(List<UnarchiveChatConversationLegacyActionSignatures> actionSignatures) { this.actionSignatures = actionSignatures; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyResponse
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyResponse {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        @JsonProperty("data")
+        private UnarchiveChatConversationLegacyResponseData data;
+        @JsonProperty("errors")
+        private List<JsonNode> errors;
+
+        public UnarchiveChatConversationLegacyResponse() {}
+
+        public UnarchiveChatConversationLegacyResponseData getData() { return this.data; }
+        public void setData(UnarchiveChatConversationLegacyResponseData data) { this.data = data; }
+        public UnarchiveChatConversationLegacyResponse data(UnarchiveChatConversationLegacyResponseData data) { this.data = data; return this; }
+
+        public List<JsonNode> getErrors() { return this.errors; }
+        public void setErrors(List<JsonNode> errors) { this.errors = errors; }
+        public UnarchiveChatConversationLegacyResponse errors(List<JsonNode> errors) { this.errors = errors; return this; }
+
+        @JsonAnyGetter
+        public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
+
+        @JsonAnySetter
+        public void setAdditionalProperty(String name, Object value) { this.additionalProperties.put(name, value); }
+    }
+
+
+    /**
+     * Model for UnarchiveChatConversationLegacyResponseData
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class UnarchiveChatConversationLegacyResponseData {
+        private final Map<String, Object> additionalProperties = new LinkedHashMap<>();
+
+        /** Whether the conversation is archived for the authenticated user. */
+        @JsonProperty("archived")
+        private Boolean archived;
+
+        public UnarchiveChatConversationLegacyResponseData() {}
+
+        public Boolean getArchived() { return this.archived; }
+        public void setArchived(Boolean archived) { this.archived = archived; }
+        public UnarchiveChatConversationLegacyResponseData archived(Boolean archived) { this.archived = archived; return this; }
 
         @JsonAnyGetter
         public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }

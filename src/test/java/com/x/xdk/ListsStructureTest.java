@@ -29,8 +29,26 @@ public class ListsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("create"),
-                "Expected method create on ListsClient");
+                declared.contains("getPosts"),
+                "Expected method getPosts on ListsClient");
+        
+        assertTrue(
+                declared.contains("getPostsPages"),
+                "Expected pagination helper getPostsPages on ListsClient");
+        
+        
+        assertTrue(
+                declared.contains("getMembers"),
+                "Expected method getMembers on ListsClient");
+        
+        assertTrue(
+                declared.contains("getMembersPages"),
+                "Expected pagination helper getMembersPages on ListsClient");
+        
+        
+        assertTrue(
+                declared.contains("addMember"),
+                "Expected method addMember on ListsClient");
         
         
         assertTrue(
@@ -54,20 +72,6 @@ public class ListsStructureTest {
         
         
         assertTrue(
-                declared.contains("getMembers"),
-                "Expected method getMembers on ListsClient");
-        
-        assertTrue(
-                declared.contains("getMembersPages"),
-                "Expected pagination helper getMembersPages on ListsClient");
-        
-        
-        assertTrue(
-                declared.contains("addMember"),
-                "Expected method addMember on ListsClient");
-        
-        
-        assertTrue(
                 declared.contains("getFollowers"),
                 "Expected method getFollowers on ListsClient");
         
@@ -77,12 +81,8 @@ public class ListsStructureTest {
         
         
         assertTrue(
-                declared.contains("getPosts"),
-                "Expected method getPosts on ListsClient");
-        
-        assertTrue(
-                declared.contains("getPostsPages"),
-                "Expected pagination helper getPostsPages on ListsClient");
+                declared.contains("create"),
+                "Expected method create on ListsClient");
         
         
     }

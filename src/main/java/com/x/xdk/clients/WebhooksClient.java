@@ -42,22 +42,6 @@ public final class WebhooksClient {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Optional parameters for {@link #get}.
      */
@@ -134,6 +118,160 @@ public final class WebhooksClient {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetWebhooksResponse get() {
+        return get(new GetOptions());
+    }
+    
+
+    public Schemas.GetWebhooksResponse get(GetOptions options) {
+        
+        GetOptions opts = options != null ? options : new GetOptions();
+        
+        String path = "/2/webhooks";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "webhook_config.fields", opts.getWebhookConfigFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetWebhooksResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateWebhooksResponse create(Schemas.CreateWebhooksRequest body) {
+        
+        String path = "/2/webhooks";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateWebhooksResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateWebhookReplayJobResponse createWebhookReplayJob(Schemas.CreateWebhookReplayJobRequest body) {
+        
+        String path = "/2/webhooks/replay";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateWebhookReplayJobResponse.class);
+        
+    }
+
+    
+    
 
 
 
@@ -328,102 +466,6 @@ public final class WebhooksClient {
 
 
     
-    public Schemas.GetWebhooksResponse get() {
-        return get(new GetOptions());
-    }
-    
-
-    public Schemas.GetWebhooksResponse get(GetOptions options) {
-        
-        GetOptions opts = options != null ? options : new GetOptions();
-        
-        String path = "/2/webhooks";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "webhook_config.fields", opts.getWebhookConfigFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetWebhooksResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateWebhooksResponse create(Schemas.CreateWebhooksRequest body) {
-        
-        String path = "/2/webhooks";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateWebhooksResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
 
     public Schemas.GetWebhooksStreamLinksResponse getStreamLinks() {
         
@@ -451,48 +493,6 @@ public final class WebhooksClient {
                 contentType,
                 securitySchemes,
                 Schemas.GetWebhooksStreamLinksResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.CreateWebhookReplayJobResponse createWebhookReplayJob(Schemas.CreateWebhookReplayJobRequest body) {
-        
-        String path = "/2/webhooks/replay";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateWebhookReplayJobResponse.class);
         
     }
 

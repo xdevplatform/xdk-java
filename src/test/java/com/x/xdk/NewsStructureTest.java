@@ -29,13 +29,13 @@ public class NewsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("search"),
-                "Expected method search on NewsClient");
+                declared.contains("get"),
+                "Expected method get on NewsClient");
         
         
         assertTrue(
-                declared.contains("get"),
-                "Expected method get on NewsClient");
+                declared.contains("search"),
+                "Expected method search on NewsClient");
         
         
     }

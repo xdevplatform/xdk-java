@@ -29,13 +29,13 @@ public class UsageStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getCredits"),
-                "Expected method getCredits on UsageClient");
+                declared.contains("get"),
+                "Expected method get on UsageClient");
         
         
         assertTrue(
-                declared.contains("get"),
-                "Expected method get on UsageClient");
+                declared.contains("getCredits"),
+                "Expected method getCredits on UsageClient");
         
         
     }

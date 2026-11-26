@@ -29,16 +29,6 @@ public class PostsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getByIds"),
-                "Expected method getByIds on PostsClient");
-        
-        
-        assertTrue(
-                declared.contains("create"),
-                "Expected method create on PostsClient");
-        
-        
-        assertTrue(
                 declared.contains("getQuoted"),
                 "Expected method getQuoted on PostsClient");
         
@@ -48,32 +38,12 @@ public class PostsStructureTest {
         
         
         assertTrue(
-                declared.contains("deletePostDraft"),
-                "Expected method deletePostDraft on PostsClient");
-        
-        
-        assertTrue(
-                declared.contains("searchRecent"),
-                "Expected method searchRecent on PostsClient");
+                declared.contains("getLikingUsers"),
+                "Expected method getLikingUsers on PostsClient");
         
         assertTrue(
-                declared.contains("searchRecentPages"),
-                "Expected pagination helper searchRecentPages on PostsClient");
-        
-        
-        assertTrue(
-                declared.contains("getAnalytics"),
-                "Expected method getAnalytics on PostsClient");
-        
-        
-        assertTrue(
-                declared.contains("getById"),
-                "Expected method getById on PostsClient");
-        
-        
-        assertTrue(
-                declared.contains("delete"),
-                "Expected method delete on PostsClient");
+                declared.contains("getLikingUsersPages"),
+                "Expected pagination helper getLikingUsersPages on PostsClient");
         
         
         assertTrue(
@@ -86,8 +56,21 @@ public class PostsStructureTest {
         
         
         assertTrue(
-                declared.contains("hideReply"),
-                "Expected method hideReply on PostsClient");
+                declared.contains("searchAll"),
+                "Expected method searchAll on PostsClient");
+        
+        assertTrue(
+                declared.contains("searchAllPages"),
+                "Expected pagination helper searchAllPages on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("searchRecent"),
+                "Expected method searchRecent on PostsClient");
+        
+        assertTrue(
+                declared.contains("searchRecentPages"),
+                "Expected pagination helper searchRecentPages on PostsClient");
         
         
         assertTrue(
@@ -110,26 +93,18 @@ public class PostsStructureTest {
         
         
         assertTrue(
-                declared.contains("getCountsRecent"),
-                "Expected method getCountsRecent on PostsClient");
+                declared.contains("getByIds"),
+                "Expected method getByIds on PostsClient");
         
         
         assertTrue(
-                declared.contains("searchAll"),
-                "Expected method searchAll on PostsClient");
-        
-        assertTrue(
-                declared.contains("searchAllPages"),
-                "Expected pagination helper searchAllPages on PostsClient");
+                declared.contains("create"),
+                "Expected method create on PostsClient");
         
         
         assertTrue(
-                declared.contains("getLikingUsers"),
-                "Expected method getLikingUsers on PostsClient");
-        
-        assertTrue(
-                declared.contains("getLikingUsersPages"),
-                "Expected pagination helper getLikingUsersPages on PostsClient");
+                declared.contains("getAnalytics"),
+                "Expected method getAnalytics on PostsClient");
         
         
         assertTrue(
@@ -139,6 +114,31 @@ public class PostsStructureTest {
         assertTrue(
                 declared.contains("getRepostedByPages"),
                 "Expected pagination helper getRepostedByPages on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("getById"),
+                "Expected method getById on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("delete"),
+                "Expected method delete on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("deletePostDraft"),
+                "Expected method deletePostDraft on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("hideReply"),
+                "Expected method hideReply on PostsClient");
+        
+        
+        assertTrue(
+                declared.contains("getCountsRecent"),
+                "Expected method getCountsRecent on PostsClient");
         
         
     }

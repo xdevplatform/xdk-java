@@ -29,13 +29,13 @@ public class ArticlesStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("articleCreateDraft"),
-                "Expected method articleCreateDraft on ArticlesClient");
+                declared.contains("articlePublish"),
+                "Expected method articlePublish on ArticlesClient");
         
         
         assertTrue(
-                declared.contains("articlePublish"),
-                "Expected method articlePublish on ArticlesClient");
+                declared.contains("articleCreateDraft"),
+                "Expected method articleCreateDraft on ArticlesClient");
         
         
     }

@@ -34,13 +34,13 @@ public class TrendsStructureTest {
         
         
         assertTrue(
-                declared.contains("getByWoeid"),
-                "Expected method getByWoeid on TrendsClient");
+                declared.contains("getLocations"),
+                "Expected method getLocations on TrendsClient");
         
         
         assertTrue(
-                declared.contains("getLocations"),
-                "Expected method getLocations on TrendsClient");
+                declared.contains("getByWoeid"),
+                "Expected method getByWoeid on TrendsClient");
         
         
     }

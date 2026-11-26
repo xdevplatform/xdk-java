@@ -29,8 +29,17 @@ public class DirectMessagesStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("dmConversationsMediaDownload"),
-                "Expected method dmConversationsMediaDownload on DirectMessagesClient");
+                declared.contains("getEvents"),
+                "Expected method getEvents on DirectMessagesClient");
+        
+        assertTrue(
+                declared.contains("getEventsPages"),
+                "Expected pagination helper getEventsPages on DirectMessagesClient");
+        
+        
+        assertTrue(
+                declared.contains("createByConversationId"),
+                "Expected method createByConversationId on DirectMessagesClient");
         
         
         assertTrue(
@@ -43,17 +52,8 @@ public class DirectMessagesStructureTest {
         
         
         assertTrue(
-                declared.contains("getEventsByParticipantId"),
-                "Expected method getEventsByParticipantId on DirectMessagesClient");
-        
-        assertTrue(
-                declared.contains("getEventsByParticipantIdPages"),
-                "Expected pagination helper getEventsByParticipantIdPages on DirectMessagesClient");
-        
-        
-        assertTrue(
-                declared.contains("createByConversationId"),
-                "Expected method createByConversationId on DirectMessagesClient");
+                declared.contains("createByParticipantId"),
+                "Expected method createByParticipantId on DirectMessagesClient");
         
         
         assertTrue(
@@ -67,22 +67,22 @@ public class DirectMessagesStructureTest {
         
         
         assertTrue(
-                declared.contains("getEvents"),
-                "Expected method getEvents on DirectMessagesClient");
-        
-        assertTrue(
-                declared.contains("getEventsPages"),
-                "Expected pagination helper getEventsPages on DirectMessagesClient");
-        
-        
-        assertTrue(
-                declared.contains("createByParticipantId"),
-                "Expected method createByParticipantId on DirectMessagesClient");
-        
-        
-        assertTrue(
                 declared.contains("createConversation"),
                 "Expected method createConversation on DirectMessagesClient");
+        
+        
+        assertTrue(
+                declared.contains("getEventsByParticipantId"),
+                "Expected method getEventsByParticipantId on DirectMessagesClient");
+        
+        assertTrue(
+                declared.contains("getEventsByParticipantIdPages"),
+                "Expected pagination helper getEventsByParticipantIdPages on DirectMessagesClient");
+        
+        
+        assertTrue(
+                declared.contains("dmConversationsMediaDownload"),
+                "Expected method dmConversationsMediaDownload on DirectMessagesClient");
         
         
     }

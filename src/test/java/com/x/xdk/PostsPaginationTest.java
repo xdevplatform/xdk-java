@@ -88,7 +88,7 @@ public class PostsPaginationTest {
     }
     
     @Test
-    void paginate_searchRecent() {
+    void paginate_getLikingUsers() {
         List<HttpTransport.TransportRequest> requests = new ArrayList<>();
         String itemJson = "{\"id\": \"1\", \"name\": \"Item 1\"}";
         String page1 =
@@ -140,7 +140,7 @@ public class PostsPaginationTest {
 
         Paginator<?> paginator =
                 client.posts()
-                        .searchRecentPages("test_query");
+                        .getLikingUsersPages("test_id");
         int pageCount = 0;
         for (Object page : paginator) {
             assertNotNull(page);
@@ -226,70 +226,6 @@ public class PostsPaginationTest {
     }
     
     @Test
-    void paginate_getPostDrafts() {
-        List<HttpTransport.TransportRequest> requests = new ArrayList<>();
-        String itemJson = "{\"id\":\"test_value\",\"text\":\"test_value\"}";
-        String page1 =
-                "{\"data\":["
-                        + itemJson
-                        + ","
-                        + itemJson
-                        + "],\"meta\":{\"next_token\":\"tok_2\",\"result_count\":2}}";
-        String page2 =
-                "{\"data\":["
-                        + itemJson
-                        + "],\"meta\":{\"result_count\":1}}";
-
-        HttpTransport mockTransport =
-                new HttpTransport() {
-                    @Override
-                    public TransportResponse send(TransportRequest request) {
-                        requests.add(request);
-                        String body = requests.size() == 1 ? page1 : page2;
-                        return new TransportResponse(
-                                200,
-                                Collections.singletonMap(
-                                        "content-type", Collections.singletonList("application/json")),
-                                body.getBytes(StandardCharsets.UTF_8));
-                    }
-
-                    @Override
-                    public InputStream sendStream(TransportRequest request) {
-                        return new ByteArrayInputStream(new byte[0]);
-                    }
-                };
-
-        XClient client =
-                XClient.builder()
-                        .baseUrl("https://api.example.com")
-                        .bearerToken("test-bearer")
-                        .accessToken("test-access")
-                        .oauth1(new OAuth1("ck", "cs", "oob", "at", "ats"))
-                        .transport(mockTransport)
-                        .build();
-
-        
-        
-
-        Paginator<?> paginator =
-                client.posts()
-                        .getPostDraftsPages();
-        int pageCount = 0;
-        for (Object page : paginator) {
-            assertNotNull(page);
-            pageCount++;
-            if (pageCount > 5) break;
-        }
-        assertEquals(2, pageCount);
-        assertEquals(2, requests.size());
-        
-        assertTrue(
-                requests.get(1).getUrl().contains("pagination_token=tok_2"),
-                "Second page URL should contain token param: " + requests.get(1).getUrl());
-        
-    }
-    
-    @Test
     void paginate_searchAll() {
         List<HttpTransport.TransportRequest> requests = new ArrayList<>();
         String itemJson = "{\"id\": \"1\", \"name\": \"Item 1\"}";
@@ -359,7 +295,7 @@ public class PostsPaginationTest {
     }
     
     @Test
-    void paginate_getLikingUsers() {
+    void paginate_searchRecent() {
         List<HttpTransport.TransportRequest> requests = new ArrayList<>();
         String itemJson = "{\"id\": \"1\", \"name\": \"Item 1\"}";
         String page1 =
@@ -411,7 +347,71 @@ public class PostsPaginationTest {
 
         Paginator<?> paginator =
                 client.posts()
-                        .getLikingUsersPages("test_id");
+                        .searchRecentPages("test_query");
+        int pageCount = 0;
+        for (Object page : paginator) {
+            assertNotNull(page);
+            pageCount++;
+            if (pageCount > 5) break;
+        }
+        assertEquals(2, pageCount);
+        assertEquals(2, requests.size());
+        
+        assertTrue(
+                requests.get(1).getUrl().contains("pagination_token=tok_2"),
+                "Second page URL should contain token param: " + requests.get(1).getUrl());
+        
+    }
+    
+    @Test
+    void paginate_getPostDrafts() {
+        List<HttpTransport.TransportRequest> requests = new ArrayList<>();
+        String itemJson = "{\"id\":\"test_value\",\"text\":\"test_value\"}";
+        String page1 =
+                "{\"data\":["
+                        + itemJson
+                        + ","
+                        + itemJson
+                        + "],\"meta\":{\"next_token\":\"tok_2\",\"result_count\":2}}";
+        String page2 =
+                "{\"data\":["
+                        + itemJson
+                        + "],\"meta\":{\"result_count\":1}}";
+
+        HttpTransport mockTransport =
+                new HttpTransport() {
+                    @Override
+                    public TransportResponse send(TransportRequest request) {
+                        requests.add(request);
+                        String body = requests.size() == 1 ? page1 : page2;
+                        return new TransportResponse(
+                                200,
+                                Collections.singletonMap(
+                                        "content-type", Collections.singletonList("application/json")),
+                                body.getBytes(StandardCharsets.UTF_8));
+                    }
+
+                    @Override
+                    public InputStream sendStream(TransportRequest request) {
+                        return new ByteArrayInputStream(new byte[0]);
+                    }
+                };
+
+        XClient client =
+                XClient.builder()
+                        .baseUrl("https://api.example.com")
+                        .bearerToken("test-bearer")
+                        .accessToken("test-access")
+                        .oauth1(new OAuth1("ck", "cs", "oob", "at", "ats"))
+                        .transport(mockTransport)
+                        .build();
+
+        
+        
+
+        Paginator<?> paginator =
+                client.posts()
+                        .getPostDraftsPages();
         int pageCount = 0;
         for (Object page : paginator) {
             assertNotNull(page);

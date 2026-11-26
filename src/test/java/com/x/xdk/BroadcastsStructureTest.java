@@ -29,61 +29,6 @@ public class BroadcastsStructureTest {
                         .collect(Collectors.toSet());
         
         assertTrue(
-                declared.contains("getScheduledBroadcast"),
-                "Expected method getScheduledBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("updateScheduledBroadcast"),
-                "Expected method updateScheduledBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteScheduledBroadcast"),
-                "Expected method deleteScheduledBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("listLiveCategories"),
-                "Expected method listLiveCategories on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("getChatModerators"),
-                "Expected method getChatModerators on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("addChatModerator"),
-                "Expected method addChatModerator on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("getSourceStreamKey"),
-                "Expected method getSourceStreamKey on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("deleteBroadcastChatMessage"),
-                "Expected method deleteBroadcastChatMessage on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("unmuteChatUser"),
-                "Expected method unmuteChatUser on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("listUserSources"),
-                "Expected method listUserSources on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("createUserSource"),
-                "Expected method createUserSource on BroadcastsClient");
-        
-        
-        assertTrue(
                 declared.contains("getChatMutedUsers"),
                 "Expected method getChatMutedUsers on BroadcastsClient");
         
@@ -98,56 +43,13 @@ public class BroadcastsStructureTest {
         
         
         assertTrue(
-                declared.contains("listUser"),
-                "Expected method listUser on BroadcastsClient");
+                declared.contains("getUserBroadcast"),
+                "Expected method getUserBroadcast on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("createUserBroadcast"),
-                "Expected method createUserBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("list"),
-                "Expected method list on BroadcastsClient");
-        
-        assertTrue(
-                declared.contains("listPages"),
-                "Expected pagination helper listPages on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("createBroadcast"),
-                "Expected method createBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("updateBroadcastState"),
-                "Expected method updateBroadcastState on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("listScheduled"),
-                "Expected method listScheduled on BroadcastsClient");
-        
-        assertTrue(
-                declared.contains("listScheduledPages"),
-                "Expected pagination helper listScheduledPages on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("createScheduledBroadcast"),
-                "Expected method createScheduledBroadcast on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("updateUserBroadcastState"),
-                "Expected method updateUserBroadcastState on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("unmuteBroadcastChatUser"),
-                "Expected method unmuteBroadcastChatUser on BroadcastsClient");
+                declared.contains("deleteUserBroadcast"),
+                "Expected method deleteUserBroadcast on BroadcastsClient");
         
         
         assertTrue(
@@ -166,13 +68,66 @@ public class BroadcastsStructureTest {
         
         
         assertTrue(
-                declared.contains("getRegion"),
-                "Expected method getRegion on BroadcastsClient");
+                declared.contains("listScheduled"),
+                "Expected method listScheduled on BroadcastsClient");
+        
+        assertTrue(
+                declared.contains("listScheduledPages"),
+                "Expected pagination helper listScheduledPages on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("muteBroadcastChatUser"),
-                "Expected method muteBroadcastChatUser on BroadcastsClient");
+                declared.contains("createScheduledBroadcast"),
+                "Expected method createScheduledBroadcast on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("list"),
+                "Expected method list on BroadcastsClient");
+        
+        assertTrue(
+                declared.contains("listPages"),
+                "Expected pagination helper listPages on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("createBroadcast"),
+                "Expected method createBroadcast on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("getChatModerators"),
+                "Expected method getChatModerators on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("addChatModerator"),
+                "Expected method addChatModerator on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteBroadcastChatMessage"),
+                "Expected method deleteBroadcastChatMessage on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("listUser"),
+                "Expected method listUser on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("createUserBroadcast"),
+                "Expected method createUserBroadcast on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("listUserSources"),
+                "Expected method listUserSources on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("createUserSource"),
+                "Expected method createUserSource on BroadcastsClient");
         
         
         assertTrue(
@@ -181,47 +136,28 @@ public class BroadcastsStructureTest {
         
         
         assertTrue(
-                declared.contains("getUserBroadcast"),
-                "Expected method getUserBroadcast on BroadcastsClient");
+                declared.contains("getSourceStreamKey"),
+                "Expected method getSourceStreamKey on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("deleteUserBroadcast"),
-                "Expected method deleteUserBroadcast on BroadcastsClient");
+                declared.contains("unmuteBroadcastChatUser"),
+                "Expected method unmuteBroadcastChatUser on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("getUserSource"),
-                "Expected method getUserSource on BroadcastsClient");
+                declared.contains("getScheduledBroadcast"),
+                "Expected method getScheduledBroadcast on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("updateUserSource"),
-                "Expected method updateUserSource on BroadcastsClient");
+                declared.contains("updateScheduledBroadcast"),
+                "Expected method updateScheduledBroadcast on BroadcastsClient");
         
         
         assertTrue(
-                declared.contains("deleteUserSource"),
-                "Expected method deleteUserSource on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("getBroadcastChat"),
-                "Expected method getBroadcastChat on BroadcastsClient");
-        
-        assertTrue(
-                declared.contains("getBroadcastChatPages"),
-                "Expected pagination helper getBroadcastChatPages on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("sendBroadcastChat"),
-                "Expected method sendBroadcastChat on BroadcastsClient");
-        
-        
-        assertTrue(
-                declared.contains("removeChatModerator"),
-                "Expected method removeChatModerator on BroadcastsClient");
+                declared.contains("deleteScheduledBroadcast"),
+                "Expected method deleteScheduledBroadcast on BroadcastsClient");
         
         
         assertTrue(
@@ -240,6 +176,31 @@ public class BroadcastsStructureTest {
         
         
         assertTrue(
+                declared.contains("removeChatModerator"),
+                "Expected method removeChatModerator on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("getUserSource"),
+                "Expected method getUserSource on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("updateUserSource"),
+                "Expected method updateUserSource on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("deleteUserSource"),
+                "Expected method deleteUserSource on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("getRegion"),
+                "Expected method getRegion on BroadcastsClient");
+        
+        
+        assertTrue(
                 declared.contains("listSources"),
                 "Expected method listSources on BroadcastsClient");
         
@@ -247,6 +208,45 @@ public class BroadcastsStructureTest {
         assertTrue(
                 declared.contains("createSource"),
                 "Expected method createSource on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("updateBroadcastState"),
+                "Expected method updateBroadcastState on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("getBroadcastChat"),
+                "Expected method getBroadcastChat on BroadcastsClient");
+        
+        assertTrue(
+                declared.contains("getBroadcastChatPages"),
+                "Expected pagination helper getBroadcastChatPages on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("sendBroadcastChat"),
+                "Expected method sendBroadcastChat on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("updateUserBroadcastState"),
+                "Expected method updateUserBroadcastState on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("listLiveCategories"),
+                "Expected method listLiveCategories on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("muteBroadcastChatUser"),
+                "Expected method muteBroadcastChatUser on BroadcastsClient");
+        
+        
+        assertTrue(
+                declared.contains("unmuteChatUser"),
+                "Expected method unmuteChatUser on BroadcastsClient");
         
         
     }

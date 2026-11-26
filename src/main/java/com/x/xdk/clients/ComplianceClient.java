@@ -43,6 +43,266 @@ public final class ComplianceClient {
 
 
     /**
+     * Optional parameters for {@link #downloadJobResults}.
+     */
+    public static final class DownloadJobResultsOptions {
+        
+        
+        private List<String> complianceJobFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public DownloadJobResultsOptions() {}
+
+        public static DownloadJobResultsOptions builder() {
+            return new DownloadJobResultsOptions();
+        }
+
+        
+        
+        
+        
+        public DownloadJobResultsOptions complianceJobFields(List<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        public List<String> getComplianceJobFields() {
+            return this.complianceJobFields;
+        }
+        
+        
+        
+        
+
+        public DownloadJobResultsOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public DownloadJobResultsOptions copy() {
+            DownloadJobResultsOptions c = new DownloadJobResultsOptions();
+            
+            
+            
+            c.complianceJobFields = this.complianceJobFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #getJobsById}.
+     */
+    public static final class GetJobsByIdOptions {
+        
+        
+        private List<String> complianceJobFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetJobsByIdOptions() {}
+
+        public static GetJobsByIdOptions builder() {
+            return new GetJobsByIdOptions();
+        }
+
+        
+        
+        
+        
+        public GetJobsByIdOptions complianceJobFields(List<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        public List<String> getComplianceJobFields() {
+            return this.complianceJobFields;
+        }
+        
+        
+        
+        
+
+        public GetJobsByIdOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetJobsByIdOptions copy() {
+            GetJobsByIdOptions c = new GetJobsByIdOptions();
+            
+            
+            
+            c.complianceJobFields = this.complianceJobFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #deleteJobsById}.
+     */
+    public static final class DeleteJobsByIdOptions {
+        
+        
+        private List<String> complianceJobFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public DeleteJobsByIdOptions() {}
+
+        public static DeleteJobsByIdOptions builder() {
+            return new DeleteJobsByIdOptions();
+        }
+
+        
+        
+        
+        
+        public DeleteJobsByIdOptions complianceJobFields(List<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        public List<String> getComplianceJobFields() {
+            return this.complianceJobFields;
+        }
+        
+        
+        
+        
+
+        public DeleteJobsByIdOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public DeleteJobsByIdOptions copy() {
+            DeleteJobsByIdOptions c = new DeleteJobsByIdOptions();
+            
+            
+            
+            c.complianceJobFields = this.complianceJobFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * Optional parameters for {@link #uploadJobSubmission}.
+     */
+    public static final class UploadJobSubmissionOptions {
+        
+        
+        private List<String> complianceJobFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public UploadJobSubmissionOptions() {}
+
+        public static UploadJobSubmissionOptions builder() {
+            return new UploadJobSubmissionOptions();
+        }
+
+        
+        
+        
+        
+        public UploadJobSubmissionOptions complianceJobFields(List<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        public List<String> getComplianceJobFields() {
+            return this.complianceJobFields;
+        }
+        
+        
+        
+        
+
+        public UploadJobSubmissionOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public UploadJobSubmissionOptions copy() {
+            UploadJobSubmissionOptions c = new UploadJobSubmissionOptions();
+            
+            
+            
+            c.complianceJobFields = this.complianceJobFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #getJobs}.
      */
     public static final class GetJobsOptions {
@@ -194,386 +454,6 @@ public final class ComplianceClient {
 
 
 
-    /**
-     * Optional parameters for {@link #downloadJobResults}.
-     */
-    public static final class DownloadJobResultsOptions {
-        
-        
-        private List<String> complianceJobFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public DownloadJobResultsOptions() {}
-
-        public static DownloadJobResultsOptions builder() {
-            return new DownloadJobResultsOptions();
-        }
-
-        
-        
-        
-        
-        public DownloadJobResultsOptions complianceJobFields(List<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
-            return this;
-        }
-
-        public List<String> getComplianceJobFields() {
-            return this.complianceJobFields;
-        }
-        
-        
-        
-        
-
-        public DownloadJobResultsOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public DownloadJobResultsOptions copy() {
-            DownloadJobResultsOptions c = new DownloadJobResultsOptions();
-            
-            
-            
-            c.complianceJobFields = this.complianceJobFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #uploadJobSubmission}.
-     */
-    public static final class UploadJobSubmissionOptions {
-        
-        
-        private List<String> complianceJobFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public UploadJobSubmissionOptions() {}
-
-        public static UploadJobSubmissionOptions builder() {
-            return new UploadJobSubmissionOptions();
-        }
-
-        
-        
-        
-        
-        public UploadJobSubmissionOptions complianceJobFields(List<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
-            return this;
-        }
-
-        public List<String> getComplianceJobFields() {
-            return this.complianceJobFields;
-        }
-        
-        
-        
-        
-
-        public UploadJobSubmissionOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public UploadJobSubmissionOptions copy() {
-            UploadJobSubmissionOptions c = new UploadJobSubmissionOptions();
-            
-            
-            
-            c.complianceJobFields = this.complianceJobFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #getJobsById}.
-     */
-    public static final class GetJobsByIdOptions {
-        
-        
-        private List<String> complianceJobFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public GetJobsByIdOptions() {}
-
-        public static GetJobsByIdOptions builder() {
-            return new GetJobsByIdOptions();
-        }
-
-        
-        
-        
-        
-        public GetJobsByIdOptions complianceJobFields(List<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
-            return this;
-        }
-
-        public List<String> getComplianceJobFields() {
-            return this.complianceJobFields;
-        }
-        
-        
-        
-        
-
-        public GetJobsByIdOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public GetJobsByIdOptions copy() {
-            GetJobsByIdOptions c = new GetJobsByIdOptions();
-            
-            
-            
-            c.complianceJobFields = this.complianceJobFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-    /**
-     * Optional parameters for {@link #deleteJobsById}.
-     */
-    public static final class DeleteJobsByIdOptions {
-        
-        
-        private List<String> complianceJobFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
-
-        public DeleteJobsByIdOptions() {}
-
-        public static DeleteJobsByIdOptions builder() {
-            return new DeleteJobsByIdOptions();
-        }
-
-        
-        
-        
-        
-        public DeleteJobsByIdOptions complianceJobFields(List<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
-            return this;
-        }
-
-        public List<String> getComplianceJobFields() {
-            return this.complianceJobFields;
-        }
-        
-        
-        
-        
-
-        public DeleteJobsByIdOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
-
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
-
-        public DeleteJobsByIdOptions copy() {
-            DeleteJobsByIdOptions c = new DeleteJobsByIdOptions();
-            
-            
-            
-            c.complianceJobFields = this.complianceJobFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetComplianceJobsResponse getJobs(String type) {
-        return getJobs(type, new GetJobsOptions());
-    }
-    
-
-    public Schemas.GetComplianceJobsResponse getJobs(String type, GetJobsOptions options) {
-        
-        GetJobsOptions opts = options != null ? options : new GetJobsOptions();
-        
-        String path = "/2/compliance/jobs";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "type", type);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "status", opts.getStatus());
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetComplianceJobsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.CreateComplianceJobsResponse createJobs(Schemas.CreateComplianceJobsRequest body) {
-        return createJobs(body, new CreateJobsOptions());
-    }
-    
-
-    public Schemas.CreateComplianceJobsResponse createJobs(Schemas.CreateComplianceJobsRequest body, CreateJobsOptions options) {
-        
-        CreateJobsOptions opts = options != null ? options : new CreateJobsOptions();
-        
-        String path = "/2/compliance/jobs";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateComplianceJobsResponse.class);
-        
-    }
-
-    
-    
-
 
 
 
@@ -631,70 +511,6 @@ public final class ComplianceClient {
                 requestBody,
                 contentType,
                 securitySchemes);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.UploadComplianceJobSubmissionResponse uploadJobSubmission(String id, String token, byte[] body) {
-        return uploadJobSubmission(id, token, body, new UploadJobSubmissionOptions());
-    }
-    
-
-    public Schemas.UploadComplianceJobSubmissionResponse uploadJobSubmission(String id, String token, byte[] body, UploadJobSubmissionOptions options) {
-        
-        UploadJobSubmissionOptions opts = options != null ? options : new UploadJobSubmissionOptions();
-        
-        String path = "/2/compliance/jobs/{id}/upload";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "token", token);
-        
-        
-        
-        
-        
-        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("BearerToken");
-
-        Object requestBody = body;
-        String contentType = "application/octet-stream";
-
-        
-        return client.sendJson(
-                "PUT",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.UploadComplianceJobSubmissionResponse.class);
         
     }
 
@@ -811,6 +627,190 @@ public final class ComplianceClient {
                 contentType,
                 securitySchemes,
                 Schemas.DeleteComplianceJobsByIdResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.UploadComplianceJobSubmissionResponse uploadJobSubmission(String id, String token, byte[] body) {
+        return uploadJobSubmission(id, token, body, new UploadJobSubmissionOptions());
+    }
+    
+
+    public Schemas.UploadComplianceJobSubmissionResponse uploadJobSubmission(String id, String token, byte[] body, UploadJobSubmissionOptions options) {
+        
+        UploadJobSubmissionOptions opts = options != null ? options : new UploadJobSubmissionOptions();
+        
+        String path = "/2/compliance/jobs/{id}/upload";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "token", token);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = body;
+        String contentType = "application/octet-stream";
+
+        
+        return client.sendJson(
+                "PUT",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.UploadComplianceJobSubmissionResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.GetComplianceJobsResponse getJobs(String type) {
+        return getJobs(type, new GetJobsOptions());
+    }
+    
+
+    public Schemas.GetComplianceJobsResponse getJobs(String type, GetJobsOptions options) {
+        
+        GetJobsOptions opts = options != null ? options : new GetJobsOptions();
+        
+        String path = "/2/compliance/jobs";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "type", type);
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "status", opts.getStatus());
+        
+        
+        
+        
+        
+        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetComplianceJobsResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+    public Schemas.CreateComplianceJobsResponse createJobs(Schemas.CreateComplianceJobsRequest body) {
+        return createJobs(body, new CreateJobsOptions());
+    }
+    
+
+    public Schemas.CreateComplianceJobsResponse createJobs(Schemas.CreateComplianceJobsRequest body, CreateJobsOptions options) {
+        
+        CreateJobsOptions opts = options != null ? options : new CreateJobsOptions();
+        
+        String path = "/2/compliance/jobs";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "compliance_job.fields", opts.getComplianceJobFields());
+        
+        
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
+
+        List<String> securitySchemes = Arrays.asList("BearerToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateComplianceJobsResponse.class);
         
     }
 

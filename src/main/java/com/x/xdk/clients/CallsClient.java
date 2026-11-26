@@ -42,6 +42,10 @@ public final class CallsClient {
 
 
 
+
+
+
+
     /**
      * Optional parameters for {@link #getCall}.
      */
@@ -145,6 +149,18 @@ public final class CallsClient {
             return c;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -395,14 +411,6 @@ public final class CallsClient {
 
 
 
-
-
-
-
-
-
-
-
     /**
      * Optional parameters for {@link #listScheduled}.
      */
@@ -612,6 +620,44 @@ public final class CallsClient {
 
 
 
+    
+
+    public Schemas.LeaveCallResponse leaveCall(String id) {
+        
+        String path = "/2/calls/{id}/leave";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
+
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.LeaveCallResponse.class);
+        
+    }
+
+    
+    
+
 
 
 
@@ -676,6 +722,140 @@ public final class CallsClient {
                 contentType,
                 securitySchemes,
                 Schemas.GetCallResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.CreateCallResponse createCall(Schemas.CreateCallRequest body) {
+        
+        String path = "/2/calls";
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.CreateCallResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.RespondToScheduledCallResponse respondToScheduledCall(String id, Schemas.RespondToScheduledCallRequest body) {
+        
+        String path = "/2/calls/scheduled/{id}/rsvp";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.RespondToScheduledCallResponse.class);
+        
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+    
+
+    public Schemas.JoinCallResponse joinCall(String id, Schemas.JoinCallRequest body) {
+        
+        String path = "/2/calls/{id}/join";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+
+        Map<String, String> extraHeaders = new LinkedHashMap<>();
+        
+
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
+
+        Object requestBody = body;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "POST",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.JoinCallResponse.class);
         
     }
 
@@ -883,94 +1063,6 @@ public final class CallsClient {
 
 
     
-
-    public Schemas.CreateCallResponse createCall(Schemas.CreateCallRequest body) {
-        
-        String path = "/2/calls";
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.CreateCallResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.JoinCallResponse joinCall(String id, Schemas.JoinCallRequest body) {
-        
-        String path = "/2/calls/{id}/join";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.JoinCallResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
     public Schemas.ListScheduledCallsResponse listScheduled() {
         return listScheduled(new ListScheduledOptions());
     }
@@ -1088,98 +1180,6 @@ public final class CallsClient {
                 contentType,
                 securitySchemes,
                 Schemas.ScheduleCallResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.RespondToScheduledCallResponse respondToScheduledCall(String id, Schemas.RespondToScheduledCallRequest body) {
-        
-        String path = "/2/calls/scheduled/{id}/rsvp";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken");
-
-        Object requestBody = body;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.RespondToScheduledCallResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-
-    public Schemas.LeaveCallResponse leaveCall(String id) {
-        
-        String path = "/2/calls/{id}/leave";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>();
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "POST",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.LeaveCallResponse.class);
         
     }
 

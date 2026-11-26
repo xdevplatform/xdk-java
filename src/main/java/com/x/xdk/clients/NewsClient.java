@@ -43,6 +43,71 @@ public final class NewsClient {
 
 
     /**
+     * Optional parameters for {@link #get}.
+     */
+    public static final class GetOptions {
+        
+        
+        private List<String> newsFields;
+        
+        
+        
+        
+        private Map<String, String> headers = new LinkedHashMap<>();
+
+        public GetOptions() {}
+
+        public static GetOptions builder() {
+            return new GetOptions();
+        }
+
+        
+        
+        
+        
+        public GetOptions newsFields(List<String> newsFields) {
+            this.newsFields = newsFields;
+            return this;
+        }
+
+        public List<String> getNewsFields() {
+            return this.newsFields;
+        }
+        
+        
+        
+        
+
+        public GetOptions header(String name, String value) {
+            this.headers.put(name, value);
+            return this;
+        }
+
+        public Map<String, String> getHeaders() {
+            return this.headers;
+        }
+
+        public GetOptions copy() {
+            GetOptions c = new GetOptions();
+            
+            
+            
+            c.newsFields = this.newsFields;
+            
+            
+            
+            
+            c.headers.putAll(this.headers);
+            return c;
+        }
+    }
+
+
+
+
+
+
+    /**
      * Optional parameters for {@link #search}.
      */
     public static final class SearchOptions {
@@ -151,70 +216,63 @@ public final class NewsClient {
 
 
 
-    /**
-     * Optional parameters for {@link #get}.
-     */
-    public static final class GetOptions {
-        
-        
-        private List<String> newsFields;
-        
-        
-        
-        
-        private Map<String, String> headers = new LinkedHashMap<>();
 
-        public GetOptions() {}
 
-        public static GetOptions builder() {
-            return new GetOptions();
-        }
 
-        
-        
-        
-        
-        public GetOptions newsFields(List<String> newsFields) {
-            this.newsFields = newsFields;
-            return this;
-        }
 
-        public List<String> getNewsFields() {
-            return this.newsFields;
-        }
+
+
+
+
+    
+    public Schemas.GetNewsResponse get(String id) {
+        return get(id, new GetOptions());
+    }
+    
+
+    public Schemas.GetNewsResponse get(String id, GetOptions options) {
         
+        GetOptions opts = options != null ? options : new GetOptions();
+        
+        String path = "/2/news/{id}";
+        
+        
+        path = path.replace("{id}", XClient.encodePathSegment(id));
+        
+        
+
+        Map<String, String> queryParams = new LinkedHashMap<>();
+        
+        
+        
+        XClient.addQueryParam(queryParams, "news.fields", opts.getNewsFields());
         
         
         
 
-        public GetOptions header(String name, String value) {
-            this.headers.put(name, value);
-            return this;
-        }
+        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
+        
 
-        public Map<String, String> getHeaders() {
-            return this.headers;
-        }
+        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
 
-        public GetOptions copy() {
-            GetOptions c = new GetOptions();
-            
-            
-            
-            c.newsFields = this.newsFields;
-            
-            
-            
-            
-            c.headers.putAll(this.headers);
-            return c;
-        }
+        Object requestBody = null;
+        String contentType = "application/json";
+
+        
+        return client.sendJson(
+                "GET",
+                path,
+                queryParams,
+                extraHeaders,
+                requestBody,
+                contentType,
+                securitySchemes,
+                Schemas.GetNewsResponse.class);
+        
     }
 
-
-
-
-
+    
+    
 
 
 
@@ -282,64 +340,6 @@ public final class NewsClient {
                 contentType,
                 securitySchemes,
                 Schemas.SearchNewsResponse.class);
-        
-    }
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    public Schemas.GetNewsResponse get(String id) {
-        return get(id, new GetOptions());
-    }
-    
-
-    public Schemas.GetNewsResponse get(String id, GetOptions options) {
-        
-        GetOptions opts = options != null ? options : new GetOptions();
-        
-        String path = "/2/news/{id}";
-        
-        
-        path = path.replace("{id}", XClient.encodePathSegment(id));
-        
-        
-
-        Map<String, String> queryParams = new LinkedHashMap<>();
-        
-        
-        
-        XClient.addQueryParam(queryParams, "news.fields", opts.getNewsFields());
-        
-        
-        
-
-        Map<String, String> extraHeaders = new LinkedHashMap<>(opts.getHeaders());
-        
-
-        List<String> securitySchemes = Arrays.asList("OAuth2UserToken", "UserToken", "BearerToken");
-
-        Object requestBody = null;
-        String contentType = "application/json";
-
-        
-        return client.sendJson(
-                "GET",
-                path,
-                queryParams,
-                extraHeaders,
-                requestBody,
-                contentType,
-                securitySchemes,
-                Schemas.GetNewsResponse.class);
         
     }
 
